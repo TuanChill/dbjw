@@ -1,0 +1,22 @@
+.text-header-tab {
+    -fx-font-size: 28px !important;
+    -fx-font-weight: 800;
+}
+
+.text-title {
+    -fx-font-size: 18px;
+}
+
+.btn-submit {
+    -fx-background-color: #6c5ce7;
+    -fx-text-fill: #fff;
+    -fx-font-size: 16px;
+    -fx-background-radius: 6px;
+}
+
+.cancel-btn {
+    -fx-background-color: #ccc;
+    -fx-text-fill: #333;
+    -fx-font-size: 16px;
+    -fx-background-radius: 6px;
+}

@@ -1,0 +1,19 @@
+.login-container {
+    -fx-background-color: #ffff;
+}
+
+.login-container Text {
+    -fx-font-family: Arial !important;
+}
+
+/* Banner Container*/
+.banner-container {
+    -fx-background-color: #ffff;
+}
+
+.btn-login {
+    -fx-background-color: #6c5ce7;
+    -fx-text-fill: #fff;
+    -fx-background-radius: 6px;
+}
+
