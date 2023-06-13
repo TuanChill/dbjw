@@ -43,6 +43,8 @@ public class ProductController implements Initializable {
     @FXML
     private ChoiceBox<String> material;
 
+    private File fileImg;
+
     private final String[] typeProductList = {"Nhẫn", "Bông tai ", "Dây chuyền"};
 
     private final String[] materialList = {"Bạc", "Vàng", "Kim Cương"};
@@ -61,6 +63,7 @@ public class ProductController implements Initializable {
                     .category(typeProduct.getValue().trim())
                     .size(size.getText().trim())
                     .material(material.getValue().trim())
+                    .imgUrl(fileImg.getPath())
                     .build();
             productService.createProduct(product);
             cancelWindow(event);
@@ -111,6 +114,7 @@ public class ProductController implements Initializable {
         File file = fileChooser.showOpenDialog(null);
         if(file != null) {
             imgPreview.setImage(new Image(file.getPath()));
+            fileImg = file;
         }
     }
 

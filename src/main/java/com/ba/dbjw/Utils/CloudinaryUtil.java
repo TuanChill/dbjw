@@ -9,24 +9,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class CloudinaryUtil {
-    private static void getCloudinary() {
+    private static Cloudinary getCloudinary() {
         // Configure
         Map<String, String> config = new HashMap<String, String>();
         config.put("cloud_name", "dzh6qetpl");
         config.put("api_key", "548996969994365");
         config.put("api_secret", "8DiQDY84P9-qA1e7nj8FoJYwRvQ");
-        Cloudinary cloudinary = new Cloudinary(config);
+        return new Cloudinary(config);
+    }
 
+
+    public static String uploadImgToCloudinary(String file) {
 
         // Upload
         try {
-            cloudinary.uploader().upload("https://upload.wikimedia.org/wikipedia/commons/a/ae/Olympic_flag.jpg", ObjectUtils.asMap("public_id", "olympic_flag"));
+            Map<String,String> uploadResult = getCloudinary().uploader().upload(file, ObjectUtils.asMap("public_id", "olympic_flag"));
+            return uploadResult.get("url");
         } catch (IOException exception) {
             System.out.println(exception.getMessage());
+            return null;
         }
-
-        // Transform
-        String url = cloudinary.url().transformation(new Transformation().width(100).height(150).crop("fill")).generate("olympic_flag");
-        System.out.println(url);
     }
 }
