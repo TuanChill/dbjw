@@ -10,16 +10,26 @@ import java.util.Map;
 
 public class CloudinaryUtil {
     private static Cloudinary getCloudinary() {
+        // Define transformation
+        Transformation transformation = new Transformation()
+                .width(200)
+                .height(200)
+                .crop("fill"); // Set the crop mode to "fill"
+
         // Configure
-        Map<String, String> config = new HashMap<String, String>();
+        Map<String, Object> config = new HashMap<String, Object>();
         config.put("cloud_name", "dzh6qetpl");
         config.put("api_key", "548996969994365");
         config.put("api_secret", "8DiQDY84P9-qA1e7nj8FoJYwRvQ");
+        config.put("format", "png");
+        config.put("transformation", transformation);
         return new Cloudinary(config);
     }
 
 
     public static String uploadImgToCloudinary(String file) {
+
+
 
         // Upload
         try {

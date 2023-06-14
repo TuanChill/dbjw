@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:controller="com.ba.dbjw.Controllers.Admin.ProductDashController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="824.0" prefWidth="1329.0" stylesheets="@../../Assets/Styles/dashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="824.0" prefWidth="1329.0" stylesheets="@../../Assets/Styles/dashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ba.dbjw.Controllers.Product.ProductDashController">
     <children>
         <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="150.0" styleClass="sidebar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -137,11 +137,13 @@
             <TableView fx:id="productTable" fixedCellSize="60.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="700.0" VBox.vgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="codeColumn" maxWidth="124.0" minWidth="50.0" prefWidth="113.0" resizable="false" text="Code" />
-                <TableColumn fx:id="nameColumn" maxWidth="210.0" minWidth="46.0" prefWidth="128.0" resizable="false" text="Tên sản phẩm" />
-                  <TableColumn fx:id="priceColumn" maxWidth="169.0" minWidth="0.0" onEditCommit="#changePriceCell" prefWidth="169.0" resizable="false" text="Giá bán" />
-                  <TableColumn fx:id="materialColumn" maxWidth="248.0" minWidth="42.0" onEditCommit="#changeMaterialCell" prefWidth="116.0" resizable="false" text="Chất liệu" />
-                  <TableColumn fx:id="descColumn" maxWidth="664.0" minWidth="0.0" onEditCommit="#changeDescCell" prefWidth="409.0" resizable="false" text="Mô tả" />
-                  <TableColumn fx:id="imgColumn" prefWidth="183.0" resizable="false" text="Ảnh" />
+                <TableColumn fx:id="nameColumn" maxWidth="210.0" minWidth="46.0" prefWidth="139.0" resizable="false" text="Tên sản phẩm" />
+                  <TableColumn fx:id="priceColumn" maxWidth="169.0" minWidth="0.0" prefWidth="117.0" resizable="false" text="Giá bán" />
+                  <TableColumn fx:id="sizeColumn" prefWidth="77.0" resizable="false" onEditCommit="#changeSizeCell" text="Kích cỡ" />
+                  <TableColumn fx:id="stockColumn" maxWidth="1100.0" minWidth="0.0" resizable="false" text="Số lượng" />
+                  <TableColumn fx:id="materialColumn" maxWidth="400.0" minWidth="42.0" prefWidth="107.0" resizable="false" text="Chất liệu" />
+                  <TableColumn fx:id="descColumn" maxWidth="331.0" minWidth="0.0" onEditCommit="#changeDescCell" prefWidth="319.0" resizable="false" text="Mô tả" />
+                  <TableColumn fx:id="imgColumn" prefWidth="241.0" resizable="false" text="Ảnh" />
               </columns>
                <VBox.margin>
                   <Insets bottom="20.0" left="25.0" right="25.0" />
@@ -157,7 +159,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="532.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deletePets" prefHeight="31.0" prefWidth="80.0" styleClass="deletebutton" text="Delete" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="133.0">
+                  <Button layoutX="532.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="31.0" prefWidth="80.0" styleClass="deletebutton" text="Delete" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="133.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
@@ -165,6 +167,11 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
+                  <Button layoutX="856.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#updateProduct" prefHeight="31.0" prefWidth="80.0" styleClass="updatebutton" text="Xem">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
                </children>
             </AnchorPane>
             </children>

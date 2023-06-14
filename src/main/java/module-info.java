@@ -26,6 +26,6 @@ module com.ba.dbjw {
     opens com.ba.dbjw.Entity.UserAuth to org.hibernate.orm.core;
     opens com.ba.dbjw.Entity.Product to org.hibernate.orm.core, javafx.base;
     opens com.ba.dbjw.Controllers to javafx.fxml;
-    opens com.ba.dbjw.Controllers.Admin to javafx.fxml;
+    opens com.ba.dbjw.Controllers.Product to javafx.fxml;
     opens com.ba.dbjw.Models.Enums to org.hibernate.orm.core;
 }

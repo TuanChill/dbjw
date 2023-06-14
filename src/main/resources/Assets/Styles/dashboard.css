@@ -120,6 +120,19 @@
     -fx-font: 14px Roboto;
 }
 
+.updatebutton {
+    -fx-background-color: #a4863f;
+    -fx-background-radius: 3;
+    -fx-text-fill: #ffffff;
+    -fx-font: 14px Roboto;
+}
+
+.updatebutton:hover {
+    -fx-background-color: rgba(164, 134, 63, 0.76);
+    -fx-text-fill: #ffffff;
+    -fx-font: 14px Roboto;
+}
+
 .deletebutton:hover {
     -fx-background-color: #e34d36;
     -fx-text-fill: #ffffff;

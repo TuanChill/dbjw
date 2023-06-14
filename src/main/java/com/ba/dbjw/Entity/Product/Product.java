@@ -22,7 +22,6 @@ public class Product {
     private String description;
     private Long price;
     private int stock;
-    private int sold;
     @Column(name = "img_url")
     private String imgUrl;
     private String category;

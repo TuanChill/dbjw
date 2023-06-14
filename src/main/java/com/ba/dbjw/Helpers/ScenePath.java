@@ -4,7 +4,9 @@ public enum ScenePath {
     LOGIN("/Fxml/login.fxml"),
     ADMIN("/Fxml/Admin/admin.fxml"),
     PRODUCTDASH("/Fxml/Admin/productDash.fxml"),
-    PRODUCTADMIN("/Fxml/Admin/addProduct.fxml");
+    ADDPRODUCT("/Fxml/Admin/addProduct.fxml"),
+    UPDATEPRODUCT("/Fxml/Admin/updateProduct.fxml")
+    ;
 
     private final String path;
 

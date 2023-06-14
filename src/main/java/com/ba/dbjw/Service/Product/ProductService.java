@@ -8,4 +8,5 @@ public interface ProductService<T> {
     void deleteProduct(T product);
     void updateProduct(T product);
     Long getNumberOfProduct();
+    Boolean checkProductIsExist(String code);
 }

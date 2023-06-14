@@ -1,7 +1,8 @@
-package com.ba.dbjw.Controllers.Admin;
+package com.ba.dbjw.Controllers.Product;
 
-import com.ba.dbjw.Controllers.PopupWindowControllers.NewWindowController;
 import com.ba.dbjw.Entity.Product.Product;
+import com.ba.dbjw.Helpers.BindingInput;
+import com.ba.dbjw.Helpers.CurrentProduct;
 import com.ba.dbjw.Helpers.UpdateStatus;
 import com.ba.dbjw.Service.Product.ProductServiceImpl;
 import com.ba.dbjw.Views.SceneController;
@@ -11,21 +12,20 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class ProductController implements Initializable {
+public class UpdateProductController implements Initializable {
     @FXML
     private Text errText;
-    @FXML
-    private TextField CodeProduct;
     @FXML
     private TextField nameProduct;
     @FXML
@@ -51,32 +51,30 @@ public class ProductController implements Initializable {
 
     private final ProductServiceImpl productService = new ProductServiceImpl();
 
-
     @FXML
     public void submitHandler(ActionEvent event) {
         if (validateInput()) {
             Product product = Product.builder()
-                    .code(CodeProduct.getText().trim())
+                    .code(CurrentProduct.getCurrentProduct().getCode())
                     .name(nameProduct.getText().trim())
                     .price(Long.parseLong(price.getText()))
                     .description(desc.getText().trim())
+                    .stock(Integer.parseInt(stock.getText()))
                     .category(typeProduct.getValue().trim())
                     .size(size.getText().trim())
                     .material(material.getValue().trim())
                     .imgUrl(fileImg.getPath())
                     .build();
-            productService.createProduct(product);
             cancelWindow(event);
+            productService.updateProduct(product);
+            unbindFormatter();
             UpdateStatus.setIsProductAdded(true);
         }
     }
 
     private boolean validateInput() {
         errText.setText("");
-        if (CodeProduct.getText().trim().isEmpty()) {
-            errText.setText("Mã sản phẩm không được bỏ trống");
-            return false;
-        } else if (nameProduct.getText().isEmpty()) {
+        if (nameProduct.getText().isEmpty()) {
             errText.setText("Tên sản phẩm không được bỏ trống");
             return false;
         } else if (price.getText().trim().isEmpty()) {
@@ -91,7 +89,7 @@ public class ProductController implements Initializable {
         } else if (material.getValue() == null) {
             errText.setText("Vui lòng chọn chất liệu");
             return false;
-        } else if (Objects.equals(imgPreview.getImage().getUrl(), getClass().getResource("/Assets/Images/upload.jpg"))) {
+        } else if (fileImg == null) {
             errText.setText("Vui lòng chọn ảnh cho sản phẩm");
             return false;
         } else if (stock.getText().trim().isEmpty()) {
@@ -108,21 +106,25 @@ public class ProductController implements Initializable {
         }
     }
 
+    //TextField bindings only enter numbers
+    private void onlyNumberTextField() {
+        price.setTextFormatter(BindingInput.textFormatterNumber());
+        stock.setTextFormatter(BindingInput.textFormatterNumber());
+    }
+
     @FXML
     public void imgChooser(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(null);
-        if(file != null) {
+        if (file != null) {
             imgPreview.setImage(new Image(file.getPath()));
             fileImg = file;
         }
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // define choose item
-        typeProduct.getItems().addAll(typeProductList);
-        material.getItems().addAll(materialList);
+    private void unbindFormatter() {
+        price.setTextFormatter(null);
+        stock.setTextFormatter(null);
     }
 
     private boolean isNumeric(String str) {
@@ -134,8 +136,36 @@ public class ProductController implements Initializable {
         }
     }
 
+    private void setCurrProduct() {
+        Product currProduct = CurrentProduct.getCurrentProduct();
+        nameProduct.setText(currProduct.getName());
+        price.setText(currProduct.getPrice().toString());
+        material.setValue(currProduct.getMaterial());
+        typeProduct.setValue(currProduct.getCategory());
+        size.setText(currProduct.getSize());
+        stock.setText(String.valueOf(currProduct.getStock()));
+        desc.setText(currProduct.getDescription());
+        imgPreview.setImage(new Image(currProduct.getImgUrl()));
+        fileImg = new File(currProduct.getImgUrl());
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        // define choose item
+        typeProduct.getItems().addAll(typeProductList);
+        material.getItems().addAll(materialList);
+
+        onlyNumberTextField();
+
+        setCurrProduct();
+
+    }
+
+
+
     @FXML
     private void cancelWindow(ActionEvent event) {
+        unbindFormatter();
         SceneController.close(event);
     }
 }

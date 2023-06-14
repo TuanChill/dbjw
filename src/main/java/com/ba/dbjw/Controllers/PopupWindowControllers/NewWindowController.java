@@ -18,7 +18,11 @@ public class NewWindowController {
     static double y;
 
     public static void getNewProductWindow() throws IOException {
-        getPopUpWindow(ScenePath.PRODUCTADMIN.getPath());
+        getPopUpWindow(ScenePath.ADDPRODUCT.getPath());
+    }
+
+    public static void getUpdateProductWindow() throws IOException {
+        getPopUpWindow(ScenePath.UPDATEPRODUCT.getPath());
     }
 
 //    public static Stage getNewVetWindow() throws IOException {

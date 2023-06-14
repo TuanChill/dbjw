@@ -1,13 +1,9 @@
-package com.ba.dbjw.Controllers.Admin;
-
+package com.ba.dbjw.Controllers.Product;
 
 
 import com.ba.dbjw.Controllers.PopupWindowControllers.NewWindowController;
 import com.ba.dbjw.Entity.Product.Product;
-import com.ba.dbjw.Helpers.CurrentTime;
-import com.ba.dbjw.Helpers.CurrentUser;
-import com.ba.dbjw.Helpers.SceneName;
-import com.ba.dbjw.Helpers.UpdateStatus;
+import com.ba.dbjw.Helpers.*;
 import com.ba.dbjw.Service.Product.ProductServiceImpl;
 import com.ba.dbjw.Views.SceneController;
 import javafx.collections.FXCollections;
@@ -59,7 +55,13 @@ public class ProductDashController {
     private TableColumn<Product, String> nameColumn;
 
     @FXML
-    private TableColumn<Product, Long> priceColumn;
+    private TableColumn<Product, String> priceColumn;
+
+    @FXML
+    private TableColumn<Product, String> sizeColumn;
+
+    @FXML
+    private TableColumn<Product, String> stockColumn;
 
     @FXML
     private TableColumn<Product, String> materialColumn;
@@ -99,16 +101,13 @@ public class ProductDashController {
         codeColumn.setCellValueFactory(new PropertyValueFactory<>("code"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
+        stockColumn.setCellValueFactory(new PropertyValueFactory<>("stock"));
+        sizeColumn.setCellValueFactory(new PropertyValueFactory<>("size"));
         materialColumn.setCellValueFactory(new PropertyValueFactory<>("material"));
         descColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        imgColumn.setCellValueFactory(new PropertyValueFactory<>("imgUrl"));
+        sizeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         descColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-//        priceColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        imgColumn.setCellFactory(col -> new TableCell<Product, String>() {
-            private void updateItem(Boolean item, boolean empty) {
-                super.updateItem(String.valueOf(item), empty);
-                setText(empty ? null : item ? "Xem ảnh" : "Không có ảnh");
-            }
-        });
     }
 
     private void addTableSettings() {
@@ -141,8 +140,9 @@ public class ProductDashController {
                         return true;
                     } else if (product.getSize().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
+                    } else {
+                        return false;
                     }
-                    return false;
                 }));
         return filteredList;
     }
@@ -155,20 +155,13 @@ public class ProductDashController {
     }
 
     @FXML
-    private void changePriceCell(TableColumn.CellEditEvent<Product, String> editEvent) {
+    private void changeSizeCell(TableColumn.CellEditEvent<Product, String> editEvent) {
         Product selectedProduct = productTable.getSelectionModel().getSelectedItem();
-        selectedProduct.setPrice(Long.valueOf(editEvent.getNewValue()));
-        productService.updateProduct(selectedProduct);
-    }
-
-    @FXML
-    private void changeMaterialCell(TableColumn.CellEditEvent<Product, String> editEvent) {
-        Product selectedProduct = productTable.getSelectionModel().getSelectedItem();
-        selectedProduct.setMaterial(editEvent.getNewValue());
+        selectedProduct.setSize(editEvent.getNewValue());
         productService.updateProduct(selectedProduct);
     }
     @FXML
-    private void deletePets(ActionEvent event) throws Exception {
+    private void deleteProduct(ActionEvent event) throws Exception {
         ObservableList<Product> selectedRows = productTable.getSelectionModel().getSelectedItems();
         for (Product product : selectedRows) {
             productService.deleteProduct(product);
@@ -177,9 +170,19 @@ public class ProductDashController {
     }
 
     @FXML
+    private void updateProduct(ActionEvent event) throws IOException {
+        ObservableList<Product> selectedRows = productTable.getSelectionModel().getSelectedItems();
+        for (Product product : selectedRows) {
+            CurrentProduct.setCurrentProduct(product);
+            NewWindowController.getUpdateProductWindow();
+        }
+        refreshScreen(event);
+    }
+
+    @FXML
     private void newWindow(ActionEvent event) throws IOException {
         NewWindowController.getNewProductWindow();
-        if(UpdateStatus.isProductAdded()) {
+        if (UpdateStatus.isProductAdded()) {
             refreshScreen(event);
             UpdateStatus.setIsProductAdded(false);
         }
@@ -207,4 +210,5 @@ public class ProductDashController {
     private void showVetScreen(ActionEvent event) throws IOException {
 //        SceneController.getVetsScene(event);
     }
+
 }
