@@ -46,6 +46,18 @@ public class SceneController {
     }
 
 
+    public static void getCustomerDashScene(ActionEvent event) throws IOException {
+        changeScreen(event, ScenePath.CUSTOMERDASH.getPath());
+    }
+
+    public static void getEmployeeDashScene(ActionEvent event) throws IOException {
+        changeScreen(event, ScenePath.EMPLOYEEDASH.getPath());
+    }
+
+    public static void getInvoiceDashScene(ActionEvent event) throws IOException {
+        changeScreen(event, ScenePath.INVOICEDASH.getPath());
+    }
+
     private static void changeScreen(ActionEvent event, String path) throws IOException {
         main = FXMLLoader.load(SceneController.class.getResource(path));
         Scene visitScene = new Scene(main);

@@ -1,5 +1,7 @@
 package com.ba.dbjw.Utils;
 
+import com.ba.dbjw.Entity.Customer.Customer;
+import com.ba.dbjw.Entity.Employee.Employee;
 import com.ba.dbjw.Entity.Product.Product;
 import com.ba.dbjw.Entity.UserAuth.UserAuth;
 import org.hibernate.SessionFactory;
@@ -34,6 +36,8 @@ public class HibernateUtil {
                 // mapping entity with database
                 configuration.addAnnotatedClass(UserAuth.class);
                 configuration.addAnnotatedClass(Product.class);
+                configuration.addAnnotatedClass(Customer.class);
+                configuration.addAnnotatedClass(Employee.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();

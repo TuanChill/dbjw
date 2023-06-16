@@ -20,10 +20,16 @@ module com.ba.dbjw {
     exports com.ba.dbjw.Views;
     exports com.ba.dbjw.Entity.User;
     exports com.ba.dbjw.Entity.UserAuth;
+    exports com.ba.dbjw.Entity.Product;
+    exports com.ba.dbjw.Entity.Customer;
+    exports com.ba.dbjw.Entity.Employee;
     exports com.ba.dbjw.Models.Enums;
 
     opens com.ba.dbjw to javafx.fxml;
     opens com.ba.dbjw.Entity.UserAuth to org.hibernate.orm.core;
+    opens com.ba.dbjw.Entity.Customer to org.hibernate.orm.core;
+    opens com.ba.dbjw.Entity.Employee to org.hibernate.orm.core;
+    opens com.ba.dbjw.Models to org.hibernate.orm.core;
     opens com.ba.dbjw.Entity.Product to org.hibernate.orm.core, javafx.base;
     opens com.ba.dbjw.Controllers to javafx.fxml;
     opens com.ba.dbjw.Controllers.Product to javafx.fxml;

@@ -1,4 +1,4 @@
-package com.ba.dbjw.Helpers;
+package com.ba.dbjw.Helpers.UpdateStatus;
 
 public final class UpdateStatus {
 

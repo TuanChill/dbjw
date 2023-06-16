@@ -4,6 +4,7 @@ package com.ba.dbjw.Controllers.Product;
 import com.ba.dbjw.Controllers.PopupWindowControllers.NewWindowController;
 import com.ba.dbjw.Entity.Product.Product;
 import com.ba.dbjw.Helpers.*;
+import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatus;
 import com.ba.dbjw.Service.Product.ProductServiceImpl;
 import com.ba.dbjw.Views.SceneController;
 import javafx.collections.FXCollections;
@@ -32,9 +33,6 @@ public class ProductDashController {
 
     @FXML
     private Label updateTime;
-
-    @FXML
-    private Button customerBtn;
 
     @FXML
     private Button exitBtn;
@@ -202,13 +200,18 @@ public class ProductDashController {
     }
 
     @FXML
-    private void showVisitScreen(ActionEvent event) throws IOException {
-//        SceneController.getVisitScene(event);
+    private void showCustomerScreen(ActionEvent event) throws IOException {
+        SceneController.getCustomerDashScene(event);
     }
 
     @FXML
-    private void showVetScreen(ActionEvent event) throws IOException {
-//        SceneController.getVetsScene(event);
+    private void showInvoiceScreen(ActionEvent event) throws  IOException {
+        SceneController.getInvoiceDashScene(event);
+    }
+
+    @FXML
+    private void showEmployeeScreen(ActionEvent event) throws IOException {
+        SceneController.getEmployeeDashScene(event);
     }
 
 }

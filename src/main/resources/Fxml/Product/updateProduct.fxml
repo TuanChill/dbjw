@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="835.0" prefWidth="1287.0" stylesheets="@../../Assets/Styles/productAdmin.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ba.dbjw.Controllers.Product.UpdateProductController">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+        <BorderPane layoutX="14.0" layoutY="6.0" prefHeight="293.0" prefWidth="364.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <left>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="742.0" prefWidth="1273.0" styleClass="product-create-container" BorderPane.alignment="CENTER">
+                    <BorderPane.margin>
+                        <Insets />
+                    </BorderPane.margin>
+                    <children>
+                        <Text layoutX="62.0" layoutY="107.12890625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Tên sản phẩm" AnchorPane.bottomAnchor="68.353515625" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="1099.6953125" AnchorPane.topAnchor="87.705078125" />
+                        <Text layoutX="63.0" layoutY="185.12890625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Loại sản phẩm" AnchorPane.bottomAnchor="-9.646484375" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="1095.1884765625" AnchorPane.topAnchor="165.705078125" />
+                        <Text layoutX="67.0" layoutY="549.423828125" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Mô tả" AnchorPane.bottomAnchor="-373.94140625" AnchorPane.leftAnchor="67.0" AnchorPane.rightAnchor="1159.1015625" AnchorPane.topAnchor="530.0" />
+                        <Text layoutX="697.0546875" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Hình ảnh" AnchorPane.leftAnchor="697.0546875" AnchorPane.rightAnchor="517.9716796875" />
+                        <TextField fx:id="nameProduct" layoutX="210.0" layoutY="81.0" prefHeight="37.0" prefWidth="417.0" AnchorPane.leftAnchor="210.0" />
+                        <TextArea fx:id="desc" layoutX="211.0" layoutY="530.0" prefHeight="200.0" prefWidth="426.0" wrapText="true" AnchorPane.leftAnchor="211.0">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </TextArea>
+                        <ImageView fx:id="imgPreview" fitHeight="545.0" fitWidth="532.0" layoutX="697.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" styleClass="img-preview" AnchorPane.leftAnchor="697.0">
+                            <image>
+                                <Image url="@../../Assets/Images/upload.jpg" />
+                            </image>
+                        </ImageView>
+                        <Button layoutX="211.0" layoutY="758.0" mnemonicParsing="false" onAction="#submitHandler" prefHeight="34.0" prefWidth="201.0" styleClass="btn-submit" text="Cập nhật" AnchorPane.leftAnchor="211.0" />
+                        <ChoiceBox fx:id="typeProduct" layoutX="210.0" layoutY="165.0" prefWidth="150.0" />
+                        <Button layoutX="800.0" layoutY="119.0" mnemonicParsing="false" onAction="#imgChooser" styleClass="btn-submit" text="Chọn ảnh" />
+                        <Text layoutX="2.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-header-tab" text="Chi Tiết Sản phẩm" textAlignment="CENTER" wrappingWidth="1279.251953125" />
+                        <Text layoutX="63.0" layoutY="250.423828125" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Chất liệu" AnchorPane.bottomAnchor="-74.94140625" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="1140.162109375" AnchorPane.topAnchor="231.0" />
+                        <ChoiceBox fx:id="material" layoutX="210.0" layoutY="230.0" prefWidth="150.0" />
+                        <Text fx:id="errText" fill="#fc0000" layoutX="697.0" layoutY="696.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="535.0">
+                            <font>
+                                <Font name="System Italic" size="14.0" />
+                            </font>
+                        </Text>
+                    </children>
+                </AnchorPane>
+            </left>
+        </BorderPane>
+    </AnchorPane>
+         <Text layoutX="64.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Giá bán ra" AnchorPane.bottomAnchor="506.0" AnchorPane.leftAnchor="64.0" AnchorPane.rightAnchor="1141.9296875" AnchorPane.topAnchor="302.0" />
+         <TextField fx:id="price" layoutX="209.0" layoutY="301.0" prefHeight="35.0" prefWidth="193.0" AnchorPane.leftAnchor="209.0" />
+         <Text layoutX="65.0" layoutY="399.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Size" />
+         <TextField fx:id="size" layoutX="209.0" layoutY="374.0" prefHeight="36.0" prefWidth="194.0" />
+         <Text layoutX="65.0" layoutY="474.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Số lượng" />
+         <TextField fx:id="stock" layoutX="210.0" layoutY="450.0" prefHeight="35.0" prefWidth="193.0" />
+   <Button layoutX="1085.0" layoutY="763.0" mnemonicParsing="false" onAction="#cancelWindow" prefHeight="35.0" prefWidth="127.0" styleClass="cancel-btn" text="Huỷ">
+      <font>
+         <Font name="System Bold" size="12.0" />
+      </font>
+   </Button>
+</AnchorPane>

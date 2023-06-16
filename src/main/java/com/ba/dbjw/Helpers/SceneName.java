@@ -6,6 +6,9 @@ package com.ba.dbjw.Helpers;
 public enum SceneName {
     DASHBOARD("DASHBOARD"),
     PRODUCT("Quản lí sản phẩm"),
+    CUSTOMER("Quản lí khách hàng"),
+    EMPLOYEE("Quản lí nhân viên"),
+    INVOICE("Quản lí hoá đơn"),
     ;
 
     private final String name;

@@ -25,18 +25,15 @@ public class NewWindowController {
         getPopUpWindow(ScenePath.UPDATEPRODUCT.getPath());
     }
 
-//    public static Stage getNewVetWindow() throws IOException {
-//        Stage stage = new Stage();
-//        Pane main = FXMLLoader.load(NewWindowController.class.getResource(ScenePath.ADD_VET.getPath()));
-//        controlDrag(main, stage);
-//        stage.setScene(new Scene(main));
-//        stage.initModality(Modality.APPLICATION_MODAL);
-//        stage.initStyle(StageStyle.UNDECORATED);
-//        stage.setTitle("Pet Clinic CRM");
-//        stage.getScene();
-//        stage.showAndWait();
-//        return stage;
-//    }
+
+    public static void getNewCustomerWindow() throws IOException {
+        getPopUpWindow(ScenePath.ADDCUSTOMER.getPath());
+    }
+
+    public static void getUpdateCustomerWindow() throws IOException {
+        getPopUpWindow(ScenePath.UPDATECUSTOMER.getPath());
+    }
+
 
     public static void getPopUpWindow(String path) throws IOException {
         Stage stage = new Stage();
@@ -45,7 +42,7 @@ public class NewWindowController {
         stage.setScene(new Scene(main));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.setTitle("Pet Clinic CRM");
+        stage.setTitle("Quản lí cửa hàng trang sức");
         stage.getScene();
         stage.showAndWait();
     }

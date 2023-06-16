@@ -2,10 +2,16 @@ package com.ba.dbjw.Helpers;
 
 public enum ScenePath {
     LOGIN("/Fxml/login.fxml"),
-    ADMIN("/Fxml/Admin/admin.fxml"),
-    PRODUCTDASH("/Fxml/Admin/productDash.fxml"),
-    ADDPRODUCT("/Fxml/Admin/addProduct.fxml"),
-    UPDATEPRODUCT("/Fxml/Admin/updateProduct.fxml")
+    ADMIN("/Fxml/Product/admin.fxml"),
+    PRODUCTDASH("/Fxml/Product/productDash.fxml"),
+    ADDPRODUCT("/Fxml/Product/addProduct.fxml"),
+    UPDATEPRODUCT("/Fxml/Product/updateProduct.fxml"),
+
+    CUSTOMERDASH("/Fxml/Customer/customerDash.fxml"),
+    ADDCUSTOMER("/Fxml/Customer/addCustomer.fxml"),
+    UPDATECUSTOMER("/Fxml/Customer/updateCustomer.fxml"),
+    EMPLOYEEDASH("/Fxml/Employee/employeeDash.fxml"),
+    INVOICEDASH("/Fxml/Invoice/invoiceDash.fxml"),
     ;
 
     private final String path;
