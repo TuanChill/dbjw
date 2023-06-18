@@ -134,7 +134,7 @@
                   <Insets bottom="20.0" left="25.0" right="25.0" />
                </VBox.margin>
             </TextField>
-            <TableView fx:id="productTable" fixedCellSize="60.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="700.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="customerTable" fixedCellSize="60.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="700.0" VBox.vgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="codeColumn" maxWidth="124.0" minWidth="50.0" prefWidth="113.0" resizable="false" text="Mã " />
                 <TableColumn fx:id="nameColumn" onEditCommit="#changeNameCell" maxWidth="210.0" minWidth="46.0" prefWidth="186.0" resizable="false" text="Họ tên" />
@@ -157,7 +157,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="532.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="31.0" prefWidth="80.0" styleClass="deletebutton" text="Delete" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="133.0">
+                  <Button layoutX="532.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteCustomer" prefHeight="31.0" prefWidth="80.0" styleClass="deletebutton" text="Delete" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="133.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
@@ -165,7 +165,7 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button layoutX="856.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#updateProduct" prefHeight="31.0" prefWidth="80.0" styleClass="updatebutton" text="Xem">
+                  <Button layoutX="856.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#updateCustomer" prefHeight="31.0" prefWidth="80.0" styleClass="updatebutton" text="Xem">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

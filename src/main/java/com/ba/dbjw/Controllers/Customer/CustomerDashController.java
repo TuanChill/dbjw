@@ -1,10 +1,11 @@
 package com.ba.dbjw.Controllers.Customer;
 
 
-import com.ba.dbjw.Controllers.PopupWindowControllers.NewWindowController;
+import com.ba.dbjw.Controllers.PopupWindow.NewWindowController;
 import com.ba.dbjw.Entity.Customer.Customer;
 import com.ba.dbjw.Helpers.*;
-import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatus;
+import com.ba.dbjw.Helpers.CurrentEntity.CurrentUser;
+import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusCustomer;
 import com.ba.dbjw.Service.Customer.CustomerServiceImp;
 import com.ba.dbjw.Views.SceneController;
 import javafx.collections.FXCollections;
@@ -65,7 +66,7 @@ public class CustomerDashController {
     private TableColumn<Customer, String> addressColumn;
 
     CustomerServiceImp customerService = new CustomerServiceImp();
-    ObservableList<Customer> productsObList = FXCollections.observableArrayList();
+    ObservableList<Customer> customersObList = FXCollections.observableArrayList();
 
     @FXML
     private void initialize() {
@@ -85,8 +86,8 @@ public class CustomerDashController {
     }
 
     private void setObList() {
-        productsObList.clear();
-        productsObList.addAll(customerService.getAllCustomer());
+        customersObList.clear();
+        customersObList.addAll(customerService.getAllCustomer());
     }
 
     private void fillTable() {
@@ -113,7 +114,7 @@ public class CustomerDashController {
     }
 
     private FilteredList<Customer> getFilteredList() {
-        FilteredList<Customer> filteredList = new FilteredList<>(productsObList, b -> true);
+        FilteredList<Customer> filteredList = new FilteredList<>(customersObList, b -> true);
         searchBar.textProperty().addListener((observable, oldValue, newValue) ->
                 filteredList.setPredicate(customer -> {
                     if (newValue == null || newValue.isEmpty()) {
@@ -141,19 +142,19 @@ public class CustomerDashController {
 
     @FXML
     private void changeAddressCell(TableColumn.CellEditEvent<Customer, String> editEvent) {
-        Customer selectedProduct = customerTable.getSelectionModel().getSelectedItem();
-        selectedProduct.setAddress(editEvent.getNewValue());
-        customerService.updateCustomer(selectedProduct);
+        Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
+        selectedCustomer.setAddress(editEvent.getNewValue());
+        customerService.updateCustomer(selectedCustomer);
     }
 
     @FXML
     private void changeNameCell(TableColumn.CellEditEvent<Customer, String> editEvent) {
-        Customer selectedProduct = customerTable.getSelectionModel().getSelectedItem();
-        selectedProduct.setName(editEvent.getNewValue());
-        customerService.updateCustomer(selectedProduct);
+        Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
+        selectedCustomer.setName(editEvent.getNewValue());
+        customerService.updateCustomer(selectedCustomer);
     }
     @FXML
-    private void deleteProduct(ActionEvent event) throws Exception {
+    private void deleteCustomer(ActionEvent event) throws Exception {
         ObservableList<Customer> selectedRows = customerTable.getSelectionModel().getSelectedItems();
         for (Customer customer : selectedRows) {
             customerService.delCustomer(customer);
@@ -162,7 +163,7 @@ public class CustomerDashController {
     }
 
     @FXML
-    private void updateProduct(ActionEvent event) throws IOException {
+    private void updateCustomer(ActionEvent event) throws IOException {
         ObservableList<Customer> selectedRows = customerTable.getSelectionModel().getSelectedItems();
         for (Customer customer : selectedRows) {
             CurrentCustomer.setCurrentCustomer(customer);
@@ -174,9 +175,9 @@ public class CustomerDashController {
     @FXML
     private void newWindow(ActionEvent event) throws IOException {
         NewWindowController.getNewCustomerWindow();
-        if (UpdateStatus.isProductAdded()) {
+        if (UpdateStatusCustomer.isCustomerAdded()) {
             refreshScreen(event);
-            UpdateStatus.setIsProductAdded(false);
+            UpdateStatusCustomer.setIsCustomerAdded(false);
         }
     }
 
@@ -185,12 +186,12 @@ public class CustomerDashController {
     }
 
     private void setDbInfo() {
-        stats.setText(String.format("Total products in database: %s", customerService.getNumberOfCustomer()));
+        stats.setText(String.format("Total customers in database: %s", customerService.getNumberOfCustomer()));
     }
 
     @FXML
     private void refreshScreen(ActionEvent event) throws IOException {
-        SceneController.getProductDashScene(event);
+        SceneController.getCustomerDashScene(event);
     }
 
     @FXML

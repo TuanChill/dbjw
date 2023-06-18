@@ -1,10 +1,11 @@
 package com.ba.dbjw.Controllers.Product;
 
 
-import com.ba.dbjw.Controllers.PopupWindowControllers.NewWindowController;
+import com.ba.dbjw.Controllers.PopupWindow.NewWindowController;
 import com.ba.dbjw.Entity.Product.Product;
 import com.ba.dbjw.Helpers.*;
-import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatus;
+import com.ba.dbjw.Helpers.CurrentEntity.CurrentUser;
+import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusProduct;
 import com.ba.dbjw.Service.Product.ProductServiceImpl;
 import com.ba.dbjw.Views.SceneController;
 import javafx.collections.FXCollections;
@@ -180,9 +181,9 @@ public class ProductDashController {
     @FXML
     private void newWindow(ActionEvent event) throws IOException {
         NewWindowController.getNewProductWindow();
-        if (UpdateStatus.isProductAdded()) {
+        if (UpdateStatusProduct.isProductAdded()) {
             refreshScreen(event);
-            UpdateStatus.setIsProductAdded(false);
+            UpdateStatusProduct.setIsProductAdded(false);
         }
     }
 

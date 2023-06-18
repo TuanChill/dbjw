@@ -1,4 +1,4 @@
-package com.ba.dbjw.Helpers;
+package com.ba.dbjw.Helpers.CurrentEntity;
 
 
 import com.ba.dbjw.Entity.UserAuth.UserAuth;

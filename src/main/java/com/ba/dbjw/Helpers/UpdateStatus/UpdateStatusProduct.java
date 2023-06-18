@@ -1,8 +1,8 @@
 package com.ba.dbjw.Helpers.UpdateStatus;
 
-public final class UpdateStatus {
+public final class UpdateStatusProduct {
 
-    private UpdateStatus() {
+    private UpdateStatusProduct() {
 
     }
 
@@ -12,6 +12,6 @@ public final class UpdateStatus {
     }
 
     public static void setIsProductAdded(boolean isProduct) {
-        UpdateStatus.isProductAdded = isProduct;
+        UpdateStatusProduct.isProductAdded = isProduct;
     }
 }

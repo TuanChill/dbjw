@@ -17,6 +17,7 @@ module com.ba.dbjw {
 
     exports com.ba.dbjw;
     exports com.ba.dbjw.Controllers;
+    exports com.ba.dbjw.Controllers.Customer;
     exports com.ba.dbjw.Views;
     exports com.ba.dbjw.Entity.User;
     exports com.ba.dbjw.Entity.UserAuth;
@@ -33,5 +34,6 @@ module com.ba.dbjw {
     opens com.ba.dbjw.Entity.Product to org.hibernate.orm.core, javafx.base;
     opens com.ba.dbjw.Controllers to javafx.fxml;
     opens com.ba.dbjw.Controllers.Product to javafx.fxml;
+    opens com.ba.dbjw.Controllers.Customer to javafx.fxml;
     opens com.ba.dbjw.Models.Enums to org.hibernate.orm.core;
 }

@@ -1,4 +1,4 @@
-package com.ba.dbjw.Controllers.PopupWindowControllers;
+package com.ba.dbjw.Controllers.PopupWindow;
 
 
 import com.ba.dbjw.Helpers.ScenePath;

@@ -56,7 +56,7 @@ public class CustomerRepoImpl implements CustomerRepo<Customer>{
     @Override
     public List<Customer> getAllCustomers() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("from Product", Customer.class).list();
+            return session.createQuery("from Customer", Customer.class).list();
         } catch (Exception ex) {
             ex.printStackTrace();
             return new ArrayList<>();
@@ -96,7 +96,7 @@ public class CustomerRepoImpl implements CustomerRepo<Customer>{
     @Override
     public Long getNumberOfCustomer() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            Query<?> query = session.createQuery("SELECT count(p) FROM Customer c");
+            Query<?> query = session.createQuery("SELECT count(c) FROM Customer c");
             return (Long) query.uniqueResult();
         } catch (Exception ex) {
             ex.printStackTrace();

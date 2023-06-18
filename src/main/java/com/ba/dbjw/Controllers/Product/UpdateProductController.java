@@ -3,7 +3,7 @@ package com.ba.dbjw.Controllers.Product;
 import com.ba.dbjw.Entity.Product.Product;
 import com.ba.dbjw.Helpers.BindingInput;
 import com.ba.dbjw.Helpers.CurrentProduct;
-import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatus;
+import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusProduct;
 import com.ba.dbjw.Service.Product.ProductServiceImpl;
 import com.ba.dbjw.Views.SceneController;
 import javafx.event.ActionEvent;
@@ -66,7 +66,7 @@ public class UpdateProductController implements Initializable {
             cancelWindow(event);
             productService.updateProduct(product);
             unbindFormatter();
-            UpdateStatus.setIsProductAdded(true);
+            UpdateStatusProduct.setIsProductAdded(true);
         }
     }
 

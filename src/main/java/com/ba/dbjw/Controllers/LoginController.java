@@ -1,7 +1,7 @@
 package com.ba.dbjw.Controllers;
 
 import com.ba.dbjw.Entity.UserAuth.UserAuth;
-import com.ba.dbjw.Helpers.CurrentUser;
+import com.ba.dbjw.Helpers.CurrentEntity.CurrentUser;
 import com.ba.dbjw.Service.UserAuth.UserServiceImpl;
 import com.ba.dbjw.Views.SceneController;
 import javafx.fxml.FXML;
