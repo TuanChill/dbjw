@@ -86,7 +86,7 @@ public class ProductDashController {
     private void setTexts() {
         title.setText(SceneName.PRODUCT.getName());
         date.setText(LocalDate.now().toString());
-        updateTime.setText("Last update: " + CurrentTime.getTime());
+        updateTime.setText("Cập nhật cuối cùng: " + CurrentTime.getTime());
         setDbInfo();
         setUserInfo();
     }
@@ -188,11 +188,11 @@ public class ProductDashController {
     }
 
     private void setUserInfo() {
-        userInfo.setText(String.format("User: %s", CurrentUser.getCurrentUser().getUserName()));
+        userInfo.setText(String.format("Người dùng: %s", CurrentUser.getCurrentUser().getUserName()));
     }
 
     private void setDbInfo() {
-        stats.setText(String.format("Total products in database: %s", productService.getNumberOfProduct()));
+        stats.setText(String.format("Số lượng sản phẩm trong cơ sở dữ liệu: %s", productService.getNumberOfProduct()));
     }
 
     @FXML

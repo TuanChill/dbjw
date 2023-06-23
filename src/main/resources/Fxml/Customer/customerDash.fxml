@@ -129,19 +129,18 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </AnchorPane>
-            <TextField fx:id="searchBar" minHeight="-Infinity" prefHeight="30.0" promptText="Enter search keyword...">
+            <TextField fx:id="searchBar" minHeight="-Infinity" prefHeight="30.0" promptText="Nhập từ khoá tìm kiếm">
                <VBox.margin>
                   <Insets bottom="20.0" left="25.0" right="25.0" />
                </VBox.margin>
             </TextField>
             <TableView fx:id="customerTable" fixedCellSize="60.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="700.0" VBox.vgrow="ALWAYS">
               <columns>
-                <TableColumn fx:id="codeColumn" maxWidth="124.0" minWidth="50.0" prefWidth="113.0" resizable="false" text="Mã " />
-                <TableColumn fx:id="nameColumn" onEditCommit="#changeNameCell" maxWidth="210.0" minWidth="46.0" prefWidth="186.0" resizable="false" text="Họ tên" />
-                  <TableColumn fx:id="genderColumn" maxWidth="169.0" minWidth="0.0" prefWidth="84.0" resizable="false" text="Giới tính" />
-                  <TableColumn fx:id="phoneColumn" prefWidth="160.0" resizable="false" text="Số điện thoại" />
-                  <TableColumn fx:id="cccdColumn" maxWidth="400.0" minWidth="42.0" prefWidth="199.0" resizable="false" text="cccd" />
-                  <TableColumn fx:id="addressColumn" maxWidth="485.0" minWidth="0.0" onEditCommit="#changeAddressCell" prefWidth="376.0" resizable="false" text="Địa chỉ" />
+                <TableColumn fx:id="codeColumn" maxWidth="131.0" minWidth="50.0" prefWidth="131.0" resizable="false" text="Mã " />
+                <TableColumn fx:id="nameColumn" maxWidth="210.0" minWidth="46.0" onEditCommit="#changeNameCell" prefWidth="198.0" resizable="false" text="Họ tên" />
+                  <TableColumn fx:id="genderColumn" maxWidth="169.0" minWidth="0.0" prefWidth="97.0" resizable="false" text="Giới tính" />
+                  <TableColumn fx:id="phoneColumn" prefWidth="184.0" resizable="false" text="Số điện thoại" />
+                  <TableColumn fx:id="addressColumn" maxWidth="575.0" minWidth="0.0" onEditCommit="#changeAddressCell" prefWidth="506.0" resizable="false" text="Địa chỉ" />
               </columns>
                <VBox.margin>
                   <Insets bottom="20.0" left="25.0" right="25.0" />

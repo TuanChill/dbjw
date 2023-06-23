@@ -13,4 +13,6 @@ public interface CustomerService<T> {
 
     List<T> getAllCustomer();
 
+    Boolean checkCustomerIsExist(String phoneNumber);
+
 }

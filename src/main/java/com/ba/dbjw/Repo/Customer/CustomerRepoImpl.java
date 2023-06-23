@@ -54,6 +54,16 @@ public class CustomerRepoImpl implements CustomerRepo<Customer>{
     }
 
     @Override
+    public Customer getCustomerByPhoneNumber(String phoneNumber) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            return session.find(Customer.class, phoneNumber);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public List<Customer> getAllCustomers() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery("from Customer", Customer.class).list();
@@ -68,7 +78,7 @@ public class CustomerRepoImpl implements CustomerRepo<Customer>{
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.update(data);
+            session.merge(data);
             transaction.commit();
         } catch (Exception ex) {
             if (transaction != null) {

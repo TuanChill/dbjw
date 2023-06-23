@@ -21,9 +21,13 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.ba.dbjw.Helpers.BindingInput.isNumeric;
+
 public class UpdateProductController implements Initializable {
     @FXML
     private Text errText;
+    @FXML
+    private TextField codeProduct;
     @FXML
     private TextField nameProduct;
     @FXML
@@ -125,17 +129,9 @@ public class UpdateProductController implements Initializable {
         stock.setTextFormatter(null);
     }
 
-    private boolean isNumeric(String str) {
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
-    }
-
     private void setCurrProduct() {
         Product currProduct = CurrentProduct.getCurrentProduct();
+        codeProduct.setText(currProduct.getCode());
         nameProduct.setText(currProduct.getName());
         price.setText(currProduct.getPrice().toString());
         material.setValue(currProduct.getMaterial());
@@ -156,7 +152,6 @@ public class UpdateProductController implements Initializable {
         onlyNumberTextField();
 
         setCurrProduct();
-
     }
 
 

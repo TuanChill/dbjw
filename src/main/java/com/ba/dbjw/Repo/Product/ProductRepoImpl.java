@@ -78,7 +78,7 @@ public class ProductRepoImpl implements ProductRepo<Product>{
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.update(product);
+            session.merge(product);
             transaction.commit();
         } catch (Exception ex) {
             if (transaction != null) {

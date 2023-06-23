@@ -8,9 +8,6 @@ import lombok.*;
 
 @Setter
 @Getter
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "employee")
 
@@ -19,6 +16,13 @@ public class Employee extends Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    @Column(unique = true, length = 12)
+    private String cccd;
 
     private String position;
+
+    public Employee() {
+        super();
+    }
+
 }

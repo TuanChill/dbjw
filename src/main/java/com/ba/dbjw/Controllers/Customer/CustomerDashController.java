@@ -60,9 +60,6 @@ public class CustomerDashController {
     private TableColumn<Customer, String> phoneColumn;
 
     @FXML
-    private TableColumn<Customer, String> cccdColumn;
-
-    @FXML
     private TableColumn<Customer, String> addressColumn;
 
     CustomerServiceImp customerService = new CustomerServiceImp();
@@ -80,7 +77,7 @@ public class CustomerDashController {
     private void setTexts() {
         title.setText(SceneName.CUSTOMER.getName());
         date.setText(LocalDate.now().toString());
-        updateTime.setText("Last update: " + CurrentTime.getTime());
+        updateTime.setText("Cập nhật cuối cùng: " + CurrentTime.getTime());
         setDbInfo();
         setUserInfo();
     }
@@ -95,7 +92,6 @@ public class CustomerDashController {
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-        cccdColumn.setCellValueFactory(new PropertyValueFactory<>("cccd"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<>("address"));
         nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         addressColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -127,9 +123,7 @@ public class CustomerDashController {
                         return true;
                     } else if (customer.getName().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
-                    } else if (customer.getCccd().toLowerCase().contains(lowerCaseFilter)) {
-                        return true;
-                    } else if (customer.getPhoneNumber().toLowerCase().contains(lowerCaseFilter)) {
+                    }else if (customer.getPhoneNumber().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
                     }else if (customer.getAddress().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
@@ -182,11 +176,11 @@ public class CustomerDashController {
     }
 
     private void setUserInfo() {
-        userInfo.setText(String.format("User: %s", CurrentUser.getCurrentUser().getUserName()));
+        userInfo.setText(String.format("Người dùng: %s", CurrentUser.getCurrentUser().getUserName()));
     }
 
     private void setDbInfo() {
-        stats.setText(String.format("Total customers in database: %s", customerService.getNumberOfCustomer()));
+        stats.setText(String.format("Số lượng khách hàng trong cơ sở dữ liệu: %s", customerService.getNumberOfCustomer()));
     }
 
     @FXML

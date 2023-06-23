@@ -20,11 +20,11 @@ import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.ba.dbjw.Helpers.BindingInput.isNumeric;
+
 public class AddProductController implements Initializable {
     @FXML
     private Text errText;
-    @FXML
-    private TextField CodeProduct;
     @FXML
     private TextField nameProduct;
     @FXML
@@ -54,34 +54,26 @@ public class AddProductController implements Initializable {
     @FXML
     public void submitHandler(ActionEvent event) {
         if (validateInput()) {
-            if(!productIsExist(CodeProduct.getText())) {
-                Product product = Product.builder()
-                        .code(CodeProduct.getText().trim())
-                        .name(nameProduct.getText().trim())
-                        .price(Long.parseLong(price.getText()))
-                        .description(desc.getText().trim())
-                        .stock(Integer.parseInt(stock.getText()))
-                        .category(typeProduct.getValue().trim())
-                        .size(size.getText().trim())
-                        .material(material.getValue().trim())
-                        .imgUrl(fileImg.getPath())
-                        .build();
-                cancelWindow(event);
-                productService.createProduct(product);
-                unbindFormatter();
-                UpdateStatusProduct.setIsProductAdded(true);
-            } else {
-                errText.setText("Mã sản phẩm đã tồn tại");
-            }
+            Product product = Product.builder()
+                    .name(nameProduct.getText().trim())
+                    .price(Long.parseLong(price.getText()))
+                    .description(desc.getText().trim())
+                    .stock(Integer.parseInt(stock.getText()))
+                    .category(typeProduct.getValue().trim())
+                    .size(size.getText().trim())
+                    .material(material.getValue().trim())
+                    .imgUrl(fileImg.getPath())
+                    .build();
+            cancelWindow(event);
+            productService.createProduct(product);
+            unbindFormatter();
+            UpdateStatusProduct.setIsProductAdded(true);
         }
     }
 
     private boolean validateInput() {
         errText.setText("");
-        if (CodeProduct.getText().trim().isEmpty()) {
-            errText.setText("Mã sản phẩm không được bỏ trống");
-            return false;
-        } else if (nameProduct.getText().isEmpty()) {
+        if(nameProduct.getText().isEmpty()) {
             errText.setText("Tên sản phẩm không được bỏ trống");
             return false;
         } else if (price.getText().trim().isEmpty()) {
@@ -128,14 +120,10 @@ public class AddProductController implements Initializable {
     public void imgChooser(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(null);
-        if(file != null) {
+        if (file != null) {
             imgPreview.setImage(new Image(file.getPath()));
             fileImg = file;
         }
-    }
-
-    private boolean productIsExist(String code) {
-        return productService.checkProductIsExist( code);
     }
 
     @Override
@@ -145,15 +133,6 @@ public class AddProductController implements Initializable {
         material.getItems().addAll(materialList);
 
         onlyNumberTextField();
-    }
-
-    private boolean isNumeric(String str) {
-        try {
-            Double.parseDouble(str);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
     }
 
     @FXML

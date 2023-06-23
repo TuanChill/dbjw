@@ -7,16 +7,17 @@ import java.util.List;
 
 public class CustomerServiceImp implements CustomerService<Customer> {
     CustomerRepoImpl customerRepo = new CustomerRepoImpl();
+
     @Override
     public void createCustomer(Customer data) {
-        if(validateInput(data)) {
+        if (validateInput(data)) {
             customerRepo.saveCustomer(data);
         }
     }
 
     @Override
     public void updateCustomer(Customer data) {
-        if(validateInput(data)) {
+        if (validateInput(data)) {
             customerRepo.updateCustomer(data);
         }
     }
@@ -36,12 +37,15 @@ public class CustomerServiceImp implements CustomerService<Customer> {
         return customerRepo.getAllCustomers();
     }
 
+    @Override
+    public Boolean checkCustomerIsExist(String phoneNumber) {
+        return customerRepo.getCustomerByPhoneNumber(phoneNumber) != null;
+    }
+
     private boolean validateInput(Customer customer) {
-        return !customer.code.isEmpty() &&
-                !customer.cccd.isEmpty() &&
-                !customer.phoneNumber.isEmpty() &&
-                customer.birthday == null &&
-                !customer.address.isEmpty() &&
-                customer.gender != null;
+        return !customer.getName().isEmpty() &&
+                !customer.getPhoneNumber().isEmpty() &&
+                customer.getGender() != null &&
+                customer.getAddress() != null;
     }
 }

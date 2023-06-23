@@ -67,7 +67,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </Button>
-                <Button fx:id="customerBtn" onAction="#showEmployeeScreen" alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="10.0" layoutY="365.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" text="Nhân viên">
+                <Button fx:id="customerBtn" alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="10.0" layoutY="365.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#showEmployeeScreen" prefHeight="50.0" text="Nhân viên">
                     <VBox.margin>
                         <Insets bottom="30.0" />
                     </VBox.margin>
@@ -129,7 +129,7 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </AnchorPane>
-            <TextField fx:id="searchBar" minHeight="-Infinity" prefHeight="30.0" promptText="Enter search keyword...">
+            <TextField fx:id="searchBar" minHeight="-Infinity" prefHeight="30.0" promptText="Nhập từ khoá tìm kiếm">
                <VBox.margin>
                   <Insets bottom="20.0" left="25.0" right="25.0" />
                </VBox.margin>
@@ -139,11 +139,11 @@
                 <TableColumn fx:id="codeColumn" maxWidth="124.0" minWidth="50.0" prefWidth="113.0" resizable="false" text="Code" />
                 <TableColumn fx:id="nameColumn" maxWidth="210.0" minWidth="46.0" prefWidth="139.0" resizable="false" text="Tên sản phẩm" />
                   <TableColumn fx:id="priceColumn" maxWidth="169.0" minWidth="0.0" prefWidth="117.0" resizable="false" text="Giá bán" />
-                  <TableColumn fx:id="sizeColumn" prefWidth="77.0" resizable="false" onEditCommit="#changeSizeCell" text="Kích cỡ" />
+                  <TableColumn fx:id="sizeColumn" onEditCommit="#changeSizeCell" prefWidth="77.0" resizable="false" text="Kích cỡ" />
                   <TableColumn fx:id="stockColumn" maxWidth="1100.0" minWidth="0.0" resizable="false" text="Số lượng" />
                   <TableColumn fx:id="materialColumn" maxWidth="400.0" minWidth="42.0" prefWidth="107.0" resizable="false" text="Chất liệu" />
                   <TableColumn fx:id="descColumn" maxWidth="331.0" minWidth="0.0" onEditCommit="#changeDescCell" prefWidth="319.0" resizable="false" text="Mô tả" />
-                  <TableColumn fx:id="imgColumn" prefWidth="241.0" resizable="false" text="Ảnh" />
+                  <TableColumn fx:id="imgColumn" prefWidth="166.0" resizable="false" text="Ảnh" />
               </columns>
                <VBox.margin>
                   <Insets bottom="20.0" left="25.0" right="25.0" />

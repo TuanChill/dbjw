@@ -1,5 +1,6 @@
 package com.ba.dbjw.Entity.Product;
 
+import com.ba.dbjw.Helpers.UUIDGenerator;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -35,13 +36,18 @@ public class Product {
     private String material;
     @Column(nullable = false)
     private String size;
+
     @Column(name = "create_at")
     @CreationTimestamp
     private LocalDateTime createAt;
-
     @Column(name = "update_at")
     @UpdateTimestamp
     private LocalDateTime updateAt;
+
+    @PrePersist
+    private void generateCode() {
+        setCode("KH" + UUIDGenerator.shortUUID());
+    }
 }
 
 

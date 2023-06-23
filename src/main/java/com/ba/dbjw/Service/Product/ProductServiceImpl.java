@@ -40,13 +40,4 @@ public class ProductServiceImpl implements ProductService<Product> {
     public Long getNumberOfProduct() {
         return productRepo.getNumberOfProducts();
     }
-
-    @Override
-    public  Boolean checkProductIsExist(String code) {
-        if(productRepo.getProductByCode(code) != null) {
-            return true;
-        }
-        return false;
-    }
-
 }
