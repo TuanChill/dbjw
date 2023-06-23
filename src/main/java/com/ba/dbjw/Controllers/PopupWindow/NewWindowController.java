@@ -35,6 +35,10 @@ public class NewWindowController {
     }
 
 
+    public static void getNewEmployeeWindow() throws IOException {
+        getPopUpWindow(ScenePath.ADDEMPLOYEE.getPath());
+    }
+
     public static void getPopUpWindow(String path) throws IOException {
         Stage stage = new Stage();
         Pane main = FXMLLoader.load(NewWindowController.class.getResource(path));
@@ -42,7 +46,7 @@ public class NewWindowController {
         stage.setScene(new Scene(main));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initStyle(StageStyle.UNDECORATED);
-        stage.setTitle("Quản lí cửa hàng trang sức");
+        stage.setTitle("Quản lý cửa hàng trang sức");
         stage.getScene();
         stage.showAndWait();
     }

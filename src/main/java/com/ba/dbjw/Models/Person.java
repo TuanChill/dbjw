@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @MappedSuperclass
+@Table(indexes = @Index(name = "idx_code", columnList = "code"))
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Person {
     @Column(unique = true)

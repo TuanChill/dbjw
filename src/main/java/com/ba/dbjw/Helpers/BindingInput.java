@@ -32,6 +32,12 @@ public class BindingInput {
         return pattern.matcher(input).matches();
     }
 
+    public static boolean isCCCD(String input) {
+        String citizenID = "^[0-9]{12}$";
+        Pattern pattern = Pattern.compile(citizenID);
+        return pattern.matcher(input).matches();
+    }
+
     public static boolean checkBirthDate(LocalDate input) {
         if(input == null) return false;
         return !input.isBefore(LocalDate.now());

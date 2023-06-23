@@ -10,7 +10,11 @@ public enum ScenePath {
     CUSTOMERDASH("/Fxml/Customer/customerDash.fxml"),
     ADDCUSTOMER("/Fxml/Customer/addCustomer.fxml"),
     UPDATECUSTOMER("/Fxml/Customer/updateCustomer.fxml"),
+
+
     EMPLOYEEDASH("/Fxml/Employee/employeeDash.fxml"),
+    ADDEMPLOYEE("/Fxml/Employee/addEmployee.fxml"),
+
     INVOICEDASH("/Fxml/Invoice/invoiceDash.fxml"),
     ;
 

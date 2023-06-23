@@ -35,5 +35,6 @@ module com.ba.dbjw {
     opens com.ba.dbjw.Controllers to javafx.fxml;
     opens com.ba.dbjw.Controllers.Product to javafx.fxml;
     opens com.ba.dbjw.Controllers.Customer to javafx.fxml;
+    opens com.ba.dbjw.Controllers.Employee to javafx.fxml;
     opens com.ba.dbjw.Models.Enums to org.hibernate.orm.core;
 }

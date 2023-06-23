@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="824.0" prefWidth="1329.0" stylesheets="@../../Assets/Styles/dashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ba.dbjw.Controllers.Product.ProductDashController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="824.0" prefWidth="1329.0" stylesheets="@../../Assets/Styles/dashboard.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ba.dbjw.Controllers.Employee.EmployeeDashController">
     <children>
         <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="150.0" styleClass="sidebar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
@@ -31,7 +31,7 @@
                         <Insets bottom="20.0" left="35.0" right="20.0" top="35.0" />
                     </VBox.margin>
                 </ImageView>
-                <Button alignment="BASELINE_LEFT" defaultButton="true" graphicTextGap="8.0" layoutX="10.0" layoutY="285.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" text="Sản phẩm">
+                <Button alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="10.0" layoutY="285.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#showProductScreen" prefHeight="50.0" text="Sản phẩm">
                     <VBox.margin>
                         <Insets bottom="30.0" />
                     </VBox.margin>
@@ -67,7 +67,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
                 </Button>
-                <Button fx:id="customerBtn" onAction="#showEmployeeScreen" alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="10.0" layoutY="365.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" text="Nhân viên">
+                <Button alignment="BASELINE_LEFT" defaultButton="true" graphicTextGap="8.0" layoutX="10.0" layoutY="365.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" text="Nhân viên">
                     <VBox.margin>
                         <Insets bottom="30.0" />
                     </VBox.margin>
@@ -98,7 +98,7 @@
                         <Insets />
                     </VBox.margin>
                     <children>
-                        <Label id="title" fx:id="title" layoutX="10.0" styleClass="title" text="Quản lí sản phẩm" textFill="#515151">
+                        <Label id="title" fx:id="title" layoutX="10.0" styleClass="title" text="Quản lí nhân viên" textFill="#515151">
                             <font>
                                 <Font name="Roboto Bold Condensed" size="20.0" />
                             </font>
@@ -129,21 +129,20 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </AnchorPane>
-            <TextField fx:id="searchBar" minHeight="-Infinity" prefHeight="30.0" promptText="Enter search keyword...">
+            <TextField fx:id="searchBar" minHeight="-Infinity" prefHeight="30.0" promptText="Nhập từ khoá tìm kiếm">
                <VBox.margin>
                   <Insets bottom="20.0" left="25.0" right="25.0" />
                </VBox.margin>
             </TextField>
-            <TableView fx:id="productTable" fixedCellSize="60.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="700.0" VBox.vgrow="ALWAYS">
+            <TableView fx:id="employeeTable" fixedCellSize="60.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="700.0" VBox.vgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="codeColumn" maxWidth="124.0" minWidth="50.0" prefWidth="113.0" resizable="false" text="Code" />
-                <TableColumn fx:id="nameColumn" maxWidth="210.0" minWidth="46.0" prefWidth="139.0" resizable="false" text="Tên sản phẩm" />
-                  <TableColumn fx:id="priceColumn" maxWidth="169.0" minWidth="0.0" prefWidth="117.0" resizable="false" text="Giá bán" />
-                  <TableColumn fx:id="sizeColumn" prefWidth="77.0" resizable="false" onEditCommit="#changeSizeCell" text="Kích cỡ" />
-                  <TableColumn fx:id="stockColumn" maxWidth="1100.0" minWidth="0.0" resizable="false" text="Số lượng" />
-                  <TableColumn fx:id="materialColumn" maxWidth="400.0" minWidth="42.0" prefWidth="107.0" resizable="false" text="Chất liệu" />
-                  <TableColumn fx:id="descColumn" maxWidth="331.0" minWidth="0.0" onEditCommit="#changeDescCell" prefWidth="319.0" resizable="false" text="Mô tả" />
-                  <TableColumn fx:id="imgColumn" prefWidth="241.0" resizable="false" text="Ảnh" />
+                <TableColumn fx:id="nameColumn" onEditCommit="#changeNameCell" maxWidth="210.0" minWidth="46.0" prefWidth="188.0" resizable="false" text="Tên nhân viên" />
+                  <TableColumn fx:id="genderColumn" maxWidth="169.0" minWidth="0.0" prefWidth="87.0" resizable="false" text="Giới tính" />
+                  <TableColumn fx:id="phoneNumberColumn" prefWidth="150.0" resizable="false" text="Số điện thoại" />
+                  <TableColumn fx:id="cccdColumn" maxWidth="1100.0" minWidth="0.0" prefWidth="181.0" resizable="false" text="CCCD" />
+                  <TableColumn fx:id="addressColumn" onEditCommit="#changeAddressCell" maxWidth="462.0" minWidth="42.0" prefWidth="269.0" resizable="false" text="Địa chỉ" />
+                  <TableColumn fx:id="positionColumn" maxWidth="485.0" minWidth="0.0" prefWidth="130.0" resizable="false" text="Vị trí" />
               </columns>
                <VBox.margin>
                   <Insets bottom="20.0" left="25.0" right="25.0" />
@@ -159,7 +158,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button layoutX="532.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteProduct" prefHeight="31.0" prefWidth="80.0" styleClass="deletebutton" text="Delete" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="133.0">
+                  <Button layoutX="532.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#deleteEmployee" prefHeight="31.0" prefWidth="80.0" styleClass="deletebutton" text="Delete" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="133.0">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
@@ -167,7 +166,7 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button layoutX="856.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#updateProduct" prefHeight="31.0" prefWidth="80.0" styleClass="updatebutton" text="Xem">
+                  <Button layoutX="856.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#updateEmployee" prefHeight="31.0" prefWidth="80.0" styleClass="updatebutton" text="Xem">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
