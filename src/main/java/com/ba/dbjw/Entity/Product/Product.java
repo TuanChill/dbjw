@@ -17,9 +17,6 @@ import java.time.LocalDateTime;
 @Table(name = "product")
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
     @Column(unique = true, nullable = false)
     private String code;
     @Column(unique = true, nullable = false)
@@ -46,7 +43,9 @@ public class Product {
 
     @PrePersist
     private void generateCode() {
-        setCode("KH" + UUIDGenerator.shortUUID());
+        if (getCode() == null) {
+            setCode("KH" + UUIDGenerator.shortUUID());
+        }
     }
 }
 

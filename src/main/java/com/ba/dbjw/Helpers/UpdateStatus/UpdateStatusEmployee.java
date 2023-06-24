@@ -6,12 +6,12 @@ public final class UpdateStatusEmployee {
 
     }
 
-    private static boolean isCustomerAdded;
-    public static boolean isCustomerAdded() {
-        return isCustomerAdded;
+    private static boolean isEmployeeAdded;
+    public static boolean isEmployeeAdded() {
+        return isEmployeeAdded;
     }
 
-    public static void setIsCustomerAdded(boolean isCustomer) {
-        UpdateStatusEmployee.isCustomerAdded = isCustomer;
+    public static void setIsEmployeeAdded(boolean isEmployee) {
+        UpdateStatusEmployee.isEmployeeAdded = isEmployee;
     }
 }

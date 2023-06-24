@@ -12,13 +12,13 @@ public class ProductServiceImpl implements ProductService<Product> {
     private final ProductRepo<Product> productRepo = new ProductRepoImpl();
 
     @Override
-    public void createProduct(Product product) {
+    public boolean createProduct(Product product) {
         String imgPath = product.getImgUrl();
         if(imgPath != null) {
             String url = CloudinaryUtil.uploadImgToCloudinary(imgPath);
             product.setImgUrl(url);
         }
-            productRepo.saveProduct(product);
+          return productRepo.saveProduct(product);
     }
 
     @Override
@@ -32,8 +32,8 @@ public class ProductServiceImpl implements ProductService<Product> {
     }
 
     @Override
-    public void updateProduct(Product product) {
-        productRepo.updateProduct(product);
+    public boolean updateProduct(Product product) {
+        return productRepo.updateProduct(product);
     }
 
     @Override

@@ -6,6 +6,7 @@ import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusCustomer;
 import com.ba.dbjw.Models.Enums.Gender;
 import com.ba.dbjw.Service.Customer.CustomerServiceImp;
 import com.ba.dbjw.Views.SceneController;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -13,6 +14,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -44,18 +46,24 @@ public class UpdateCustomerController implements Initializable {
     @FXML
     public void submitHandler(ActionEvent event) {
         if (validateInput()) {
-                Customer customer = new Customer();
-                // set value for obj
-                customer.setCode(codeCustomer.getText());
-                customer.setName(nameCustomer.getText().trim());
-                customer.setGender(gender.getValue());
-                customer.setPhoneNumber(phoneNumber.getText().trim());
-                customer.setBirthday(birthDate.getValue());
-                customer.setAddress(address.getText().trim());
-                customer.setEmail(email.getText().trim());
-                cancelWindow(event);
-                customerService.updateCustomer(customer);
+            Customer customer = new Customer();
+            // set value for obj
+            customer.setCode(codeCustomer.getText());
+            customer.setName(nameCustomer.getText().trim());
+            customer.setGender(gender.getValue());
+            customer.setPhoneNumber(phoneNumber.getText().trim());
+            customer.setBirthday(birthDate.getValue());
+            customer.setAddress(address.getText().trim());
+            customer.setEmail(email.getText().trim());
+            errText.setText("Đang cập nhật Khách hàng....");
+            if (customerService.updateCustomer(customer)) {
                 UpdateStatusCustomer.setIsCustomerAdded(true);
+                errText.setText("Cập nhật khách hàng thành công");
+                UpdateStatusCustomer.setIsCustomerAdded(true);
+                delayWindowClose(event);
+            } else {
+                errText.setText("Đã có lỗi xảy ra");
+            }
         }
     }
 
@@ -106,6 +114,12 @@ public class UpdateCustomerController implements Initializable {
 
         setCurrCustomer();
 
+    }
+
+    private void delayWindowClose(ActionEvent event) {
+        PauseTransition delay = new PauseTransition(Duration.seconds(1.5));
+        delay.setOnFinished(e -> cancelWindow(event));
+        delay.play();
     }
 
     @FXML

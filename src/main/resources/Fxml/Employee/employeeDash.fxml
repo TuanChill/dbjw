@@ -98,7 +98,7 @@
                         <Insets />
                     </VBox.margin>
                     <children>
-                        <Label id="title" fx:id="title" layoutX="10.0" styleClass="title" text="Quản lí nhân viên" textFill="#515151">
+                        <Label id="title" fx:id="title" layoutX="10.0" styleClass="title" text="Quản lý nhân viên" textFill="#515151">
                             <font>
                                 <Font name="Roboto Bold Condensed" size="20.0" />
                             </font>
@@ -137,11 +137,11 @@
             <TableView fx:id="employeeTable" fixedCellSize="60.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="535.0" prefWidth="700.0" VBox.vgrow="ALWAYS">
               <columns>
                 <TableColumn fx:id="codeColumn" maxWidth="124.0" minWidth="50.0" prefWidth="113.0" resizable="false" text="Code" />
-                <TableColumn fx:id="nameColumn" onEditCommit="#changeNameCell" maxWidth="210.0" minWidth="46.0" prefWidth="188.0" resizable="false" text="Tên nhân viên" />
+                <TableColumn fx:id="nameColumn" maxWidth="210.0" minWidth="46.0" onEditCommit="#changeNameCell" prefWidth="188.0" resizable="false" text="Tên nhân viên" />
                   <TableColumn fx:id="genderColumn" maxWidth="169.0" minWidth="0.0" prefWidth="87.0" resizable="false" text="Giới tính" />
                   <TableColumn fx:id="phoneNumberColumn" prefWidth="150.0" resizable="false" text="Số điện thoại" />
                   <TableColumn fx:id="cccdColumn" maxWidth="1100.0" minWidth="0.0" prefWidth="181.0" resizable="false" text="CCCD" />
-                  <TableColumn fx:id="addressColumn" onEditCommit="#changeAddressCell" maxWidth="462.0" minWidth="42.0" prefWidth="269.0" resizable="false" text="Địa chỉ" />
+                  <TableColumn fx:id="addressColumn" maxWidth="462.0" minWidth="42.0" onEditCommit="#changeAddressCell" prefWidth="269.0" resizable="false" text="Địa chỉ" />
                   <TableColumn fx:id="positionColumn" maxWidth="485.0" minWidth="0.0" prefWidth="130.0" resizable="false" text="Vị trí" />
               </columns>
                <VBox.margin>

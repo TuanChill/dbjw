@@ -13,10 +13,6 @@ import lombok.*;
 @Table(name = "employee")
 
 public class Employee extends Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
     @Column(unique = true, length = 12)
     private String cccd;
 
@@ -31,7 +27,9 @@ public class Employee extends Person {
 
     @PrePersist
     private void generateCode() {
-        setCode("NV" + UUIDGenerator.shortUUID());
+        if (getCode() == null) {
+            setCode("NV" + UUIDGenerator.shortUUID());
+        }
     }
 
 }

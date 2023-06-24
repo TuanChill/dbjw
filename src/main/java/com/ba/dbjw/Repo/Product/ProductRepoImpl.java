@@ -8,6 +8,7 @@ import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,16 +24,6 @@ public class ProductRepoImpl implements ProductRepo<Product>{
             query.select(root)
                     .where(builder.like(builder.lower(root.get("name")), "%" + productName.toLowerCase() + "%"));
             return session.createQuery(query).getResultList();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-
-    @Override
-    public Product getProductById(Long id) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.find(Product.class, id);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -61,31 +52,35 @@ public class ProductRepoImpl implements ProductRepo<Product>{
     }
 
     @Override
-    public void saveProduct(Product product) {
+    public boolean saveProduct(Product product) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.persist(product);
             transaction.commit();
+            return transaction.getStatus() == TransactionStatus.COMMITTED;
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
         }
+        return false;
     }
 
     @Override
-    public void updateProduct(Product product) {
+    public boolean updateProduct(Product product) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.merge(product);
             transaction.commit();
+            return transaction.getStatus() == TransactionStatus.COMMITTED;
         } catch (Exception ex) {
             if (transaction != null) {
                 transaction.rollback();
             }
             ex.printStackTrace();
         }
+        return false;
     }
 
     public List<Product> getProducts() {

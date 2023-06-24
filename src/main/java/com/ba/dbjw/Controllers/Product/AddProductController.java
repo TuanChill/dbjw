@@ -2,9 +2,11 @@ package com.ba.dbjw.Controllers.Product;
 
 import com.ba.dbjw.Entity.Product.Product;
 import com.ba.dbjw.Helpers.BindingInput;
+import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusCustomer;
 import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusProduct;
 import com.ba.dbjw.Service.Product.ProductServiceImpl;
 import com.ba.dbjw.Views.SceneController;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,6 +17,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.net.URL;
@@ -64,10 +67,15 @@ public class AddProductController implements Initializable {
                     .material(material.getValue().trim())
                     .imgUrl(fileImg.getPath())
                     .build();
-            cancelWindow(event);
-            productService.createProduct(product);
-            unbindFormatter();
-            UpdateStatusProduct.setIsProductAdded(true);
+            errText.setText("Đang lưu sản phẩm....");
+            if(productService.createProduct(product)) {
+                UpdateStatusProduct.setIsProductAdded(true);
+                errText.setText("Lưu sản phẩm thành công");
+                delayWindowClose(event);
+                unbindFormatter();
+            } else {
+                errText.setText("Đã có lỗi xảy ra");
+            }
         }
     }
 
@@ -133,6 +141,12 @@ public class AddProductController implements Initializable {
         material.getItems().addAll(materialList);
 
         onlyNumberTextField();
+    }
+
+    private void delayWindowClose(ActionEvent event) {
+        PauseTransition delay = new PauseTransition(Duration.seconds(1.5));
+        delay.setOnFinished(e -> cancelWindow(event));
+        delay.play();
     }
 
     @FXML

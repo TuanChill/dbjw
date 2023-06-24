@@ -3,9 +3,11 @@ package com.ba.dbjw.Controllers.Product;
 import com.ba.dbjw.Entity.Product.Product;
 import com.ba.dbjw.Helpers.BindingInput;
 import com.ba.dbjw.Helpers.CurrentProduct;
+import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusCustomer;
 import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusProduct;
 import com.ba.dbjw.Service.Product.ProductServiceImpl;
 import com.ba.dbjw.Views.SceneController;
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.net.URL;
@@ -57,7 +60,7 @@ public class UpdateProductController implements Initializable {
     public void submitHandler(ActionEvent event) {
         if (validateInput()) {
             Product product = Product.builder()
-                    .code(CurrentProduct.getCurrentProduct().getCode())
+                    .code(codeProduct.getText())
                     .name(nameProduct.getText().trim())
                     .price(Long.parseLong(price.getText()))
                     .description(desc.getText().trim())
@@ -67,10 +70,15 @@ public class UpdateProductController implements Initializable {
                     .material(material.getValue().trim())
                     .imgUrl(fileImg.getPath())
                     .build();
-            cancelWindow(event);
-            productService.updateProduct(product);
-            unbindFormatter();
-            UpdateStatusProduct.setIsProductAdded(true);
+            errText.setText("Đang cập nhật sản phẩm....");
+            if(productService.updateProduct(product)) {
+                UpdateStatusCustomer.setIsCustomerAdded(true);
+                errText.setText("Cập nhật sản phẩm thành công");
+                delayWindowClose(event);
+                unbindFormatter();
+            } else {
+                errText.setText("Đã có lỗi xảy ra");
+            }
         }
     }
 
@@ -154,7 +162,11 @@ public class UpdateProductController implements Initializable {
         setCurrProduct();
     }
 
-
+    private void delayWindowClose(ActionEvent event) {
+        PauseTransition delay = new PauseTransition(Duration.seconds(1.5));
+        delay.setOnFinished(e -> cancelWindow(event));
+        delay.play();
+    }
 
     @FXML
     private void cancelWindow(ActionEvent event) {

@@ -39,6 +39,7 @@ public class NewWindowController {
         getPopUpWindow(ScenePath.ADDEMPLOYEE.getPath());
     }
 
+
     public static void getPopUpWindow(String path) throws IOException {
         Stage stage = new Stage();
         Pane main = FXMLLoader.load(NewWindowController.class.getResource(path));

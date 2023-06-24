@@ -9,17 +9,19 @@ public class CustomerServiceImp implements CustomerService<Customer> {
     CustomerRepoImpl customerRepo = new CustomerRepoImpl();
 
     @Override
-    public void createCustomer(Customer data) {
+    public boolean createCustomer(Customer data) {
         if (validateInput(data)) {
-            customerRepo.saveCustomer(data);
+            return customerRepo.saveCustomer(data);
         }
+        return false;
     }
 
     @Override
-    public void updateCustomer(Customer data) {
+    public boolean updateCustomer(Customer data) {
         if (validateInput(data)) {
-            customerRepo.updateCustomer(data);
+            return customerRepo.updateCustomer(data);
         }
+        return false;
     }
 
     @Override

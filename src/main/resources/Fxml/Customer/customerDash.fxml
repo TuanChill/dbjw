@@ -98,7 +98,7 @@
                         <Insets />
                     </VBox.margin>
                     <children>
-                        <Label id="title" fx:id="title" layoutX="10.0" styleClass="title" text="Quản lí khách hàng" textFill="#515151">
+                        <Label id="title" fx:id="title" layoutX="10.0" styleClass="title" text="Quản lý khách hàng" textFill="#515151">
                             <font>
                                 <Font name="Roboto Bold Condensed" size="20.0" />
                             </font>

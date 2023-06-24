@@ -23,7 +23,7 @@ public class HibernateUtil {
 
                 Properties settings = new Properties();
                 settings.put(Environment.DRIVER, "org.mariadb.jdbc.Driver");
-                settings.put(Environment.URL, "jdbc:mariadb://localhost:3306/nhom8");
+                settings.put(Environment.URL, "jdbc:mariadb://localhost:3306/dbjw");
                 settings.put(Environment.USER, "root");
                 settings.put(Environment.PASS, "");
                 settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");

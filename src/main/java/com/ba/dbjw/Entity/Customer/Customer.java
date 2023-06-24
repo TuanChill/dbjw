@@ -13,11 +13,6 @@ import java.time.LocalDate;
 @Table(name = "customer")
 
 public class Customer extends Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
-    private Long id;
-
     public Customer() {
         super();
     }
@@ -34,6 +29,8 @@ public class Customer extends Person {
 
     @PrePersist
     private void generateCode() {
+        if (getCode() == null) {
             setCode("KH" + UUIDGenerator.shortUUID());
+        }
     }
 }

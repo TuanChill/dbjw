@@ -15,13 +15,13 @@ public class EmployeeServiceImpl implements EmployeeService<Employee> {
     private final EmployeeRepo<Employee> employeeRepo = new EmployeeRepoImpl();
 
     @Override
-    public void createEmployee(Employee employee) {
+    public boolean createEmployee(Employee employee) {
         String imgPath = employee.getAvatar();
-        if(imgPath != null) {
+        if (imgPath != null) {
             String url = CloudinaryUtil.uploadImgToCloudinary(imgPath);
             employee.setAvatar(url);
         }
-            employeeRepo.saveEmployee(employee);
+        return employeeRepo.saveEmployee(employee);
     }
 
     @Override
@@ -35,8 +35,8 @@ public class EmployeeServiceImpl implements EmployeeService<Employee> {
     }
 
     @Override
-    public void updateEmployee(Employee product) {
-        employeeRepo.updateEmployee(product);
+    public boolean updateEmployee(Employee product) {
+        return employeeRepo.updateEmployee(product);
     }
 
     @Override

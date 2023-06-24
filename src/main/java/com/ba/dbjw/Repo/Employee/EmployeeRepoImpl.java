@@ -8,22 +8,25 @@ import jakarta.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.hibernate.resource.transaction.spi.TransactionStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EmployeeRepoImpl implements EmployeeRepo<Employee> {
     @Override
-    public void saveEmployee(Employee data) {
+    public boolean saveEmployee(Employee data) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.persist(data);
             transaction.commit();
+            return transaction.getStatus() == TransactionStatus.COMMITTED;
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
         }
+        return false;
     }
 
     @Override
@@ -83,18 +86,20 @@ public class EmployeeRepoImpl implements EmployeeRepo<Employee> {
     }
 
     @Override
-    public void updateEmployee(Employee data) {
+    public boolean updateEmployee(Employee data) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.merge(data);
             transaction.commit();
+            return transaction.getStatus() == TransactionStatus.COMMITTED;
         } catch (Exception ex) {
             if (transaction != null) {
                 transaction.rollback();
             }
             ex.printStackTrace();
         }
+        return false;
     }
 
     @Override

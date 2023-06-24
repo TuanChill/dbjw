@@ -3,9 +3,9 @@ package com.ba.dbjw.Service.Customer;
 import java.util.List;
 
 public interface CustomerService<T> {
-    void createCustomer(T data);
+    boolean createCustomer(T data);
 
-    void updateCustomer(T data);
+    boolean updateCustomer(T data);
 
     void delCustomer(T data);
 

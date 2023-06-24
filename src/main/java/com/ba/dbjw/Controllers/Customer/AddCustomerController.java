@@ -8,10 +8,12 @@ import com.ba.dbjw.Views.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.animation.PauseTransition;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -50,9 +52,14 @@ public class AddCustomerController implements Initializable {
                 customer.setBirthday(birthDate.getValue());
                 customer.setAddress(address.getText().trim());
                 customer.setEmail(email.getText().trim());
-                cancelWindow(event);
-                customerService.createCustomer(customer);
-                UpdateStatusCustomer.setIsCustomerAdded(true);
+                errText.setText("Đang lưu Khách hàng....");
+                if(customerService.createCustomer(customer)) {
+                    UpdateStatusCustomer.setIsCustomerAdded(true);
+                    errText.setText("Lưu khách hàng thành công");
+                    delayWindowClose(event);
+                } else {
+                    errText.setText("Đã có lỗi xảy ra");
+                }
             } else {
                 errText.setText("Khách hàng đã tồn tại");
             }
@@ -114,6 +121,12 @@ public class AddCustomerController implements Initializable {
         // define choose item
         gender.getItems().addAll(genderList);
 
+    }
+
+    private void delayWindowClose(ActionEvent event) {
+        PauseTransition delay = new PauseTransition(Duration.seconds(1.5));
+        delay.setOnFinished(e -> cancelWindow(event));
+        delay.play();
     }
 
     @FXML

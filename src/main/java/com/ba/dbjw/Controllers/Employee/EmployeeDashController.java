@@ -82,7 +82,7 @@ public class EmployeeDashController {
     }
 
     private void setTexts() {
-        title.setText(SceneName.PRODUCT.getName());
+        title.setText(SceneName.EMPLOYEE.getName());
         date.setText(LocalDate.now().toString());
         updateTime.setText("Cập nhật cuối cùng: " + CurrentTime.getTime());
         setDbInfo();
@@ -177,9 +177,9 @@ public class EmployeeDashController {
     @FXML
     private void newWindow(ActionEvent event) throws IOException {
         NewWindowController.getNewEmployeeWindow();
-        if (UpdateStatusEmployee.isCustomerAdded()) {
+        if (UpdateStatusEmployee.isEmployeeAdded()) {
             refreshScreen(event);
-            UpdateStatusEmployee.setIsCustomerAdded(false);
+            UpdateStatusEmployee.setIsEmployeeAdded(false);
         }
     }
 
