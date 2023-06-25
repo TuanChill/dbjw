@@ -81,7 +81,7 @@
                   <Insets />
                </opaqueInsets>
                 </Button>
-                <Button id="exitBtn" fx:id="exitBtn" alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="10.0" layoutY="365.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" styleClass="exitBtn" text="Exit">
+                <Button id="exitBtn" onAction="#logout" fx:id="exitBtn" alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="10.0" layoutY="365.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" styleClass="exitBtn" text="Đăng xuất">
                     <padding>
                         <Insets left="20.0" />
                     </padding>

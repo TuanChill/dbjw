@@ -1,14 +1,9 @@
 package com.ba.dbjw.Controllers.Employee;
 
 import com.ba.dbjw.Entity.Employee.Employee;
-import com.ba.dbjw.Entity.Product.Product;
-import com.ba.dbjw.Helpers.BindingInput;
-import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusCustomer;
 import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusEmployee;
-import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusProduct;
 import com.ba.dbjw.Models.Enums.Gender;
 import com.ba.dbjw.Service.Empoyee.EmployeeServiceImpl;
-import com.ba.dbjw.Service.Product.ProductServiceImpl;
 import com.ba.dbjw.Views.SceneController;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
@@ -16,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,6 +19,7 @@ import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 

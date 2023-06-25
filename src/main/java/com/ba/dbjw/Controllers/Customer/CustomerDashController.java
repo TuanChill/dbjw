@@ -71,7 +71,6 @@ public class CustomerDashController {
         setObList();
         fillTable();
         addTableSettings();
-        exitBtn.setOnAction(SceneController::close);
     }
 
     private void setTexts() {
@@ -201,6 +200,11 @@ public class CustomerDashController {
     @FXML
     private void showEmployeeScreen(ActionEvent event) throws IOException {
         SceneController.getEmployeeDashScene(event);
+    }
+
+    @FXML
+    private void logout(ActionEvent event) throws IOException {
+        SceneController.getLoginScene(event);
     }
 
 }
