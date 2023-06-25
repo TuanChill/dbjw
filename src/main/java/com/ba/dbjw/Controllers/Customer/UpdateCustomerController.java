@@ -3,45 +3,20 @@ package com.ba.dbjw.Controllers.Customer;
 import com.ba.dbjw.Entity.Customer.Customer;
 import com.ba.dbjw.Helpers.CurrentCustomer;
 import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusCustomer;
-import com.ba.dbjw.Models.Enums.Gender;
-import com.ba.dbjw.Service.Customer.CustomerServiceImp;
 import com.ba.dbjw.Views.SceneController;
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static com.ba.dbjw.Helpers.BindingInput.*;
 
-public class UpdateCustomerController implements Initializable {
+public class UpdateCustomerController extends ChangeCustomerController {
     @FXML
-    private Text errText;
-    @FXML
-    private TextField codeCustomer;
-    @FXML
-    private TextField nameCustomer;
-    @FXML
-    private ChoiceBox<String> gender;
-    @FXML
-    private DatePicker birthDate;
-    @FXML
-    private TextField phoneNumber;
-    @FXML
-    private TextField email;
-    @FXML
-    private TextField address;
-    private final String[] genderList = {Gender.FEMALE.getDisplayName(), Gender.MALE.getDisplayName(), Gender.UNKNOWN.getDisplayName()};
-
-    private final CustomerServiceImp customerService = new CustomerServiceImp();
-
+    protected TextField codeCustomer;
 
     @FXML
     public void submitHandler(ActionEvent event) {
@@ -67,7 +42,7 @@ public class UpdateCustomerController implements Initializable {
         }
     }
 
-    private boolean validateInput() {
+    protected boolean validateInput() {
         errText.setText("");
         if (nameCustomer.getText().isEmpty()) {
             errText.setText("Tên Khách hàng không được bỏ trống");
@@ -96,7 +71,7 @@ public class UpdateCustomerController implements Initializable {
     }
 
 
-    private void setCurrCustomer() {
+    protected void setCurrCustomer() {
         Customer currCustomer = CurrentCustomer.getCurrentCustomer();
         codeCustomer.setText(currCustomer.getCode());
         nameCustomer.setText(currCustomer.getName());
@@ -114,16 +89,5 @@ public class UpdateCustomerController implements Initializable {
 
         setCurrCustomer();
 
-    }
-
-    private void delayWindowClose(ActionEvent event) {
-        PauseTransition delay = new PauseTransition(Duration.seconds(1.5));
-        delay.setOnFinished(e -> cancelWindow(event));
-        delay.play();
-    }
-
-    @FXML
-    private void cancelWindow(ActionEvent event) {
-        SceneController.close(event);
     }
 }

@@ -1,6 +1,7 @@
 package com.ba.dbjw.Controllers.Customer;
 
 
+import com.ba.dbjw.Controllers.DashController;
 import com.ba.dbjw.Controllers.PopupWindow.NewWindowController;
 import com.ba.dbjw.Entity.Customer.Customer;
 import com.ba.dbjw.Helpers.*;
@@ -21,59 +22,38 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class CustomerDashController {
+public class CustomerDashController extends DashController {
+    @FXML
+    protected TableView<Customer> customerTable;
 
     @FXML
-    private Label title;
+    protected TableColumn<Customer, String> codeColumn;
 
     @FXML
-    private Label date;
+    protected TableColumn<Customer, String> nameColumn;
 
     @FXML
-    private Label stats;
+    protected TableColumn<Customer, String> genderColumn;
 
     @FXML
-    private Label updateTime;
+    protected TableColumn<Customer, String> phoneColumn;
 
     @FXML
-    private Button exitBtn;
-
-    @FXML
-    private Label userInfo;
-
-    @FXML
-    private TextField searchBar;
-
-    @FXML
-    private TableView<Customer> customerTable;
-
-    @FXML
-    private TableColumn<Customer, String> codeColumn;
-
-    @FXML
-    private TableColumn<Customer, String> nameColumn;
-
-    @FXML
-    private TableColumn<Customer, String> genderColumn;
-
-    @FXML
-    private TableColumn<Customer, String> phoneColumn;
-
-    @FXML
-    private TableColumn<Customer, String> addressColumn;
+    protected TableColumn<Customer, String> addressColumn;
 
     CustomerServiceImp customerService = new CustomerServiceImp();
     ObservableList<Customer> customersObList = FXCollections.observableArrayList();
 
     @FXML
-    private void initialize() {
+    protected void initialize() {
         setTexts();
         setObList();
         fillTable();
         addTableSettings();
     }
 
-    private void setTexts() {
+
+    protected void setTexts() {
         title.setText(SceneName.CUSTOMER.getName());
         date.setText(LocalDate.now().toString());
         updateTime.setText("Cập nhật cuối cùng: " + CurrentTime.getTime());
@@ -81,12 +61,14 @@ public class CustomerDashController {
         setUserInfo();
     }
 
-    private void setObList() {
+
+    protected void setObList() {
         customersObList.clear();
         customersObList.addAll(customerService.getAllCustomer());
     }
 
-    private void fillTable() {
+
+    protected void fillTable() {
         codeColumn.setCellValueFactory(new PropertyValueFactory<>("code"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
@@ -96,19 +78,22 @@ public class CustomerDashController {
         addressColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
-    private void addTableSettings() {
+
+    protected void addTableSettings() {
         customerTable.setEditable(true);
         customerTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         customerTable.setItems(getSortedList());
     }
 
-    private SortedList<Customer> getSortedList() {
+
+    protected SortedList<Customer> getSortedList() {
         SortedList<Customer> sortedList = new SortedList<>(getFilteredList());
         sortedList.comparatorProperty().bind(customerTable.comparatorProperty());
         return sortedList;
     }
 
-    private FilteredList<Customer> getFilteredList() {
+
+    protected FilteredList<Customer> getFilteredList() {
         FilteredList<Customer> filteredList = new FilteredList<>(customersObList, b -> true);
         searchBar.textProperty().addListener((observable, oldValue, newValue) ->
                 filteredList.setPredicate(customer -> {
@@ -122,9 +107,9 @@ public class CustomerDashController {
                         return true;
                     } else if (customer.getName().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
-                    }else if (customer.getPhoneNumber().toLowerCase().contains(lowerCaseFilter)) {
+                    } else if (customer.getPhoneNumber().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
-                    }else if (customer.getAddress().toLowerCase().contains(lowerCaseFilter)) {
+                    } else if (customer.getAddress().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
                     } else {
                         return false;
@@ -134,20 +119,21 @@ public class CustomerDashController {
     }
 
     @FXML
-    private void changeAddressCell(TableColumn.CellEditEvent<Customer, String> editEvent) {
+    protected void changeAddressCell(TableColumn.CellEditEvent<Customer, String> editEvent) {
         Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
         selectedCustomer.setAddress(editEvent.getNewValue());
         customerService.updateCustomer(selectedCustomer);
     }
 
     @FXML
-    private void changeNameCell(TableColumn.CellEditEvent<Customer, String> editEvent) {
+    protected void changeNameCell(TableColumn.CellEditEvent<Customer, String> editEvent) {
         Customer selectedCustomer = customerTable.getSelectionModel().getSelectedItem();
         selectedCustomer.setName(editEvent.getNewValue());
         customerService.updateCustomer(selectedCustomer);
     }
+
     @FXML
-    private void deleteCustomer(ActionEvent event) throws Exception {
+    protected void deleteCustomer(ActionEvent event) throws Exception {
         ObservableList<Customer> selectedRows = customerTable.getSelectionModel().getSelectedItems();
         for (Customer customer : selectedRows) {
             customerService.delCustomer(customer);
@@ -156,7 +142,7 @@ public class CustomerDashController {
     }
 
     @FXML
-    private void updateCustomer(ActionEvent event) throws IOException {
+    protected void updateCustomer(ActionEvent event) throws IOException {
         ObservableList<Customer> selectedRows = customerTable.getSelectionModel().getSelectedItems();
         for (Customer customer : selectedRows) {
             CurrentCustomer.setCurrentCustomer(customer);
@@ -166,7 +152,7 @@ public class CustomerDashController {
     }
 
     @FXML
-    private void newWindow(ActionEvent event) throws IOException {
+    protected void newWindow(ActionEvent event) throws IOException {
         NewWindowController.getNewCustomerWindow();
         if (UpdateStatusCustomer.isCustomerAdded()) {
             refreshScreen(event);
@@ -174,37 +160,12 @@ public class CustomerDashController {
         }
     }
 
-    private void setUserInfo() {
-        userInfo.setText(String.format("Người dùng: %s", CurrentUser.getCurrentUser().getUserName()));
-    }
-
-    private void setDbInfo() {
+    protected void setDbInfo() {
         stats.setText(String.format("Số lượng khách hàng trong cơ sở dữ liệu: %s", customerService.getNumberOfCustomer()));
     }
 
     @FXML
-    private void refreshScreen(ActionEvent event) throws IOException {
+    protected void refreshScreen(ActionEvent event) throws IOException {
         SceneController.getCustomerDashScene(event);
     }
-
-    @FXML
-    private void showProductScreen(ActionEvent event) throws IOException {
-        SceneController.getProductDashScene(event);
-    }
-
-    @FXML
-    private void showInvoiceScreen(ActionEvent event) throws  IOException {
-        SceneController.getInvoiceDashScene(event);
-    }
-
-    @FXML
-    private void showEmployeeScreen(ActionEvent event) throws IOException {
-        SceneController.getEmployeeDashScene(event);
-    }
-
-    @FXML
-    private void logout(ActionEvent event) throws IOException {
-        SceneController.getLoginScene(event);
-    }
-
 }

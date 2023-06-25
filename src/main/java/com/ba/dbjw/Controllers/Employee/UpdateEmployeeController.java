@@ -12,15 +12,16 @@ import lombok.AllArgsConstructor;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static com.ba.dbjw.Helpers.BindingInput.*;
+import static com.ba.dbjw.Helpers.BindingInput.checkBirthDate;
+
 @AllArgsConstructor
 
-public class UpdateEmployeeController extends AddEmployeeController {
+public class UpdateEmployeeController extends ChangeEmployeeController {
     @FXML
     private TextField codeEmployee;
 
-
     @FXML
-    @Override
     protected void submitHandler(ActionEvent event) {
         if (validateInput()) {
             errText.setText("Đang cập nhật nhân viên....");
@@ -44,6 +45,49 @@ public class UpdateEmployeeController extends AddEmployeeController {
             } else {
                 errText.setText("Đã có lỗi xảy ra");
             }
+        }
+    }
+
+    protected boolean validateInput() {
+        errText.setText("");
+        if (nameEmployee.getText().isEmpty()) {
+            errText.setText("Tên Nhân viên không được bỏ trống");
+            return false;
+        } else if (phoneNumber.getText().trim().isEmpty()) {
+            errText.setText("Số điện thoại không được bỏ trống");
+            return false;
+        } else if (!isPhoneNumber(phoneNumber.getText())) {
+            errText.setText("Vui lòng nhập đúng số điện thoại");
+            return false;
+        } else if (gender.getValue() == null) {
+            errText.setText("Vui lòng chọn giới tính");
+            return false;
+        } else if (position.getValue() == null) {
+            errText.setText("Vui lòng chọn chức vụ");
+            return false;
+        } else if (fileImg == null) {
+            errText.setText("Vui lòng chọn ảnh cho nhân viên");
+            return false;
+        } else if (cccd.getText().trim().isEmpty()) {
+            errText.setText("Căn cước công dân không được bỏ trống");
+            return false;
+        } else if (!isCCCD(cccd.getText())) {
+            errText.setText("Vui lòng nhập đúng Căn cước công dân");
+            return false;
+        } else if (email.getText().isEmpty()) {
+            errText.setText("Vui lòng nhập Email");
+            return false;
+        } else if (!isEmail(email.getText())) {
+            errText.setText("Vui lòng nhập đúng Email");
+            return false;
+        } else if (address.getText().isEmpty()) {
+            errText.setText("Địa chỉ không được bỏ trống");
+            return false;
+        } else if (checkBirthDate(birthdate.getValue())) {
+            errText.setText("Ngày sinh không hợp lệ");
+            return false;
+        } else {
+            return true;
         }
     }
 

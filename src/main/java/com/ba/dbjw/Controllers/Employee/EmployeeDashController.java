@@ -1,6 +1,7 @@
 package com.ba.dbjw.Controllers.Employee;
 
 
+import com.ba.dbjw.Controllers.DashController;
 import com.ba.dbjw.Controllers.PopupWindow.NewWindowController;
 import com.ba.dbjw.Entity.Employee.Employee;
 import com.ba.dbjw.Helpers.CurrentEntity.CurrentEmployee;
@@ -22,65 +23,45 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class EmployeeDashController {
+public class EmployeeDashController extends DashController {
 
     @FXML
-    private Label title;
+    protected TableView<Employee> employeeTable;
 
     @FXML
-    private Label date;
+    protected TableColumn<Employee, String> codeColumn;
 
     @FXML
-    private Label stats;
+    protected TableColumn<Employee, String> nameColumn;
 
     @FXML
-    private Label updateTime;
+    protected TableColumn<Employee, String> genderColumn;
 
     @FXML
-    private Button exitBtn;
+    protected TableColumn<Employee, String> phoneNumberColumn;
 
     @FXML
-    private Label userInfo;
+    protected TableColumn<Employee, String> cccdColumn;
 
     @FXML
-    private TextField searchBar;
+    protected TableColumn<Employee, String> addressColumn;
 
     @FXML
-    private TableView<Employee> employeeTable;
-
-    @FXML
-    private TableColumn<Employee, String> codeColumn;
-
-    @FXML
-    private TableColumn<Employee, String> nameColumn;
-
-    @FXML
-    private TableColumn<Employee, String> genderColumn;
-
-    @FXML
-    private TableColumn<Employee, String> phoneNumberColumn;
-
-    @FXML
-    private TableColumn<Employee, String> cccdColumn;
-
-    @FXML
-    private TableColumn<Employee, String> addressColumn;
-
-    @FXML
-    private TableColumn<Employee, String> positionColumn;
+    protected TableColumn<Employee, String> positionColumn;
 
     EmployeeServiceImpl employeeService = new EmployeeServiceImpl();
     ObservableList<Employee> employeesObList = FXCollections.observableArrayList();
 
     @FXML
-    private void initialize() {
+    protected void initialize() {
         setTexts();
         setObList();
         fillTable();
         addTableSettings();
     }
 
-    private void setTexts() {
+
+    protected void setTexts() {
         title.setText(SceneName.EMPLOYEE.getName());
         date.setText(LocalDate.now().toString());
         updateTime.setText("Cập nhật cuối cùng: " + CurrentTime.getTime());
@@ -88,12 +69,14 @@ public class EmployeeDashController {
         setUserInfo();
     }
 
-    private void setObList() {
+
+    protected void setObList() {
         employeesObList.clear();
         employeesObList.addAll(employeeService.getAllEmployees());
     }
 
-    private void fillTable() {
+
+    protected void fillTable() {
         codeColumn.setCellValueFactory(new PropertyValueFactory<>("code"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
@@ -103,19 +86,22 @@ public class EmployeeDashController {
         positionColumn.setCellValueFactory(new PropertyValueFactory<>("position"));
     }
 
-    private void addTableSettings() {
+
+    protected void addTableSettings() {
         employeeTable.setEditable(true);
         employeeTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         employeeTable.setItems(getSortedList());
     }
 
-    private SortedList<Employee> getSortedList() {
+
+    protected SortedList<Employee> getSortedList() {
         SortedList<Employee> sortedList = new SortedList<>(getFilteredList());
         sortedList.comparatorProperty().bind(employeeTable.comparatorProperty());
         return sortedList;
     }
 
-    private FilteredList<Employee> getFilteredList() {
+
+    protected FilteredList<Employee> getFilteredList() {
         FilteredList<Employee> filteredList = new FilteredList<>(employeesObList, b -> true);
         searchBar.textProperty().addListener((observable, oldValue, newValue) ->
                 filteredList.setPredicate(employee -> {
@@ -142,20 +128,20 @@ public class EmployeeDashController {
     }
 
     @FXML
-    private void changeAddressCell(TableColumn.CellEditEvent<Employee, String> editEvent) {
+    protected void changeAddressCell(TableColumn.CellEditEvent<Employee, String> editEvent) {
         Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
         selectedEmployee.setAddress(editEvent.getNewValue());
         employeeService.updateEmployee(selectedEmployee);
     }
 
     @FXML
-    private void changeNameCell(TableColumn.CellEditEvent<Employee, String> editEvent) {
+    protected void changeNameCell(TableColumn.CellEditEvent<Employee, String> editEvent) {
         Employee selectedEmployee = employeeTable.getSelectionModel().getSelectedItem();
         selectedEmployee.setName(editEvent.getNewValue());
         employeeService.updateEmployee(selectedEmployee);
     }
     @FXML
-    private void deleteEmployee(ActionEvent event) throws Exception {
+    protected void deleteEmployee(ActionEvent event) throws Exception {
         ObservableList<Employee> selectedRows = employeeTable.getSelectionModel().getSelectedItems();
         for (Employee employee : selectedRows) {
             employeeService.deleteEmployee(employee);
@@ -164,7 +150,7 @@ public class EmployeeDashController {
     }
 
     @FXML
-    private void updateEmployee(ActionEvent event) throws IOException {
+    protected void updateEmployee(ActionEvent event) throws IOException {
         ObservableList<Employee> selectedRows = employeeTable.getSelectionModel().getSelectedItems();
         for (Employee employee : selectedRows) {
             CurrentEmployee.setCurrentEmployee(employee);
@@ -174,7 +160,7 @@ public class EmployeeDashController {
     }
 
     @FXML
-    private void newWindow(ActionEvent event) throws IOException {
+    protected void newWindow(ActionEvent event) throws IOException {
         NewWindowController.getNewEmployeeWindow();
         if (UpdateStatusEmployee.isEmployeeAdded()) {
             refreshScreen(event);
@@ -182,36 +168,12 @@ public class EmployeeDashController {
         }
     }
 
-    private void setUserInfo() {
-        userInfo.setText(String.format("Người dùng: %s", CurrentUser.getCurrentUser().getUserName()));
-    }
-
-    private void setDbInfo() {
+    protected void setDbInfo() {
         stats.setText(String.format("Số lượng nhân viên trong cơ sở dữ liệu: %s", employeeService.getNumberOfEmployee()));
     }
 
     @FXML
-    private void refreshScreen(ActionEvent event) throws IOException {
+    protected void refreshScreen(ActionEvent event) throws IOException {
         SceneController.getEmployeeDashScene(event);
-    }
-
-    @FXML
-    private void showCustomerScreen(ActionEvent event) throws IOException {
-        SceneController.getCustomerDashScene(event);
-    }
-
-    @FXML
-    private void showInvoiceScreen(ActionEvent event) throws  IOException {
-        SceneController.getInvoiceDashScene(event);
-    }
-
-    @FXML
-    private void logout(ActionEvent event) throws IOException {
-        SceneController.getLoginScene(event);
-    }
-
-    @FXML
-    private void showProductScreen(ActionEvent event) throws IOException {
-        SceneController.getProductDashScene(event);
     }
 }

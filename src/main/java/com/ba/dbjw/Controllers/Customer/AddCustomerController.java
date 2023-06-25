@@ -2,44 +2,11 @@ package com.ba.dbjw.Controllers.Customer;
 
 import com.ba.dbjw.Entity.Customer.Customer;
 import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusCustomer;
-import com.ba.dbjw.Models.Enums.Gender;
-import com.ba.dbjw.Service.Customer.CustomerServiceImp;
-import com.ba.dbjw.Views.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.animation.PauseTransition;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
-import javafx.util.Duration;
-
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ResourceBundle;
-import java.util.regex.Pattern;
-
-public class AddCustomerController implements Initializable {
-    @FXML
-    private Text errText;
-    @FXML
-    private TextField nameCustomer;
-    @FXML
-    private ChoiceBox<String> gender;
-    @FXML
-    private DatePicker birthDate;
-    @FXML
-    private TextField phoneNumber;
-    @FXML
-    private TextField email;
-    @FXML
-    private TextField address;
-    private final String[] genderList = {Gender.FEMALE.getDisplayName(), Gender.MALE.getDisplayName(), Gender.UNKNOWN.getDisplayName()};
-
-    private final CustomerServiceImp customerService = new CustomerServiceImp();
 
 
+public class AddCustomerController extends ChangeCustomerController {
     @FXML
     public void submitHandler(ActionEvent event) {
         if (validateInput()) {
@@ -66,7 +33,8 @@ public class AddCustomerController implements Initializable {
         }
     }
 
-    private boolean validateInput() {
+
+    protected boolean validateInput() {
         errText.setText("");
         if (nameCustomer.getText().isEmpty()) {
             errText.setText("Tên Khách hàng không được bỏ trống");
@@ -92,45 +60,5 @@ public class AddCustomerController implements Initializable {
         } else {
             return true;
         }
-    }
-
-
-    private boolean customerIsExist(String phoneNumber) {
-        return customerService.checkCustomerIsExist(phoneNumber);
-    }
-
-    private boolean isPhoneNumber(String input) {
-        String phoneNumberRegex = "(84|0[3|5|7|8|9|1])+([0-9]{8})\\b";
-        Pattern pattern = Pattern.compile(phoneNumberRegex);
-        return pattern.matcher(input).matches();
-    }
-
-    private boolean isEmail(String input) {
-        String emailRegex = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
-        Pattern pattern = Pattern.compile(emailRegex);
-        return pattern.matcher(input).matches();
-    }
-
-    private boolean checkBirthDate(LocalDate input) {
-        if(input == null) return false;
-        return !input.isBefore(LocalDate.now());
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // define choose item
-        gender.getItems().addAll(genderList);
-
-    }
-
-    private void delayWindowClose(ActionEvent event) {
-        PauseTransition delay = new PauseTransition(Duration.seconds(1.5));
-        delay.setOnFinished(e -> cancelWindow(event));
-        delay.play();
-    }
-
-    @FXML
-    private void cancelWindow(ActionEvent event) {
-        SceneController.close(event);
     }
 }

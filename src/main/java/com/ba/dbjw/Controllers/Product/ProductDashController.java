@@ -1,6 +1,7 @@
 package com.ba.dbjw.Controllers.Product;
 
 
+import com.ba.dbjw.Controllers.DashController;
 import com.ba.dbjw.Controllers.PopupWindow.NewWindowController;
 import com.ba.dbjw.Entity.Product.Product;
 import com.ba.dbjw.Helpers.*;
@@ -21,68 +22,46 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import java.io.IOException;
 import java.time.LocalDate;
 
-public class ProductDashController {
+public class ProductDashController extends DashController {
+    @FXML
+    protected TableView<Product> productTable;
 
     @FXML
-    private Label title;
+    protected TableColumn<Product, String> codeColumn;
 
     @FXML
-    private Label date;
+    protected TableColumn<Product, String> nameColumn;
 
     @FXML
-    private Label stats;
+    protected TableColumn<Product, String> priceColumn;
 
     @FXML
-    private Label updateTime;
+    protected TableColumn<Product, String> sizeColumn;
 
     @FXML
-    private Button exitBtn;
+    protected TableColumn<Product, String> stockColumn;
 
     @FXML
-    private Label userInfo;
+    protected TableColumn<Product, String> materialColumn;
 
     @FXML
-    private TextField searchBar;
+    protected TableColumn<Product, String> descColumn;
 
     @FXML
-    private TableView<Product> productTable;
-
-    @FXML
-    private TableColumn<Product, String> codeColumn;
-
-    @FXML
-    private TableColumn<Product, String> nameColumn;
-
-    @FXML
-    private TableColumn<Product, String> priceColumn;
-
-    @FXML
-    private TableColumn<Product, String> sizeColumn;
-
-    @FXML
-    private TableColumn<Product, String> stockColumn;
-
-    @FXML
-    private TableColumn<Product, String> materialColumn;
-
-    @FXML
-    private TableColumn<Product, String> descColumn;
-
-    @FXML
-    private TableColumn<Product, String> imgColumn;
+    protected TableColumn<Product, String> imgColumn;
 
     ProductServiceImpl productService = new ProductServiceImpl();
     ObservableList<Product> productsObList = FXCollections.observableArrayList();
 
     @FXML
-    private void initialize() {
+    protected void initialize() {
         setTexts();
         setObList();
         fillTable();
         addTableSettings();
     }
 
-    private void setTexts() {
+    protected void setTexts() {
         title.setText(SceneName.PRODUCT.getName());
         date.setText(LocalDate.now().toString());
         updateTime.setText("Cập nhật cuối cùng: " + CurrentTime.getTime());
@@ -90,12 +69,12 @@ public class ProductDashController {
         setUserInfo();
     }
 
-    private void setObList() {
+    protected void setObList() {
         productsObList.clear();
         productsObList.addAll(productService.getAllProducts());
     }
 
-    private void fillTable() {
+    protected void fillTable() {
         codeColumn.setCellValueFactory(new PropertyValueFactory<>("code"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -108,19 +87,19 @@ public class ProductDashController {
         descColumn.setCellFactory(TextFieldTableCell.forTableColumn());
     }
 
-    private void addTableSettings() {
+    protected void addTableSettings() {
         productTable.setEditable(true);
         productTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         productTable.setItems(getSortedList());
     }
 
-    private SortedList<Product> getSortedList() {
+    protected SortedList<Product> getSortedList() {
         SortedList<Product> sortedList = new SortedList<>(getFilteredList());
         sortedList.comparatorProperty().bind(productTable.comparatorProperty());
         return sortedList;
     }
 
-    private FilteredList<Product> getFilteredList() {
+    protected FilteredList<Product> getFilteredList() {
         FilteredList<Product> filteredList = new FilteredList<>(productsObList, b -> true);
         searchBar.textProperty().addListener((observable, oldValue, newValue) ->
                 filteredList.setPredicate(product -> {
@@ -136,30 +115,26 @@ public class ProductDashController {
                         return true;
                     } else if (product.getMaterial().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
-                    } else if (product.getSize().toLowerCase().contains(lowerCaseFilter)) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    } else return product.getSize().toLowerCase().contains(lowerCaseFilter);
                 }));
         return filteredList;
     }
 
     @FXML
-    private void changeDescCell(TableColumn.CellEditEvent<Product, String> editEvent) {
+    protected void changeDescCell(TableColumn.CellEditEvent<Product, String> editEvent) {
         Product selectedProduct = productTable.getSelectionModel().getSelectedItem();
         selectedProduct.setDescription(editEvent.getNewValue());
         productService.updateProduct(selectedProduct);
     }
 
     @FXML
-    private void changeSizeCell(TableColumn.CellEditEvent<Product, String> editEvent) {
+    protected void changeSizeCell(TableColumn.CellEditEvent<Product, String> editEvent) {
         Product selectedProduct = productTable.getSelectionModel().getSelectedItem();
         selectedProduct.setSize(editEvent.getNewValue());
         productService.updateProduct(selectedProduct);
     }
     @FXML
-    private void deleteProduct(ActionEvent event) throws Exception {
+    protected void deleteProduct(ActionEvent event) throws Exception {
         ObservableList<Product> selectedRows = productTable.getSelectionModel().getSelectedItems();
         for (Product product : selectedRows) {
             productService.deleteProduct(product);
@@ -168,7 +143,7 @@ public class ProductDashController {
     }
 
     @FXML
-    private void updateProduct(ActionEvent event) throws IOException {
+    protected void updateProduct(ActionEvent event) throws IOException {
         ObservableList<Product> selectedRows = productTable.getSelectionModel().getSelectedItems();
         for (Product product : selectedRows) {
             CurrentProduct.setCurrentProduct(product);
@@ -177,46 +152,7 @@ public class ProductDashController {
         refreshScreen(event);
     }
 
-    @FXML
-    private void newWindow(ActionEvent event) throws IOException {
-        NewWindowController.getNewProductWindow();
-        if (UpdateStatusProduct.isProductAdded()) {
-            refreshScreen(event);
-            UpdateStatusProduct.setIsProductAdded(false);
-        }
-    }
-
-    private void setUserInfo() {
-        userInfo.setText(String.format("Người dùng: %s", CurrentUser.getCurrentUser().getUserName()));
-    }
-
-    private void setDbInfo() {
+    protected void setDbInfo() {
         stats.setText(String.format("Số lượng sản phẩm trong cơ sở dữ liệu: %s", productService.getNumberOfProduct()));
     }
-
-    @FXML
-    private void refreshScreen(ActionEvent event) throws IOException {
-        SceneController.getProductDashScene(event);
-    }
-
-    @FXML
-    private void showCustomerScreen(ActionEvent event) throws IOException {
-        SceneController.getCustomerDashScene(event);
-    }
-
-    @FXML
-    private void showInvoiceScreen(ActionEvent event) throws  IOException {
-        SceneController.getInvoiceDashScene(event);
-    }
-
-    @FXML
-    private void showEmployeeScreen(ActionEvent event) throws IOException {
-        SceneController.getEmployeeDashScene(event);
-    }
-
-    @FXML
-    private void logout(ActionEvent event) throws IOException {
-        SceneController.getLoginScene(event);
-    }
-
 }
