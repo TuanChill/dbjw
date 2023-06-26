@@ -6,7 +6,6 @@ import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusEmployee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import lombok.AllArgsConstructor;
 
 import java.net.URL;
@@ -14,6 +13,7 @@ import java.util.ResourceBundle;
 
 import static com.ba.dbjw.Helpers.BindingInput.*;
 import static com.ba.dbjw.Helpers.BindingInput.checkBirthDate;
+import static com.ba.dbjw.Helpers.LazyLoading.loadAndDisplayImage;
 
 @AllArgsConstructor
 
@@ -101,7 +101,7 @@ public class UpdateEmployeeController extends ChangeEmployeeController {
         email.setText(currEmployee.getEmail());
         cccd.setText(currEmployee.getCccd());
         address.setText(currEmployee.getAddress());
-        imgPreview.setImage(new Image(currEmployee.getAvatar()));
+        loadAndDisplayImage(imgPreview,currEmployee.getAvatar());
     }
 
     @Override

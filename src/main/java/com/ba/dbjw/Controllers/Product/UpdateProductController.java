@@ -13,6 +13,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import static com.ba.dbjw.Helpers.BindingInput.isNumeric;
+import static com.ba.dbjw.Helpers.LazyLoading.loadAndDisplayImage;
 
 public class UpdateProductController extends ChangeProductController {
     @FXML
@@ -89,7 +90,7 @@ public class UpdateProductController extends ChangeProductController {
         size.setText(currProduct.getSize());
         stock.setText(String.valueOf(currProduct.getStock()));
         desc.setText(currProduct.getDescription());
-        imgPreview.setImage(new Image(currProduct.getImgUrl()));
+        loadAndDisplayImage(imgPreview,currProduct.getImgUrl());
         fileImg = new File(currProduct.getImgUrl());
     }
 
