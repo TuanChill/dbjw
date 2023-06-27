@@ -7,6 +7,7 @@ import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -64,10 +65,25 @@ public class ChangeProductController implements Initializable {
     @FXML
     public void imgChooser(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg");
+        fileChooser.getExtensionFilters().add(extFilter);
+
         File file = fileChooser.showOpenDialog(null);
         if (file != null) {
-            imgPreview.setImage(new Image(file.getPath()));
-            fileImg = file;
+            String filePath = file.getPath();
+            String fileExtension = filePath.substring(filePath.lastIndexOf(".") + 1).toLowerCase();
+
+            if (fileExtension.equals("png") || fileExtension.equals("jpg")) {
+                imgPreview.setImage(new Image(filePath));
+                fileImg = file;
+            } else {
+                // Thông báo lỗi: Chỉ chấp nhận file PNG hoặc JPG
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText(null);
+                alert.setContentText("Ảnh chỉ nên là PNG/JPG !");
+                alert.showAndWait();
+            }
         }
     }
 

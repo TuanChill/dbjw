@@ -23,8 +23,11 @@ public class CloudinaryUtil {
         config.put("api_secret", "8DiQDY84P9-qA1e7nj8FoJYwRvQ");
         config.put("format", "png");
         config.put("transformation", transformation);
+        config.put("quality", "auto:low"); // Adjust the image quality
+
         return new Cloudinary(config);
     }
+
 
 
     public static String uploadImgToCloudinary(String file) {
