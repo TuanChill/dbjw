@@ -7,12 +7,19 @@ import com.ba.dbjw.Views.SceneController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
 
 // parent class controller
 public class DashController {
+
+    @FXML
+    protected AnchorPane rootPane;
+
     @FXML
     protected Label title;
 
@@ -38,6 +45,14 @@ public class DashController {
             refreshScreen(event);
             UpdateStatusProduct.setIsProductAdded(false);
         }
+    }
+
+    protected void preventEnter() {
+        rootPane.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER && !(event.getTarget() instanceof TextField || event.getTarget() instanceof TextArea)) {
+                event.consume();
+            }
+        });
     }
 
     protected void setUserInfo() {

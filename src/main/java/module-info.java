@@ -30,11 +30,13 @@ module com.ba.dbjw {
     opens com.ba.dbjw.Entity.UserAuth to org.hibernate.orm.core;
     opens com.ba.dbjw.Entity.Customer to org.hibernate.orm.core;
     opens com.ba.dbjw.Entity.Employee to org.hibernate.orm.core;
+    opens com.ba.dbjw.Entity.Invoice to org.hibernate.orm.core, javafx.base;
     opens com.ba.dbjw.Models to org.hibernate.orm.core, javafx.base;
     opens com.ba.dbjw.Entity.Product to org.hibernate.orm.core, javafx.base;
     opens com.ba.dbjw.Controllers to javafx.fxml;
     opens com.ba.dbjw.Controllers.Product to javafx.fxml;
     opens com.ba.dbjw.Controllers.Customer to javafx.fxml;
     opens com.ba.dbjw.Controllers.Employee to javafx.fxml;
+    opens com.ba.dbjw.Controllers.Invoice to javafx.fxml;
     opens com.ba.dbjw.Models.Enums to org.hibernate.orm.core;
 }

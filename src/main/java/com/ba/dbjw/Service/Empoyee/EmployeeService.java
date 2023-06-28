@@ -9,5 +9,7 @@ public interface EmployeeService<T> {
     boolean updateEmployee(T data);
     Long getNumberOfEmployee();
 
+    T getEmployeeByCode(String code);
+
     Boolean checkEmployeeExist(String cccd);
 }

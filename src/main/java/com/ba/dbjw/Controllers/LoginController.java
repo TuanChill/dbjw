@@ -50,9 +50,9 @@ public class LoginController {
             } else {
                 if(Objects.equals(user.getRole(), "admin")) {
                     CurrentUser.setCurrentUser(user);
-                    SceneController.getProductDashScene(e);
+                    SceneController.getInvoiceDashScene(e);
                 } else {
-                    SceneController.getProductDashScene(e);
+                    SceneController.getInvoiceDashScene(e);
                 }
             }
         }

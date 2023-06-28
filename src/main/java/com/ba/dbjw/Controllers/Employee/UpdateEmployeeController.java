@@ -15,7 +15,6 @@ import static com.ba.dbjw.Helpers.BindingInput.*;
 import static com.ba.dbjw.Helpers.BindingInput.checkBirthDate;
 import static com.ba.dbjw.Helpers.LazyLoading.loadAndDisplayImage;
 
-@AllArgsConstructor
 
 public class UpdateEmployeeController extends ChangeEmployeeController {
     @FXML
@@ -98,6 +97,7 @@ public class UpdateEmployeeController extends ChangeEmployeeController {
         gender.setValue(currEmployee.getGender());
         position.setValue(currEmployee.getPosition());
         birthdate.setValue(currEmployee.getBirthday());
+        phoneNumber.setText(currEmployee.getPhoneNumber());
         email.setText(currEmployee.getEmail());
         cccd.setText(currEmployee.getCccd());
         address.setText(currEmployee.getAddress());

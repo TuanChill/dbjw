@@ -55,6 +55,7 @@ public class ProductDashController extends DashController {
 
     @FXML
     protected void initialize() {
+        preventEnter();
         setTexts();
         setObList();
         fillTable();

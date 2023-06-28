@@ -45,6 +45,15 @@ public class EmployeeServiceImpl implements EmployeeService<Employee> {
     }
 
     @Override
+    public Employee getEmployeeByCode(String code) {
+        if (code == null) {
+            return null;
+        } else {
+            return employeeRepo.getEmployeeByCode(code);
+        }
+    }
+
+    @Override
     public Boolean checkEmployeeExist(String cccd) {
         return employeeRepo.getEmployeeByCccd(cccd) != null;
     }

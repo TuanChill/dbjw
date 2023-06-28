@@ -3,6 +3,7 @@ package com.ba.dbjw;
 import com.ba.dbjw.Utils.HibernateUtil;
 import com.ba.dbjw.Views.SceneController;
 import javafx.application.Application;
+import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import org.hibernate.Session;
 

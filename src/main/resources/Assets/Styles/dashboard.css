@@ -2,30 +2,6 @@
     -fx-background-color: #253b5f;
 }
 
-.infoBlockVet {
-    -fx-background-color: #236cd5;
-}
-
-.infoBlockVet:hover {
-    -fx-background-color: #1f66cc;
-}
-
-.infoBlockPet {
-    -fx-background-color: #3fafa7;
-}
-
-.infoBlockPet:hover {
-    -fx-background-color: #36a39b;
-}
-
-.infoBlockVisit {
-    -fx-background-color: #ff714a;
-}
-
-.infoBlockVisit:hover {
-    -fx-background-color: #fc683f;
-}
-
 .header {
     -fx-background-color: white;
 }
@@ -214,11 +190,6 @@
     -fx-border-width:5 5 5 0;
 }
 
-.alertText {
-    -fx-text-fill: red;
-    -fx-font-style: italic;
-}
-
 .search-line {
     -fx-font: 14px Roboto;
     -fx-text-fill: #7f7f7f;
@@ -254,11 +225,6 @@
     -fx-text-fill: #fc583f;
 }
 
-.login-window {
-    -fx-background-radius: 3;
-    -fx-border-color: #d0d0d0;
-    -fx-border-width: 5 10 5 5;
-}
 
 .user-info {
     -fx-font: 14px Arial;
@@ -270,5 +236,17 @@
     -fx-font: 11px Roboto;
     -fx-text-fill: #2d7514;
     -fx-font-style: italic;
+    -fx-font-weight: bold;
+}
+
+
+.payment-container {
+    -fx-background-color: #f5f5f5;
+    -fx-background-radius: 8px;
+}
+
+.payheader {
+    -fx-font: 18px Roboto;
+    -fx-text-fill: #13b5e5;
     -fx-font-weight: bold;
 }

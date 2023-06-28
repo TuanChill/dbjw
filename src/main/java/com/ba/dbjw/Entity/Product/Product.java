@@ -44,7 +44,7 @@ public class Product {
     @PrePersist
     private void generateCode() {
         if (getCode() == null) {
-            setCode("KH" + UUIDGenerator.shortUUID());
+            setCode("SP" + UUIDGenerator.shortUUID());
         }
     }
 }

@@ -27,6 +27,7 @@ public abstract class Person {
     private String phoneNumber;
     @Column(length = 50)
     private String email;
+
     @Column(name = "create_at")
     @CreationTimestamp
     private LocalDateTime createAt;

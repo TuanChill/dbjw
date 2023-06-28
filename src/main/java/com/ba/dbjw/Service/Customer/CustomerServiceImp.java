@@ -40,6 +40,15 @@ public class CustomerServiceImp implements CustomerService<Customer> {
     }
 
     @Override
+    public Customer getCustomerByCode(String code) {
+        if (code == null) {
+            return null;
+        } else {
+            return customerRepo.getCustomerByCode(code);
+        }
+    }
+
+    @Override
     public Boolean checkCustomerIsExist(String phoneNumber) {
         return customerRepo.getCustomerByPhoneNumber(phoneNumber) != null;
     }

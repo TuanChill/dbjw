@@ -12,7 +12,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="835.0" prefWidth="1287.0" stylesheets="@../../Assets/Styles/productAdmin.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ba.dbjw.Controllers.Product.UpdateProductController">
+<AnchorPane prefHeight="835.0" prefWidth="1287.0" stylesheets="@../../Assets/Styles/popup.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ba.dbjw.Controllers.Product.UpdateProductController">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
         <BorderPane layoutX="14.0" layoutY="6.0" prefHeight="293.0" prefWidth="364.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
@@ -31,9 +31,9 @@
                                 <Font size="14.0" />
                             </font>
                         </TextArea>
-                        <ImageView fx:id="imgPreview" fitHeight="545.0" fitWidth="532.0" layoutX="697.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" styleClass="img-preview" AnchorPane.leftAnchor="697.0">
+                        <ImageView fx:id="imgPreview" fitHeight="359.0" fitWidth="373.0" layoutX="697.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" styleClass="img-preview" AnchorPane.leftAnchor="697.0">
                             <image>
-                                <Image url="@../../Assets/Images/upload.jpg" />
+                                <Image url="@../../Assets/Images/loading.jpg" />
                             </image>
                         </ImageView>
                         <Button layoutX="211.0" layoutY="758.0" mnemonicParsing="false" onAction="#submitHandler" prefHeight="34.0" prefWidth="201.0" styleClass="btn-submit" text="Cập nhật" AnchorPane.leftAnchor="211.0" />

@@ -12,6 +12,14 @@ public class ProductServiceImpl implements ProductService<Product> {
     private final ProductRepo<Product> productRepo = new ProductRepoImpl();
 
     @Override
+    public Product getProductByCode(String code) {
+        if(code != null || !code.isEmpty()) {
+            return productRepo.getProductByCode(code);
+        }
+            return null;
+    }
+
+    @Override
     public boolean createProduct(Product product) {
         String imgPath = product.getImgUrl();
         if(imgPath != null) {

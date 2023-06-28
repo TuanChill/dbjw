@@ -54,6 +54,7 @@ public class EmployeeDashController extends DashController {
 
     @FXML
     protected void initialize() {
+        preventEnter();
         setTexts();
         setObList();
         fillTable();
@@ -154,7 +155,7 @@ public class EmployeeDashController extends DashController {
         ObservableList<Employee> selectedRows = employeeTable.getSelectionModel().getSelectedItems();
         for (Employee employee : selectedRows) {
             CurrentEmployee.setCurrentEmployee(employee);
-            NewWindowController.getUpdateProductWindow();
+            NewWindowController.getUpdateEmployeeWindow();
         }
         refreshScreen(event);
     }
