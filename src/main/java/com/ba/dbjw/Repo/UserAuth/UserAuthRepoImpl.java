@@ -10,16 +10,13 @@ public class UserAuthRepoImpl implements UserAuthRepo<UserAuth> {
     @Override
     public void saveUser(UserAuth user) {
         Transaction transaction = null;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        try (session) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.save(user);
+            session.persist(user);
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
             e.printStackTrace();
-        } finally {
-            session.close();
         }
     }
 

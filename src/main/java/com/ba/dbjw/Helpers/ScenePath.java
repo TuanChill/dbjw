@@ -2,6 +2,7 @@ package com.ba.dbjw.Helpers;
 
 public enum ScenePath {
     LOGIN("/Fxml/login.fxml"),
+    REGISTER("/Fxml/UserAuth/register.fxml"),
     ADMIN("/Fxml/Product/admin.fxml"),
     PRODUCTDASH("/Fxml/Product/productDash.fxml"),
     ADDPRODUCT("/Fxml/Product/addProduct.fxml"),

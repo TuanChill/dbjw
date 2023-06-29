@@ -1,5 +1,6 @@
 package com.ba.dbjw.Controllers;
 
+import com.ba.dbjw.Controllers.PopupWindow.NewWindowController;
 import com.ba.dbjw.Entity.UserAuth.UserAuth;
 import com.ba.dbjw.Helpers.CurrentEntity.CurrentUser;
 import com.ba.dbjw.Service.UserAuth.UserServiceImpl;
@@ -48,17 +49,14 @@ public class LoginController {
             if (user == null) {
                 errText.setText("Tài khoản hoặc mật khẩu không đúng");
             } else {
-                if(Objects.equals(user.getRole(), "admin")) {
                     CurrentUser.setCurrentUser(user);
                     SceneController.getInvoiceDashScene(e);
-                } else {
-                    SceneController.getInvoiceDashScene(e);
-                }
             }
         }
     }
 
-    public void handleForgotBtn(MouseEvent event) {
-
+    @FXML
+    private void handleRegisterBtn(MouseEvent event) throws IOException {
+        NewWindowController.getRegisterWindow();
     }
 }

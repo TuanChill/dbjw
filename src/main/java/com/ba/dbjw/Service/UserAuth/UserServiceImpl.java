@@ -20,12 +20,14 @@ public class UserServiceImpl implements UserService<UserAuth> {
         return null;
     }
 
-    public UserAuth register(UserAuth data) {
+    public Boolean register(UserAuth data) {
         UserAuth user = userRepo.findByUserName(data.getUserName());
         if (user == null) {
+            String password = data.getPassword();
+            data.setPassword(CryptPassword.encryptPassword(password));
             userRepo.saveUser(data);
-            return data;
+            return true;
         }
-        return null;
+        return false;
     }
 }

@@ -13,7 +13,7 @@ public class AlertPopup {
         alert.showAndWait();
     }
 
-    public static String dialogPayment(String headerText, Boolean isBinding) {
+    public static String dialogPay(String headerText, Boolean isBinding) {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle("Nhập thông tin");
         dialog.setHeaderText(headerText);

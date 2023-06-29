@@ -34,8 +34,7 @@ import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.util.ResourceBundle;
 
-import static com.ba.dbjw.Helpers.AlertPopup.dialogPayment;
-import static com.ba.dbjw.Helpers.AlertPopup.showAlert;
+import static com.ba.dbjw.Helpers.AlertPopup.*;
 import static com.ba.dbjw.Helpers.LazyLoading.loadAndDisplayImage;
 
 public class InvoiceDashController extends DashController implements Initializable {
@@ -128,8 +127,8 @@ public class InvoiceDashController extends DashController implements Initializab
     @FXML
     protected void paySubmit(ActionEvent event) {
         if (!items.isEmpty()) {
-            String customerCode = dialogPayment("Nhập mã khách hàng", false);
-            String employeeCode = dialogPayment("Nhập mã nhân viên", true);
+            String customerCode = dialogPay("Nhập mã khách hàng", false);
+            String employeeCode = dialogPay("Nhập mã nhân viên", true);
             if (employeeCode != null) {
                 Employee employee = employeeService.getEmployeeByCode(employeeCode);
                 if (employee == null) {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -50,11 +51,6 @@
          <Image url="@../Assets/Images/banner-login.png" />
       </image>
    </ImageView>
-   <Text fx:id="forgotPassword" fill="#e14343" layoutX="774.0" layoutY="527.0" onMouseClicked="#handleForgotBtn" strokeType="OUTSIDE" strokeWidth="0.0" text="Quên mật khẩu?">
-      <font>
-         <Font size="14.0" />
-      </font>
-   </Text>
    <ImageView fitHeight="41.0" fitWidth="27.0" layoutX="507.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
       <image>
          <Image url="@../Assets/Icons/user.png" />
@@ -65,4 +61,12 @@
          <Image url="@../Assets/Icons/password.png" />
       </image>
    </ImageView>
+   <Text fill="#16cc0e" layoutX="545.0" layoutY="527.0" onMouseClicked="#handleRegisterBtn" strokeType="OUTSIDE" strokeWidth="0.0" text="Đăng ký tài khoản">
+      <font>
+         <Font size="16.0" />
+      </font>
+      <cursor>
+         <Cursor fx:constant="CLOSED_HAND" />
+      </cursor>
+   </Text>
 </AnchorPane>
