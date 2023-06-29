@@ -143,12 +143,15 @@ public class InvoiceDashController extends DashController implements Initializab
                     Invoice newInvoice = Invoice.builder()
                             .items(items)
                             .customer(customer)
+                            .customerName(customer != null ? customer.getName() : null)
                             .employee(employee)
+                            .employeeName(employee.getName())
                             .note(noteInvoice.getText())
                             .build();
                     if (invoiceService.saveInvoice(newInvoice)) {
                         setDefaultValue();
                         items.clear();
+                        cartTable.refresh();
                         showAlert("Thông báo", "Lưu hoá đơn thành công", Alert.AlertType.INFORMATION);
                     }
                 }

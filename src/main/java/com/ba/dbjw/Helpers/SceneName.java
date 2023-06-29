@@ -8,7 +8,8 @@ public enum SceneName {
     PRODUCT("Quản lý sản phẩm"),
     CUSTOMER("Quản lý khách hàng"),
     EMPLOYEE("Quản lý nhân viên"),
-    INVOICE("Quản lý hoá đơn"),
+    INVOICE("Thanh toán"),
+    INVOICEHISTORY("Quản lý hoá đơn"),
     ;
 
     private final String name;

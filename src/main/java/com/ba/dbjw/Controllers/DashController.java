@@ -85,6 +85,13 @@ public class DashController {
     }
 
     @FXML
+    protected void showInvoiceHistoryScreen(ActionEvent event) throws IOException {
+        SceneController.getInvoiceHistoryDashScene(event);
+    }
+
+
+
+    @FXML
     protected void logout(ActionEvent event) throws IOException {
         SceneController.getLoginScene(event);
     }

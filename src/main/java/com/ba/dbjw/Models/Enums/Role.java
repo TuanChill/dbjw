@@ -1,5 +1,16 @@
 package com.ba.dbjw.Models.Enums;
 
 public enum Role {
-    user, admin, manager
+    ADMIN("admin"),
+    MANAGER("manager"),
+    USER("user");
+    private final String value;
+
+    Role(String value) {
+        this.value = value;
+    }
+
+    public String getDisplayName() {
+        return value;
+    }
 }

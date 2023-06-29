@@ -15,11 +15,12 @@ import lombok.*;
 @Table(name = "user_auth")
 public class UserAuth {
     @Id
-    @Column(name = "user_name")
+    @Column(name = "user_name", length = 40)
     private String userName;
 
     private String password;
 
+    @Column(length = 10)
     private String role;
 
 }

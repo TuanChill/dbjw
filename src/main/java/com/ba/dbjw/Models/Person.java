@@ -1,7 +1,6 @@
 package com.ba.dbjw.Models;
 
 
-import com.ba.dbjw.Models.Enums.Gender;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
@@ -16,6 +15,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public abstract class Person {
     @Id
+    @Column(length = 8)
     private String code;
     @Column(nullable = false, length = 40)
     private String name;

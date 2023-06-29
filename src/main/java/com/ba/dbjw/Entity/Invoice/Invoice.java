@@ -23,10 +23,10 @@ import java.util.List;
 @Table(name = "invoice")
 public class Invoice {
     @Id
+    @Column(length = 8)
     private String code;
 
     private String note;
-
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "invoice_code")
@@ -36,9 +36,15 @@ public class Invoice {
     @JoinColumn(name = "employee_code")
     private Employee employee;
 
+    @Column(name = "employee_name", nullable = false, length = 40)
+    private String employeeName;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_code")
     private Customer customer;
+
+    @Column(name = "customer_name", length = 40)
+    private String customerName;
 
     @Column(name = "total_money")
     private BigDecimal totalMoney;

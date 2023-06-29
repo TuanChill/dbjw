@@ -5,6 +5,7 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,6 +13,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -19,7 +21,7 @@
 <AnchorPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
             prefHeight="824.0" prefWidth="1329.0" stylesheets="@../../Assets/Styles/dashboard.css"
             xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.ba.dbjw.Controllers.Customer.CustomerDashController">
+            fx:controller="com.ba.dbjw.Controllers.Invoice.InvoiceHistoryController">
     <children>
         <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="150.0" styleClass="sidebar"
               AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -35,10 +37,9 @@
                         <Insets bottom="20.0" left="35.0" right="20.0" top="35.0"/>
                     </VBox.margin>
                 </ImageView>
-                <Button alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="10.0" layoutY="205.0"
+                <Button alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="10.0" layoutY="285.0"
                         maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                        mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#showProductScreen"
-                        prefHeight="50.0" text="Sản phẩm">
+                        mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" text="Sản phẩm">
                     <VBox.margin>
                         <Insets bottom="30.0"/>
                     </VBox.margin>
@@ -46,9 +47,10 @@
                         <Insets left="20.0"/>
                     </padding>
                 </Button>
-                <Button alignment="BASELINE_LEFT" defaultButton="true" graphicTextGap="8.0" layoutX="10.0"
-                        layoutY="285.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
-                        mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" text="Khách hàng">
+                <Button alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="10.0" layoutY="205.0"
+                        maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                        mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#showCustomerScreen"
+                        prefHeight="50.0" text="Khách hàng">
                     <opaqueInsets>
                         <Insets/>
                     </opaqueInsets>
@@ -67,7 +69,8 @@
                 </Button>
                 <Button alignment="BASELINE_LEFT" graphicTextGap="8.0" maxHeight="-Infinity"
                         maxWidth="1.7976931348623157E308" minHeight="-Infinity" mnemonicParsing="false"
-                        nodeOrientation="LEFT_TO_RIGHT" onAction="#showInvoiceScreen" prefHeight="50.0" text="Order">
+                        nodeOrientation="LEFT_TO_RIGHT" onAction="#showInvoiceScreen" prefHeight="50.0"
+                        text="Order">
                     <VBox.margin>
                         <Insets bottom="30.0"/>
                     </VBox.margin>
@@ -78,8 +81,8 @@
                         <Cursor fx:constant="HAND"/>
                     </cursor>
                 </Button>
-                <Button alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="10.0" layoutY="285.0"
-                        maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                <Button alignment="BASELINE_LEFT" defaultButton="true" graphicTextGap="8.0" layoutX="10.0"
+                        layoutY="285.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
                         mnemonicParsing="false" onAction="#showInvoiceHistoryScreen" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" text="Hoá đơn">
                     <VBox.margin>
                         <Insets bottom="30.0"/>
@@ -88,8 +91,8 @@
                         <Insets left="20.0"/>
                     </padding>
                 </Button>
-                <Button alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="10.0" layoutY="365.0"
-                        maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
+                <Button fx:id="customerBtn" alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="10.0"
+                        layoutY="365.0" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
                         minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT"
                         onAction="#showEmployeeScreen" prefHeight="50.0" text="Nhân viên">
                     <VBox.margin>
@@ -129,7 +132,7 @@
                         <Insets/>
                     </VBox.margin>
                     <children>
-                        <Label id="title" fx:id="title" layoutX="10.0" styleClass="title" text="Quản lý khách hàng"
+                        <Label id="title" fx:id="title" layoutX="10.0" styleClass="title" text="Quản lý hoá đơn"
                                textFill="#515151">
                             <font>
                                 <Font name="Roboto Bold Condensed" size="20.0"/>
@@ -155,34 +158,64 @@
                 </Pane>
                 <AnchorPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
                             minWidth="-Infinity" prefHeight="40.0" prefWidth="200.0">
-                    <children>
-                        <Label fx:id="stats" layoutX="25.0" layoutY="15.0" styleClass="stats-line" text="Stats"/>
-                        <Label fx:id="updateTime" layoutX="689.0" layoutY="15.0" styleClass="stats-line"
-                               text="Last update" textAlignment="RIGHT" AnchorPane.rightAnchor="25.0"/>
-                    </children>
                     <VBox.margin>
                         <Insets bottom="10.0"/>
                     </VBox.margin>
                 </AnchorPane>
-                <TextField fx:id="searchBar" minHeight="-Infinity" prefHeight="30.0" promptText="Nhập từ khoá tìm kiếm">
+                <HBox prefHeight="31.0" prefWidth="600.0">
+                    <children>
+                        <TextField fx:id="searchBar" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                                   prefHeight="30.0" prefWidth="528.0" promptText="Nhập từ khoá tìm kiếm">
+                            <HBox.margin>
+                                <Insets right="20.0"/>
+                            </HBox.margin>
+                        </TextField>
+                        <Label alignment="CENTER" prefHeight="17.0" prefWidth="173.0" text="hoặc lọc theo ngày tạo"
+                               textFill="#808080">
+                            <HBox.margin>
+                                <Insets left="5.0" right="20.0" top="5.0"/>
+                            </HBox.margin>
+                            <font>
+                                <Font name="System Italic" size="12.0"/>
+                            </font>
+                        </Label>
+                        <DatePicker fx:id="dateFrom" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
+                                    minWidth="-Infinity" onAction="#getFilteredListByDates" prefHeight="30.0"
+                                    prefWidth="129.0" promptText="Ngày bắt đầu">
+                            <HBox.margin>
+                                <Insets right="20.0"/>
+                            </HBox.margin>
+                        </DatePicker>
+                        <DatePicker fx:id="dateTo" layoutX="310.0" layoutY="10.0" maxHeight="-Infinity"
+                                    maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                                    onAction="#getFilteredListByDates" prefHeight="30.0" prefWidth="127.0"
+                                    promptText="Ngày kết thúc">
+                            <HBox.margin>
+                                <Insets right="20.0"/>
+                            </HBox.margin>
+                        </DatePicker>
+                        <Button fx:id="clearBtn" mnemonicParsing="false" prefHeight="30.0" prefWidth="71.0"
+                                styleClass="cancelbutton" text="Clear"/>
+                    </children>
                     <VBox.margin>
                         <Insets bottom="20.0" left="25.0" right="25.0"/>
                     </VBox.margin>
-                </TextField>
-                <TableView fx:id="customerTable" fixedCellSize="60.0" maxHeight="-Infinity"
+                </HBox>
+                <TableView fx:id="invoiceTable" fixedCellSize="60.0" maxHeight="-Infinity"
                            maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
                            prefHeight="535.0" prefWidth="700.0" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="codeColumn" maxWidth="131.0" minWidth="50.0" prefWidth="131.0"
-                                     resizable="false" text="Mã "/>
-                        <TableColumn fx:id="nameColumn" maxWidth="210.0" minWidth="46.0" onEditCommit="#changeNameCell"
-                                     prefWidth="198.0" resizable="false" text="Họ tên"/>
-                        <TableColumn fx:id="genderColumn" maxWidth="169.0" minWidth="0.0" prefWidth="97.0"
-                                     resizable="false" text="Giới tính"/>
-                        <TableColumn fx:id="phoneColumn" prefWidth="184.0" resizable="false" text="Số điện thoại"/>
-                        <TableColumn fx:id="addressColumn" maxWidth="575.0" minWidth="0.0"
-                                     onEditCommit="#changeAddressCell" prefWidth="506.0" resizable="false"
-                                     text="Địa chỉ"/>
+                        <TableColumn fx:id="codeColumn" maxWidth="124.0" minWidth="50.0" prefWidth="113.0"
+                                     resizable="false" text="Code"/>
+                        <TableColumn fx:id="nameEmployee" maxWidth="210.0" minWidth="46.0" prefWidth="191.0"
+                                     resizable="false" text="Tên nhân viên"/>
+                        <TableColumn fx:id="nameCustomer" maxWidth="246.0" minWidth="0.0" prefWidth="233.0"
+                                     resizable="false" text="Tên khách hàng"/>
+                        <TableColumn fx:id="createAtColumn" prefWidth="145.0" resizable="false" text="Ngày mua"/>
+                        <TableColumn fx:id="totalMoneyColumn" maxWidth="1100.0" minWidth="0.0" prefWidth="209.0"
+                                     resizable="false" text="Tổng tiền"/>
+                        <TableColumn fx:id="noteColumn" maxWidth="591.0" minWidth="0.0" prefWidth="226.0"
+                                     resizable="false" text="Ghi chú"/>
                     </columns>
                     <VBox.margin>
                         <Insets bottom="20.0" left="25.0" right="25.0"/>
@@ -194,22 +227,6 @@
                 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
                             prefHeight="40.0" prefWidth="1175.0" VBox.vgrow="ALWAYS">
                     <children>
-                        <Button layoutX="25.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                                minWidth="-Infinity" mnemonicParsing="false" onAction="#newWindow" prefHeight="31.0"
-                                prefWidth="128.0" styleClass="addbutton" text="Thêm mới" AnchorPane.bottomAnchor="9.0"
-                                AnchorPane.leftAnchor="25.0">
-                            <cursor>
-                                <Cursor fx:constant="HAND"/>
-                            </cursor>
-                        </Button>
-                        <Button layoutX="532.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity"
-                                minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
-                                onAction="#deleteCustomer" prefHeight="31.0" prefWidth="80.0" styleClass="deletebutton"
-                                text="Delete" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="133.0">
-                            <cursor>
-                                <Cursor fx:constant="HAND"/>
-                            </cursor>
-                        </Button>
                         <Button layoutX="640.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
                                 minWidth="-Infinity" mnemonicParsing="false" onAction="#refreshScreen" prefHeight="31.0"
                                 prefWidth="80.0" styleClass="savebutton" text="Refresh" AnchorPane.bottomAnchor="9.0"
@@ -218,9 +235,9 @@
                                 <Cursor fx:constant="HAND"/>
                             </cursor>
                         </Button>
-                        <Button layoutX="856.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity"
+                        <Button layoutX="24.0" layoutY="-1.0" maxHeight="-Infinity" maxWidth="-Infinity"
                                 minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false"
-                                onAction="#updateCustomer" prefHeight="31.0" prefWidth="80.0" styleClass="updatebutton"
+                                onAction="#previewInvoice" prefHeight="31.0" prefWidth="80.0" styleClass="updatebutton"
                                 text="Xem">
                             <cursor>
                                 <Cursor fx:constant="HAND"/>

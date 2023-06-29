@@ -58,6 +58,10 @@ public class SceneController {
         changeScreen(event, ScenePath.INVOICEDASH.getPath());
     }
 
+    public static void getInvoiceHistoryDashScene(ActionEvent event) throws IOException {
+        changeScreen(event, ScenePath.INVOICEHISTORY.getPath());
+    }
+
     private static void changeScreen(ActionEvent event, String path) throws IOException {
         main = FXMLLoader.load(SceneController.class.getResource(path));
         Scene visitScene = new Scene(main);
