@@ -18,6 +18,7 @@ public enum ScenePath {
 
     INVOICEDASH("/Fxml/Invoice/invoiceDash.fxml"),
     INVOICEHISTORY("/Fxml/Invoice/invoiceHistory.fxml"),
+    INVOICEPREVIEW("/Fxml/Invoice/invoicePreview.fxml"),
     ;
 
     private final String path;

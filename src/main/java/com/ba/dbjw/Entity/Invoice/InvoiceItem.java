@@ -38,6 +38,10 @@ public class InvoiceItem {
     public String getName() {
         return product.getName();
     }
+
+    public String getInvoiceCode() {
+        return invoice.getCode();
+    }
 }
 
 // fetch = FetchType.LAZY :   data will be load just when query

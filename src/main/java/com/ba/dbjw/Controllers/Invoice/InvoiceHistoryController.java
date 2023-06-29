@@ -3,9 +3,7 @@ package com.ba.dbjw.Controllers.Invoice;
 import com.ba.dbjw.Controllers.DashController;
 import com.ba.dbjw.Controllers.PopupWindow.NewWindowController;
 import com.ba.dbjw.Entity.Invoice.Invoice;
-import com.ba.dbjw.Entity.Product.Product;
 import com.ba.dbjw.Helpers.CurrentEntity.CurrentInvoice;
-import com.ba.dbjw.Helpers.CurrentProduct;
 import com.ba.dbjw.Service.Invoice.InvoiceService;
 import com.ba.dbjw.Service.Invoice.InvoiceServiceImpl;
 import javafx.beans.binding.Bindings;
@@ -18,7 +16,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
@@ -60,15 +60,17 @@ public class InvoiceHistoryController extends DashController {
     private final InvoiceService<Invoice> invoiceService = new InvoiceServiceImpl();
 
     @FXML
-    private void previewInvoice(ActionEvent event) {
+    private void previewInvoice(ActionEvent event) throws IOException {
         ObservableList<Invoice> selectedRows = invoiceTable.getSelectionModel().getSelectedItems();
         for (Invoice e : selectedRows) {
             CurrentInvoice.setCurrentInvoice(e.getCode());
+            NewWindowController.getInvoiceWindow();
         }
     }
 
     @FXML
     private void initialize() {
+        preventEnter();
         setObList();
         fillTable();
         addTableSettings();
@@ -89,6 +91,7 @@ public class InvoiceHistoryController extends DashController {
         noteColumn.setCellValueFactory(new PropertyValueFactory<>("note"));
 
         // Configure the totalMoney column
+        DecimalFormat format = new DecimalFormat("#,##0");
         totalMoneyColumn.setCellFactory(column -> new TableCell<Invoice, BigDecimal>() {
             @Override
             protected void updateItem(BigDecimal amount, boolean empty) {
@@ -96,7 +99,7 @@ public class InvoiceHistoryController extends DashController {
                 if (empty || amount == null) {
                     setText(null);
                 } else {
-                    setText(amount.toString() + " VND");
+                    setText(format.format(amount) + " VND");
                 }
             }
         });

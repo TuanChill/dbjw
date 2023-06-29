@@ -43,6 +43,10 @@ public class NewWindowController {
         getPopUpWindow(ScenePath.UPDATEEMPLOYEE.getPath());
     }
 
+    public static void getInvoiceWindow() throws IOException {
+        getPopUpWindow(ScenePath.INVOICEPREVIEW.getPath());
+    }
+
 
     public static void getPopUpWindow(String path) throws IOException {
         Stage stage = new Stage();
