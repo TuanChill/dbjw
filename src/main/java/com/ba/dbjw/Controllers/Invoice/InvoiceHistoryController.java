@@ -70,6 +70,7 @@ public class InvoiceHistoryController extends DashController {
 
     @FXML
     private void initialize() {
+        decentralization();
         preventEnter();
         setObList();
         fillTable();

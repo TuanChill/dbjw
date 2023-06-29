@@ -28,10 +28,9 @@ public class LoginController {
     private Text errText;
     @FXML
     private Button submitButton;
-    @FXML
-    private Text forgotPassword;
 
-    public void submitHandler(ActionEvent e) throws IOException {
+    @FXML
+    private void submitHandler(ActionEvent e) throws IOException {
         String userName = userNameInput.getText().trim();
         String password = passwordField.getText().trim();
 

@@ -54,6 +54,7 @@ public class EmployeeDashController extends DashController {
 
     @FXML
     protected void initialize() {
+        decentralization();
         preventEnter();
         setTexts();
         setObList();

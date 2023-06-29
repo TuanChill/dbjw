@@ -314,6 +314,7 @@ public class InvoiceDashController extends DashController implements Initializab
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        decentralization();
         preventEnter();
         preventEnterInSearchBar();
         setUserInfo();

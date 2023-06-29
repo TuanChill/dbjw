@@ -46,6 +46,7 @@ public class CustomerDashController extends DashController {
 
     @FXML
     protected void initialize() {
+        decentralization();
         preventEnter();
         setTexts();
         setObList();

@@ -16,6 +16,18 @@ import java.io.IOException;
 
 // parent class controller
 public class DashController {
+    // Buttons
+    @FXML
+    protected Button productBtn;
+
+    @FXML
+    protected Button customerBtn;
+
+    @FXML
+    protected Button invoiceHistoryBtn;
+
+    @FXML
+    protected Button employeeBtn;
 
     @FXML
     protected AnchorPane rootPane;
@@ -59,6 +71,18 @@ public class DashController {
         userInfo.setText(String.format("Người dùng: %s", CurrentUser.getCurrentUser().getUserName()));
     }
 
+    protected void decentralization() {
+        if(CurrentUser.getCurrentUser().getRole().equals("user")) {
+            employeeBtn.setDisable(true);
+            customerBtn.setDisable(true);
+            invoiceHistoryBtn.setDisable(true);
+        } else {
+            employeeBtn.setDisable(false);
+            customerBtn.setDisable(false);
+            invoiceHistoryBtn.setDisable(false);
+        }
+    }
+
     @FXML
     protected void refreshScreen(ActionEvent event) throws IOException {
         SceneController.getProductDashScene(event);
@@ -88,7 +112,7 @@ public class DashController {
     protected void showInvoiceHistoryScreen(ActionEvent event) throws IOException {
         SceneController.getInvoiceHistoryDashScene(event);
     }
-    
+
     @FXML
     protected void logout(ActionEvent event) throws IOException {
         SceneController.getLoginScene(event);
