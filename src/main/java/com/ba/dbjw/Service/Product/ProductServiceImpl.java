@@ -13,7 +13,7 @@ public class ProductServiceImpl implements ProductService<Product> {
 
     @Override
     public Product getProductByCode(String code) {
-        if(code != null || !code.isEmpty()) {
+        if(code != null && !code.isEmpty()) {
             return productRepo.getProductByCode(code);
         }
             return null;
@@ -41,6 +41,13 @@ public class ProductServiceImpl implements ProductService<Product> {
 
     @Override
     public boolean updateProduct(Product product) {
+        String imgPath = product.getImgUrl();
+        if(imgPath != null && !imgPath.contains("res.cloudinary.com")) {
+            String url = CloudinaryUtil.uploadImgToCloudinary(imgPath);
+            product.setImgUrl(url);
+        } else {
+            return false;
+        }
         return productRepo.updateProduct(product);
     }
 

@@ -29,6 +29,9 @@ public class AddEmployeeController extends ChangeEmployeeController {
                     UpdateStatusEmployee.setIsEmployeeAdded(true);
                     errText.setText("Lưu nhân viên thành công");
                     delayWindowClose(event);
+
+                    // clear cache img
+                    imgPreview.setImage(null);
                 } else {
                     errText.setText("Đã có lỗi xảy ra");
                 }
@@ -36,6 +39,7 @@ public class AddEmployeeController extends ChangeEmployeeController {
                 errText.setText("Nhân viên đã tồn tại(CCCD trùng)!");
             }
         }
+
     }
 
     protected boolean validateInput() {

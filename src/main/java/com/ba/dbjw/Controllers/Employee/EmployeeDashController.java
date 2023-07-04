@@ -5,7 +5,6 @@ import com.ba.dbjw.Controllers.DashController;
 import com.ba.dbjw.Controllers.PopupWindow.NewWindowController;
 import com.ba.dbjw.Entity.Employee.Employee;
 import com.ba.dbjw.Helpers.CurrentEntity.CurrentEmployee;
-import com.ba.dbjw.Helpers.CurrentEntity.CurrentUser;
 import com.ba.dbjw.Helpers.CurrentTime;
 import com.ba.dbjw.Helpers.SceneName;
 import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusEmployee;

@@ -93,6 +93,9 @@ public class ChangeEmployeeController implements Initializable {
 
     @FXML
     protected void cancelWindow(ActionEvent event) {
+        // clear cache img
+        imgPreview.setImage(null);
+
         SceneController.close(event);
     }
 }

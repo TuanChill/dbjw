@@ -3,11 +3,13 @@ package com.ba.dbjw.Controllers.Employee;
 import com.ba.dbjw.Entity.Employee.Employee;
 import com.ba.dbjw.Helpers.CurrentEntity.CurrentEmployee;
 import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusEmployee;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import lombok.AllArgsConstructor;
+import javafx.scene.image.Image;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -101,7 +103,8 @@ public class UpdateEmployeeController extends ChangeEmployeeController {
         email.setText(currEmployee.getEmail());
         cccd.setText(currEmployee.getCccd());
         address.setText(currEmployee.getAddress());
-        loadAndDisplayImage(imgPreview,currEmployee.getAvatar());
+        fileImg = new File(currEmployee.getAvatar());
+        loadAndDisplayImage(imgPreview, currEmployee.getAvatar());
     }
 
     @Override
@@ -111,5 +114,6 @@ public class UpdateEmployeeController extends ChangeEmployeeController {
         position.getItems().addAll(positionList);
 
         setCurrEmployee();
+//
     }
 }

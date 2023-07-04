@@ -104,6 +104,9 @@ public class ChangeProductController implements Initializable {
 
     @FXML
     protected void cancelWindow(ActionEvent event) {
+        // clear cache img
+        imgPreview.setImage(null);
+
         unbindFormatter();
         SceneController.close(event);
     }

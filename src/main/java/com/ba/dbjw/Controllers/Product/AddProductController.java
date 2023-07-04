@@ -28,6 +28,9 @@ public class AddProductController extends ChangeProductController {
                 errText.setText("Lưu sản phẩm thành công");
                 delayWindowClose(event);
                 unbindFormatter();
+
+                // clear cache img
+                imgPreview.setImage(null);
             } else {
                 errText.setText("Đã có lỗi xảy ra");
             }

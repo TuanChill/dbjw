@@ -2,11 +2,8 @@ package com.ba.dbjw.Service.Empoyee;
 
 
 import com.ba.dbjw.Entity.Employee.Employee;
-import com.ba.dbjw.Entity.Product.Product;
 import com.ba.dbjw.Repo.Employee.EmployeeRepo;
 import com.ba.dbjw.Repo.Employee.EmployeeRepoImpl;
-import com.ba.dbjw.Repo.Product.ProductRepo;
-import com.ba.dbjw.Repo.Product.ProductRepoImpl;
 import com.ba.dbjw.Utils.CloudinaryUtil;
 
 import java.util.List;
@@ -30,13 +27,20 @@ public class EmployeeServiceImpl implements EmployeeService<Employee> {
     }
 
     @Override
-    public void deleteEmployee(Employee product) {
-        employeeRepo.delEmployee(product);
+    public void deleteEmployee(Employee employee) {
+        employeeRepo.delEmployee(employee);
     }
 
     @Override
-    public boolean updateEmployee(Employee product) {
-        return employeeRepo.updateEmployee(product);
+    public boolean updateEmployee(Employee employee) {
+        String imgPath = employee.getAvatar();
+        if(imgPath != null && !imgPath.contains("res.cloudinary.com")) {
+            String url = CloudinaryUtil.uploadImgToCloudinary(imgPath);
+            employee.setAvatar(url);
+        } else {
+            return false;
+        }
+        return employeeRepo.updateEmployee(employee);
     }
 
     @Override

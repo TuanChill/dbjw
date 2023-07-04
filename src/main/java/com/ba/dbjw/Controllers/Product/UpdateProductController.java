@@ -39,6 +39,9 @@ public class UpdateProductController extends ChangeProductController {
                 errText.setText("Cập nhật sản phẩm thành công");
                 delayWindowClose(event);
                 unbindFormatter();
+
+                // clear cache img
+                imgPreview.setImage(null);
             } else {
                 errText.setText("Đã có lỗi xảy ra");
             }
