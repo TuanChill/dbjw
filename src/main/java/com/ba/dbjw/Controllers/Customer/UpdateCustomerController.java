@@ -20,6 +20,7 @@ public class UpdateCustomerController extends ChangeCustomerController {
 
     @FXML
     public void submitHandler(ActionEvent event) {
+        submitBtn.setDisable(true);
         if (validateInput()) {
             Customer customer = new Customer();
             // set value for obj
@@ -38,6 +39,7 @@ public class UpdateCustomerController extends ChangeCustomerController {
                 delayWindowClose(event);
             } else {
                 errText.setText("Đã có lỗi xảy ra");
+                submitBtn.setDisable(false);
             }
         }
     }

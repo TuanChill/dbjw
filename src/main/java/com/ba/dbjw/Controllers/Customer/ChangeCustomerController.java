@@ -7,6 +7,7 @@ import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -22,6 +23,8 @@ import java.util.regex.Pattern;
 public class ChangeCustomerController implements Initializable {
     @FXML
     protected Text errText;
+    @FXML
+    protected Button submitBtn;
     @FXML
     protected TextField nameCustomer;
     @FXML

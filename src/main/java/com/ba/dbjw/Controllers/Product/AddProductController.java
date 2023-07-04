@@ -12,6 +12,7 @@ public class AddProductController extends ChangeProductController {
     @FXML
     public void submitHandler(ActionEvent event) {
         if (validateInput()) {
+            submitBtn.setDisable(true);
             Product product = Product.builder()
                     .name(nameProduct.getText().trim())
                     .price(Long.parseLong(price.getText()))
@@ -23,7 +24,7 @@ public class AddProductController extends ChangeProductController {
                     .imgUrl(fileImg.getPath())
                     .build();
             errText.setText("Đang lưu sản phẩm....");
-            if(productService.createProduct(product)) {
+            if (productService.createProduct(product)) {
                 UpdateStatusProduct.setIsProductAdded(true);
                 errText.setText("Lưu sản phẩm thành công");
                 delayWindowClose(event);
@@ -33,13 +34,14 @@ public class AddProductController extends ChangeProductController {
                 imgPreview.setImage(null);
             } else {
                 errText.setText("Đã có lỗi xảy ra");
+                submitBtn.setDisable(false);
             }
         }
     }
 
     protected boolean validateInput() {
         errText.setText("");
-        if(nameProduct.getText().isEmpty()) {
+        if (nameProduct.getText().isEmpty()) {
             errText.setText("Tên sản phẩm không được bỏ trống");
             return false;
         } else if (price.getText().trim().isEmpty()) {

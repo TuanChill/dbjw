@@ -10,63 +10,42 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="649.0" prefWidth="653.0" stylesheets="@../../Assets/Styles/popup.css"
-            xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.ba.dbjw.Controllers.Customer.AddCustomerController">
+<AnchorPane prefHeight="649.0" prefWidth="653.0" stylesheets="@../../Assets/Styles/popup.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ba.dbjw.Controllers.Customer.AddCustomerController">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-        <BorderPane layoutX="14.0" layoutY="6.0" prefHeight="293.0" prefWidth="364.0" AnchorPane.bottomAnchor="0.0"
-                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane layoutX="14.0" layoutY="6.0" prefHeight="293.0" prefWidth="364.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="153.0" prefWidth="667.0"
-                            styleClass="product-create-container" BorderPane.alignment="CENTER">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="153.0" prefWidth="667.0" styleClass="product-create-container" BorderPane.alignment="CENTER">
                     <BorderPane.margin>
-                        <Insets/>
+                        <Insets />
                     </BorderPane.margin>
                     <children>
-                        <Text layoutX="62.0" layoutY="105.12890625" strokeType="OUTSIDE" strokeWidth="0.0"
-                              styleClass="text-title" text="Tên khách hàng" AnchorPane.bottomAnchor="70.353515625"
-                              AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="1099.6953125"
-                              AnchorPane.topAnchor="85.705078125"/>
-                        <Text layoutX="63.0" layoutY="173.12890625" strokeType="OUTSIDE" strokeWidth="0.0"
-                              styleClass="text-title" text="Giới tính" AnchorPane.bottomAnchor="2.353515625"
-                              AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="536.4208984375"
-                              AnchorPane.topAnchor="153.705078125"/>
-                        <TextField fx:id="nameCustomer" layoutX="210.0" layoutY="81.0" prefHeight="37.0"
-                                   prefWidth="417.0" AnchorPane.leftAnchor="210.0"/>
-                        <Text layoutX="2.0" layoutY="39.21484375" strokeType="OUTSIDE" strokeWidth="0.0"
-                              styleClass="text-header-tab" text="Tạo Khách hàng mới" textAlignment="CENTER"
-                              wrappingWidth="666.0" AnchorPane.bottomAnchor="134.0" AnchorPane.leftAnchor="0.0"
-                              AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="9.0"/>
-                        <Text layoutX="63.0" layoutY="246.423828125" strokeType="OUTSIDE" strokeWidth="0.0"
-                              styleClass="text-title" text="Ngày Sinh" AnchorPane.bottomAnchor="-70.94140625"
-                              AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="522.841796875"
-                              AnchorPane.topAnchor="227.0"/>
+                        <Text layoutX="62.0" layoutY="105.12890625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Tên khách hàng" AnchorPane.bottomAnchor="70.353515625" AnchorPane.leftAnchor="62.0" AnchorPane.rightAnchor="1099.6953125" AnchorPane.topAnchor="85.705078125" />
+                        <Text layoutX="63.0" layoutY="173.12890625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Giới tính" AnchorPane.bottomAnchor="2.353515625" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="536.4208984375" AnchorPane.topAnchor="153.705078125" />
+                        <TextField fx:id="nameCustomer" layoutX="210.0" layoutY="81.0" prefHeight="37.0" prefWidth="417.0" AnchorPane.leftAnchor="210.0" />
+                        <Text layoutX="2.0" layoutY="39.21484375" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-header-tab" text="Tạo Khách hàng mới" textAlignment="CENTER" wrappingWidth="666.0" AnchorPane.bottomAnchor="134.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="9.0" />
+                        <Text layoutX="63.0" layoutY="246.423828125" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Ngày Sinh" AnchorPane.bottomAnchor="-70.94140625" AnchorPane.leftAnchor="63.0" AnchorPane.rightAnchor="522.841796875" AnchorPane.topAnchor="227.0" />
                     </children>
                 </AnchorPane>
             </left>
         </BorderPane>
     </AnchorPane>
-    <Text layoutX="65.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title"
-          text="Số điện thoại"/>
-    <TextField fx:id="phoneNumber" layoutX="209.0" layoutY="303.0" prefHeight="36.0" prefWidth="194.0"/>
-    <Text layoutX="65.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Email"/>
-    <TextField fx:id="email" layoutX="210.0" layoutY="389.0" prefHeight="35.0" prefWidth="193.0"/>
-    <Button layoutX="494.0" layoutY="532.0" mnemonicParsing="false" onAction="#cancelWindow" prefHeight="35.0"
-            prefWidth="127.0" styleClass="cancel-btn" text="Huỷ">
+    <Text layoutX="65.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Số điện thoại" />
+    <TextField fx:id="phoneNumber" layoutX="209.0" layoutY="303.0" prefHeight="36.0" prefWidth="194.0" />
+    <Text layoutX="65.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Email" />
+    <TextField fx:id="email" layoutX="210.0" layoutY="389.0" prefHeight="35.0" prefWidth="193.0" />
+    <Button layoutX="494.0" layoutY="532.0" mnemonicParsing="false" onAction="#cancelWindow" prefHeight="35.0" prefWidth="127.0" styleClass="cancel-btn" text="Huỷ">
         <font>
-            <Font name="System Bold" size="12.0"/>
+            <Font name="System Bold" size="12.0" />
         </font>
     </Button>
-    <DatePicker fx:id="birthDate" layoutX="209.0" layoutY="224.0" prefHeight="36.0" prefWidth="179.0"/>
-    <ChoiceBox fx:id="gender" layoutX="209.0" layoutY="148.0" prefHeight="36.0" prefWidth="161.0"/>
-    <Button layoutX="65.0" layoutY="532.0" mnemonicParsing="false" onAction="#submitHandler" prefHeight="34.0"
-            prefWidth="201.0" styleClass="btn-submit" text="Tạo mới" AnchorPane.leftAnchor="65.0"/>
-    <Text layoutX="65.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Địa chỉ"/>
-    <TextField fx:id="address" layoutX="210.0" layoutY="466.0" prefHeight="35.0" prefWidth="422.0"/>
-    <Text fx:id="errText" fill="#fc0000" layoutX="65.0" layoutY="605.0" strokeType="OUTSIDE" strokeWidth="0.0"
-          wrappingWidth="565.0">
+    <DatePicker fx:id="birthDate" layoutX="209.0" layoutY="224.0" prefHeight="36.0" prefWidth="179.0" />
+    <ChoiceBox fx:id="gender" layoutX="209.0" layoutY="148.0" prefHeight="36.0" prefWidth="161.0" />
+    <Button fx:id="submitBtn" layoutX="65.0" layoutY="532.0" mnemonicParsing="false" onAction="#submitHandler" prefHeight="34.0" prefWidth="201.0" styleClass="btn-submit" text="Tạo mới" AnchorPane.leftAnchor="65.0" />
+    <Text layoutX="65.0" layoutY="491.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Địa chỉ" />
+    <TextField fx:id="address" layoutX="210.0" layoutY="466.0" prefHeight="35.0" prefWidth="422.0" />
+    <Text fx:id="errText" fill="#fc0000" layoutX="65.0" layoutY="605.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="565.0">
         <font>
-            <Font name="System Italic" size="14.0"/>
+            <Font name="System Italic" size="14.0" />
         </font>
     </Text>
 </AnchorPane>

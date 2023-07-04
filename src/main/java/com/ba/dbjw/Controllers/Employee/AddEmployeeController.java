@@ -10,8 +10,10 @@ import static com.ba.dbjw.Helpers.BindingInput.*;
 public class AddEmployeeController extends ChangeEmployeeController {
     @FXML
     protected void submitHandler(ActionEvent event) {
+
         if (validateInput()) {
-            if(!employeeService.checkEmployeeExist(cccd.getText())) {
+            submitBtn.setDisable(true);
+            if (!employeeService.checkEmployeeExist(cccd.getText())) {
                 errText.setText("Đang lưu nhân viên....");
                 Employee employee = new Employee();
                 // set value for obj
@@ -25,7 +27,7 @@ public class AddEmployeeController extends ChangeEmployeeController {
                 employee.setAddress(address.getText());
                 employee.setAvatar(fileImg.toString());
 
-                if(employeeService.createEmployee(employee)) {
+                if (employeeService.createEmployee(employee)) {
                     UpdateStatusEmployee.setIsEmployeeAdded(true);
                     errText.setText("Lưu nhân viên thành công");
                     delayWindowClose(event);
@@ -34,6 +36,7 @@ public class AddEmployeeController extends ChangeEmployeeController {
                     imgPreview.setImage(null);
                 } else {
                     errText.setText("Đã có lỗi xảy ra");
+                    submitBtn.setDisable(false);
                 }
             } else {
                 errText.setText("Nhân viên đã tồn tại(CCCD trùng)!");

@@ -25,6 +25,7 @@ public class UpdateEmployeeController extends ChangeEmployeeController {
     @FXML
     protected void submitHandler(ActionEvent event) {
         if (validateInput()) {
+            submitBtn.setDisable(true);
             errText.setText("Đang cập nhật nhân viên....");
             Employee employee = new Employee();
             // set value for obj
@@ -45,6 +46,7 @@ public class UpdateEmployeeController extends ChangeEmployeeController {
                 delayWindowClose(event);
             } else {
                 errText.setText("Đã có lỗi xảy ra");
+                submitBtn.setDisable(false);
             }
         }
     }

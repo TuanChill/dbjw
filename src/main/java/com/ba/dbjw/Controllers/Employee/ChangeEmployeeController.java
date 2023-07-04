@@ -7,10 +7,7 @@ import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -25,6 +22,8 @@ import java.util.ResourceBundle;
 public class ChangeEmployeeController implements Initializable {
     @FXML
     protected Text errText;
+    @FXML
+    protected Button submitBtn;
     @FXML
     protected TextField nameEmployee;
     @FXML
