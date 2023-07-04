@@ -93,18 +93,20 @@ public class ProductRepoImpl implements ProductRepo<Product> {
     }
 
     @Override
-    public void delProduct(Product product) {
+    public boolean delProduct(Product product) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.remove(product);
             transaction.commit();
+            return transaction.getStatus() == TransactionStatus.COMMITTED;
         } catch (Exception ex) {
             if (transaction != null) {
                 transaction.rollback();
+                return false;
             }
-            ex.printStackTrace();
         }
+        return false;
     }
 
 }

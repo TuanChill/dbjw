@@ -44,9 +44,9 @@ public class ChangeProductController implements Initializable {
 
     protected File fileImg;
 
-    protected final String[] typeProductList = {"Nhẫn", "Bông tai ", "Dây chuyền"};
+    protected final String[] typeProductList = {"Nhẫn", "Bông tai ", "Dây chuyền", "Lắc", "Kiềng", "Charm"};
 
-    protected final String[] materialList = {"Bạc", "Vàng", "Kim Cương"};
+    protected final String[] materialList = {"Bạc", "Vàng", "Kim Cương", "Platinum"};
 
     protected final ProductServiceImpl productService = new ProductServiceImpl();
 

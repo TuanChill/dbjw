@@ -37,7 +37,7 @@
                         <Insets bottom="20.0" left="35.0" right="20.0" top="35.0"/>
                     </VBox.margin>
                 </ImageView>
-                <Button fx:id="productBtn" alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="10.0" layoutY="285.0"
+                <Button onAction="#showProductScreen" fx:id="productBtn" alignment="BASELINE_LEFT" graphicTextGap="8.0" layoutX="10.0" layoutY="285.0"
                         maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity"
                         mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" text="Sản phẩm">
                     <VBox.margin>

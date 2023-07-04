@@ -1,11 +1,8 @@
 package com.ba.dbjw.Service.Invoice;
 
 import com.ba.dbjw.Entity.Invoice.Invoice;
-import com.ba.dbjw.Entity.Product.Product;
 import com.ba.dbjw.Repo.Invoice.InvoiceRepo;
 import com.ba.dbjw.Repo.Invoice.InvoiceRepoImpl;
-import com.ba.dbjw.Service.Product.ProductService;
-import com.ba.dbjw.Service.Product.ProductServiceImpl;
 
 import java.util.List;
 

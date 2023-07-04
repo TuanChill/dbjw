@@ -35,8 +35,12 @@ public class ProductServiceImpl implements ProductService<Product> {
     }
 
     @Override
-    public void deleteProduct(Product product) {
-        productRepo.delProduct(product);
+    public boolean deleteProduct(Product product) {
+        try {
+            return productRepo.delProduct(product);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override

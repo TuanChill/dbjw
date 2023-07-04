@@ -5,10 +5,7 @@ import com.ba.dbjw.Controllers.DashController;
 import com.ba.dbjw.Controllers.PopupWindow.NewWindowController;
 import com.ba.dbjw.Entity.Product.Product;
 import com.ba.dbjw.Helpers.*;
-import com.ba.dbjw.Helpers.CurrentEntity.CurrentUser;
-import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusProduct;
 import com.ba.dbjw.Service.Product.ProductServiceImpl;
-import com.ba.dbjw.Views.SceneController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -21,6 +18,8 @@ import javafx.scene.control.cell.TextFieldTableCell;
 
 import java.io.IOException;
 import java.time.LocalDate;
+
+import static com.ba.dbjw.Helpers.AlertPopup.showAlert;
 
 public class ProductDashController extends DashController {
     @FXML
@@ -139,7 +138,10 @@ public class ProductDashController extends DashController {
     protected void deleteProduct(ActionEvent event) throws Exception {
         ObservableList<Product> selectedRows = productTable.getSelectionModel().getSelectedItems();
         for (Product product : selectedRows) {
-            productService.deleteProduct(product);
+            if(
+            !productService.deleteProduct(product)) {
+             showAlert("Cảnh báo", "Không thể xoá sản phẩm này", Alert.AlertType.WARNING);
+            }
         }
         refreshScreen(event);
     }
