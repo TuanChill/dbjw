@@ -9,4 +9,6 @@ public interface ProductService<T> {
     void deleteProduct(T product);
     boolean updateProduct(T product);
     Long getNumberOfProduct();
+
+    void decreaseStockProduct(T product);
 }

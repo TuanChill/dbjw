@@ -11,4 +11,5 @@ public interface ProductRepo<T> {
     boolean saveProduct(T product);
     boolean updateProduct(T product);
     void delProduct(T product);
+
 }

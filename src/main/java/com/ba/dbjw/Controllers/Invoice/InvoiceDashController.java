@@ -106,21 +106,27 @@ public class InvoiceDashController extends DashController implements Initializab
             showAlert("Cảnh báo", "Chưa có sản phẩm nào được chọn!!", Alert.AlertType.WARNING);
             return;
         }
-        String productCode = selectedProduct.getCode();
-        boolean productExists = isProductExists(items, productCode);
 
-        if (productExists) {
-            // Product already exists in the items list
-            handleIncreaseNumber(productCode);
+        if(selectedProduct.getStock() > 0 ) {
+
+            String productCode = selectedProduct.getCode();
+            boolean productExists = isProductExists(items, productCode);
+
+            if (productExists) {
+                // Product already exists in the items list
+                handleIncreaseNumber(productCode);
+            } else {
+                // Add the new InvoiceItem to the list
+                InvoiceItem newInvoiceItem = new InvoiceItem();
+                newInvoiceItem.setProduct(selectedProduct);
+                newInvoiceItem.setQuantity(1);
+                items.add(newInvoiceItem);
+            }
+            updateTotalMoney();
+            cartTable.refresh();
         } else {
-            // Add the new InvoiceItem to the list
-            InvoiceItem newInvoiceItem = new InvoiceItem();
-            newInvoiceItem.setProduct(selectedProduct);
-            newInvoiceItem.setQuantity(1);
-            items.add(newInvoiceItem);
+            showAlert("Lỗi", "Sản phẩm đã hết hàng trong kho", Alert.AlertType.ERROR);
         }
-        updateTotalMoney();
-        cartTable.refresh();
     }
 
 
@@ -148,9 +154,18 @@ public class InvoiceDashController extends DashController implements Initializab
                             .note(noteInvoice.getText())
                             .build();
                     if (invoiceService.saveInvoice(newInvoice)) {
+
+                        //decrease stock product
+                        for (InvoiceItem item :items) {
+                            productService.decreaseStockProduct(item.getProduct());
+                        }
+
+                        // reset value in scene
                         setDefaultValue();
                         items.clear();
                         cartTable.refresh();
+
+
                         showAlert("Thông báo", "Lưu hoá đơn thành công", Alert.AlertType.INFORMATION);
                     }
                 }

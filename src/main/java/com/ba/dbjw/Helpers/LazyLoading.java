@@ -10,10 +10,10 @@ public class LazyLoading {
         Thread thread = new Thread(() -> {
             try {
                 Image image = new Image(imageUrl);
-                System.out.println(imageUrl);
+
+
                 Platform.runLater(() -> {
                     imgPreview.setImage(image);
-                    System.out.println(imgPreview.getImage().getUrl());
                 });
             } catch (Exception e) {
             }

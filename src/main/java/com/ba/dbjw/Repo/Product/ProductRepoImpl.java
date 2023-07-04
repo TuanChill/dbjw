@@ -13,7 +13,7 @@ import org.hibernate.resource.transaction.spi.TransactionStatus;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductRepoImpl implements ProductRepo<Product>{
+public class ProductRepoImpl implements ProductRepo<Product> {
     @Override
     public List<Product> getProductsByName(String productName) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
@@ -106,4 +106,5 @@ public class ProductRepoImpl implements ProductRepo<Product>{
             ex.printStackTrace();
         }
     }
+
 }
