@@ -37,8 +37,6 @@ public class EmployeeServiceImpl implements EmployeeService<Employee> {
         if(imgPath != null && !imgPath.contains("res.cloudinary.com")) {
             String url = CloudinaryUtil.uploadImgToCloudinary(imgPath);
             employee.setAvatar(url);
-        } else {
-            return false;
         }
         return employeeRepo.updateEmployee(employee);
     }

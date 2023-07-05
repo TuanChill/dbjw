@@ -49,8 +49,6 @@ public class ProductServiceImpl implements ProductService<Product> {
         if (imgPath != null && !imgPath.contains("res.cloudinary.com")) {
             String url = CloudinaryUtil.uploadImgToCloudinary(imgPath);
             product.setImgUrl(url);
-        } else {
-            return false;
         }
         return productRepo.updateProduct(product);
     }

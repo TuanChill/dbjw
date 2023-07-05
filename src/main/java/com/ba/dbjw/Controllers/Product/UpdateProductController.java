@@ -30,9 +30,12 @@ public class UpdateProductController extends ChangeProductController {
                     .stock(Integer.parseInt(stock.getText()))
                     .category(typeProduct.getValue().trim())
                     .size(size.getText().trim())
+                    .imgUrl(CurrentProduct.getCurrentProduct().getImgUrl())
                     .material(material.getValue().trim())
-                    .imgUrl(fileImg.getPath())
                     .build();
+            if(fileImg != null) {
+                product.setImgUrl(fileImg.getPath());
+            }
             errText.setText("Đang cập nhật sản phẩm....");
             if(productService.updateProduct(product)) {
                 UpdateStatusProduct.setIsProductAdded(true);
@@ -66,10 +69,7 @@ public class UpdateProductController extends ChangeProductController {
         } else if (material.getValue() == null) {
             errText.setText("Vui lòng chọn chất liệu");
             return false;
-        } else if (fileImg == null) {
-            errText.setText("Vui lòng chọn ảnh cho sản phẩm");
-            return false;
-        } else if (stock.getText().trim().isEmpty()) {
+        }  else if (stock.getText().trim().isEmpty()) {
             errText.setText("Số lượng sản phẩm không được bỏ trống");
             return false;
         } else if (isNumeric(stock.getText().trim()) && Long.parseLong(stock.getText().trim()) <= 0) {
@@ -94,7 +94,6 @@ public class UpdateProductController extends ChangeProductController {
         stock.setText(String.valueOf(currProduct.getStock()));
         desc.setText(currProduct.getDescription());
         loadAndDisplayImage(imgPreview,currProduct.getImgUrl());
-        fileImg = new File(currProduct.getImgUrl());
     }
 
     @Override

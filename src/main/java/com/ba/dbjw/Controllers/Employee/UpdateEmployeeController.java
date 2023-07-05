@@ -40,6 +40,10 @@ public class UpdateEmployeeController extends ChangeEmployeeController {
             employee.setAddress(address.getText());
             employee.setAvatar(fileImg.toString());
 
+            if(fileImg != null) {
+                employee.setAvatar(fileImg.getPath());
+            }
+
             if (employeeService.updateEmployee(employee)) {
                 UpdateStatusEmployee.setIsEmployeeAdded(true);
                 errText.setText("Cập nhật nhân viên thành công");
@@ -67,9 +71,6 @@ public class UpdateEmployeeController extends ChangeEmployeeController {
             return false;
         } else if (position.getValue() == null) {
             errText.setText("Vui lòng chọn chức vụ");
-            return false;
-        } else if (fileImg == null) {
-            errText.setText("Vui lòng chọn ảnh cho nhân viên");
             return false;
         } else if (cccd.getText().trim().isEmpty()) {
             errText.setText("Căn cước công dân không được bỏ trống");
