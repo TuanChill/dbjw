@@ -13,7 +13,7 @@ public interface EmployeeRepo<T> {
     List<T> getAllEmployees();
 
     boolean updateEmployee(T data);
-    void delEmployee(T data);
+    boolean delEmployee(T data);
 
     Long getNumberOfEmployee();
 }

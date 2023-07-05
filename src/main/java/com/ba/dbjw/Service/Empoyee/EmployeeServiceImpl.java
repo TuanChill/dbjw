@@ -27,8 +27,8 @@ public class EmployeeServiceImpl implements EmployeeService<Employee> {
     }
 
     @Override
-    public void deleteEmployee(Employee employee) {
-        employeeRepo.delEmployee(employee);
+    public boolean deleteEmployee(Employee employee) {
+        return employeeRepo.delEmployee(employee);
     }
 
     @Override

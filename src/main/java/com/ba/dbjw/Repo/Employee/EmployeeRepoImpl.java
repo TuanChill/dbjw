@@ -103,18 +103,19 @@ public class EmployeeRepoImpl implements EmployeeRepo<Employee> {
     }
 
     @Override
-    public void delEmployee(Employee data) {
+    public boolean delEmployee(Employee data) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
             session.remove(data);
             transaction.commit();
+            return transaction.getStatus() == TransactionStatus.COMMITTED;
         } catch (Exception ex) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            ex.printStackTrace();
         }
+        return false;
     }
 
     @Override

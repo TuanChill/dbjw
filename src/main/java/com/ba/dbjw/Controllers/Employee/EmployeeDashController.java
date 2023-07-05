@@ -22,6 +22,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import static com.ba.dbjw.Helpers.AlertPopup.showAlert;
+
 public class EmployeeDashController extends DashController {
 
     @FXML
@@ -120,10 +122,9 @@ public class EmployeeDashController extends DashController {
                         return true;
                     } else if (employee.getPhoneNumber().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
-                    }
-                    else if (employee.getAddress().toLowerCase().contains(lowerCaseFilter)) {
+                    } else if (employee.getAddress().toLowerCase().contains(lowerCaseFilter)) {
                         return true;
-                    }else return employee.getGender().toLowerCase().contains(lowerCaseFilter);
+                    } else return employee.getGender().toLowerCase().contains(lowerCaseFilter);
                 }));
         return filteredList;
     }
@@ -141,11 +142,14 @@ public class EmployeeDashController extends DashController {
         selectedEmployee.setName(editEvent.getNewValue());
         employeeService.updateEmployee(selectedEmployee);
     }
+
     @FXML
     protected void deleteEmployee(ActionEvent event) throws Exception {
         ObservableList<Employee> selectedRows = employeeTable.getSelectionModel().getSelectedItems();
         for (Employee employee : selectedRows) {
-            employeeService.deleteEmployee(employee);
+            if (!employeeService.deleteEmployee(employee)) {
+                showAlert("Lỗi", "Không thể xoá nhân viên này", Alert.AlertType.WARNING);
+            }
         }
         refreshScreen(event);
     }
