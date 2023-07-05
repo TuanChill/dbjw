@@ -105,5 +105,6 @@ public class UpdateProductController extends ChangeProductController {
         onlyNumberTextField();
 
         setCurrProduct();
+
     }
 }

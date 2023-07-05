@@ -49,6 +49,9 @@ public class ProductDashController extends DashController {
     @FXML
     protected TableColumn<Product, String> imgColumn;
 
+    @FXML
+    private Button delBtn;
+
     ProductServiceImpl productService = new ProductServiceImpl();
     ObservableList<Product> productsObList = FXCollections.observableArrayList();
 
