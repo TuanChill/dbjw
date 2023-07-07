@@ -1,11 +1,13 @@
 package com.ba.dbjw.Controllers.Invoice;
 
 import com.ba.dbjw.Controllers.DashController;
+import com.ba.dbjw.Controllers.PopupWindow.NewWindowController;
 import com.ba.dbjw.Entity.Customer.Customer;
 import com.ba.dbjw.Entity.Employee.Employee;
 import com.ba.dbjw.Entity.Invoice.Invoice;
 import com.ba.dbjw.Entity.Invoice.InvoiceItem;
 import com.ba.dbjw.Entity.Product.Product;
+import com.ba.dbjw.Helpers.CurrentProduct;
 import com.ba.dbjw.Service.Customer.CustomerService;
 import com.ba.dbjw.Service.Customer.CustomerServiceImp;
 import com.ba.dbjw.Service.Empoyee.EmployeeService;
@@ -28,6 +30,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -269,6 +272,21 @@ public class InvoiceDashController extends DashController implements Initializab
         cartTable.setEditable(true);
         cartTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         cartTable.setItems(items);
+
+        cartTable.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 1) {
+
+                InvoiceItem selectedItem = cartTable.getSelectionModel().getSelectedItem();
+
+                if (selectedItem != null) {
+
+                    Product selectedProduct = selectedItem.getProduct();
+
+                    setInfoProduct(selectedProduct);
+                }
+            }
+        });
+
     }
 
     private void fillTable() {
