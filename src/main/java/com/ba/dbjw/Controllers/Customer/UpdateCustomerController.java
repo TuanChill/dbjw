@@ -3,12 +3,9 @@ package com.ba.dbjw.Controllers.Customer;
 import com.ba.dbjw.Entity.Customer.Customer;
 import com.ba.dbjw.Helpers.CurrentCustomer;
 import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusCustomer;
-import com.ba.dbjw.Views.SceneController;
-import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;

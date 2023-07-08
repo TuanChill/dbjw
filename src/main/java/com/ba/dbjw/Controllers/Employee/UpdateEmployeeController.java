@@ -3,11 +3,9 @@ package com.ba.dbjw.Controllers.Employee;
 import com.ba.dbjw.Entity.Employee.Employee;
 import com.ba.dbjw.Helpers.CurrentEntity.CurrentEmployee;
 import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusEmployee;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 
 import java.io.File;
 import java.net.URL;

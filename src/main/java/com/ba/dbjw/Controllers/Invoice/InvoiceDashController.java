@@ -1,13 +1,11 @@
 package com.ba.dbjw.Controllers.Invoice;
 
 import com.ba.dbjw.Controllers.DashController;
-import com.ba.dbjw.Controllers.PopupWindow.NewWindowController;
 import com.ba.dbjw.Entity.Customer.Customer;
 import com.ba.dbjw.Entity.Employee.Employee;
 import com.ba.dbjw.Entity.Invoice.Invoice;
 import com.ba.dbjw.Entity.Invoice.InvoiceItem;
 import com.ba.dbjw.Entity.Product.Product;
-import com.ba.dbjw.Helpers.CurrentProduct;
 import com.ba.dbjw.Service.Customer.CustomerService;
 import com.ba.dbjw.Service.Customer.CustomerServiceImp;
 import com.ba.dbjw.Service.Empoyee.EmployeeService;
