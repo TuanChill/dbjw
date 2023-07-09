@@ -10,5 +10,5 @@ public interface ProductService<T> {
     boolean updateProduct(T product);
     Long getNumberOfProduct();
 
-    void decreaseStockProduct(T product);
+    void decreaseStockProduct(T product, int value);
 }

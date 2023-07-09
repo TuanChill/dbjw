@@ -59,10 +59,10 @@ public class ProductServiceImpl implements ProductService<Product> {
     }
 
     @Override
-    public void decreaseStockProduct(Product product) {
+    public void decreaseStockProduct(Product product, int value) {
         int currStock = product.getStock();
         if (currStock > 0) {
-            product.setStock(currStock - 1);
+            product.setStock(currStock - value);
             productRepo.updateProduct(product);
         }
     }

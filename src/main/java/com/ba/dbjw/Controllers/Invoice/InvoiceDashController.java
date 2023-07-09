@@ -158,7 +158,7 @@ public class InvoiceDashController extends DashController implements Initializab
 
                         //decrease stock product
                         for (InvoiceItem item :items) {
-                            productService.decreaseStockProduct(item.getProduct());
+                            productService.decreaseStockProduct(item.getProduct() , item.getQuantity());
                         }
 
                         // reset value in scene

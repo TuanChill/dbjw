@@ -13,6 +13,7 @@ public class AddProductController extends ChangeProductController {
     public void submitHandler(ActionEvent event) {
         if (validateInput()) {
             submitBtn.setDisable(true);
+
             Product product = Product.builder()
                     .name(nameProduct.getText().trim())
                     .price(Long.parseLong(price.getText()))
@@ -23,11 +24,14 @@ public class AddProductController extends ChangeProductController {
                     .material(material.getValue().trim())
                     .imgUrl(fileImg.getPath())
                     .build();
+
             errText.setText("Đang lưu sản phẩm....");
+
             if (productService.createProduct(product)) {
                 UpdateStatusProduct.setIsProductAdded(true);
                 errText.setText("Lưu sản phẩm thành công");
                 delayWindowClose(event);
+
                 unbindFormatter();
 
                 // clear cache img

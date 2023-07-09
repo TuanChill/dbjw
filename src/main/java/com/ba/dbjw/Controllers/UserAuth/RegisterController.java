@@ -87,7 +87,7 @@ public class RegisterController implements Initializable {
             if (userAd != null && userAd.getRole().equals("admin")) {
                 return true;
             } else {
-                showAlert("Lỗi", "Tên tài khoản/mật khẩu không đúng", Alert.AlertType.ERROR);
+                showAlert("Lỗi", "Xác thực admin không đúng", Alert.AlertType.ERROR);
                 return false;
             }
         } else {
