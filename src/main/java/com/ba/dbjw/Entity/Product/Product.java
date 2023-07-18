@@ -17,9 +17,8 @@ import java.time.LocalDateTime;
 @Table(name = "product")
 public class Product {
     @Id
-    @Column(unique = true, nullable = false)
     private String code;
-    @Column(unique = true, nullable = false)
+    @Column(nullable = false)
     private String name;
     private String description;
     @Column(nullable = false)

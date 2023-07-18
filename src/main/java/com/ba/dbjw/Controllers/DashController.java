@@ -51,6 +51,9 @@ public class DashController {
     protected TextField searchBar;
 
     @FXML
+    protected  Button delBtn;
+
+    @FXML
     protected void newWindow(ActionEvent event) throws IOException {
         NewWindowController.getNewProductWindow();
         if (UpdateStatusProduct.isProductAdded()) {
@@ -75,11 +78,12 @@ public class DashController {
         if(CurrentUser.getCurrentUser().getRole().equals("user")) {
             employeeBtn.setDisable(true);
             customerBtn.setDisable(true);
-            invoiceHistoryBtn.setDisable(true);
+            if(delBtn != null) delBtn.setDisable(true);
         } else {
             employeeBtn.setDisable(false);
             customerBtn.setDisable(false);
             invoiceHistoryBtn.setDisable(false);
+            if(delBtn != null) delBtn.setDisable(false);
         }
     }
 

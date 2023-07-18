@@ -3,12 +3,9 @@ package com.ba.dbjw.Controllers.Customer;
 import com.ba.dbjw.Entity.Customer.Customer;
 import com.ba.dbjw.Helpers.CurrentCustomer;
 import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusCustomer;
-import com.ba.dbjw.Views.SceneController;
-import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.util.Duration;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -20,6 +17,7 @@ public class UpdateCustomerController extends ChangeCustomerController {
 
     @FXML
     public void submitHandler(ActionEvent event) {
+        submitBtn.setDisable(true);
         if (validateInput()) {
             Customer customer = new Customer();
             // set value for obj
@@ -38,6 +36,7 @@ public class UpdateCustomerController extends ChangeCustomerController {
                 delayWindowClose(event);
             } else {
                 errText.setText("Đã có lỗi xảy ra");
+                submitBtn.setDisable(false);
             }
         }
     }

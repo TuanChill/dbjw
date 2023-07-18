@@ -11,6 +11,7 @@ public class LazyLoading {
             try {
                 Image image = new Image(imageUrl);
 
+
                 Platform.runLater(() -> {
                     imgPreview.setImage(image);
                 });

@@ -28,6 +28,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -106,21 +107,27 @@ public class InvoiceDashController extends DashController implements Initializab
             showAlert("Cảnh báo", "Chưa có sản phẩm nào được chọn!!", Alert.AlertType.WARNING);
             return;
         }
-        String productCode = selectedProduct.getCode();
-        boolean productExists = isProductExists(items, productCode);
 
-        if (productExists) {
-            // Product already exists in the items list
-            handleIncreaseNumber(productCode);
+        if(selectedProduct.getStock() > 0 ) {
+
+            String productCode = selectedProduct.getCode();
+            boolean productExists = isProductExists(items, productCode);
+
+            if (productExists) {
+                // Product already exists in the items list
+                handleIncreaseNumber(productCode);
+            } else {
+                // Add the new InvoiceItem to the list
+                InvoiceItem newInvoiceItem = new InvoiceItem();
+                newInvoiceItem.setProduct(selectedProduct);
+                newInvoiceItem.setQuantity(1);
+                items.add(newInvoiceItem);
+            }
+            updateTotalMoney();
+            cartTable.refresh();
         } else {
-            // Add the new InvoiceItem to the list
-            InvoiceItem newInvoiceItem = new InvoiceItem();
-            newInvoiceItem.setProduct(selectedProduct);
-            newInvoiceItem.setQuantity(1);
-            items.add(newInvoiceItem);
+            showAlert("Lỗi", "Sản phẩm đã hết hàng trong kho", Alert.AlertType.ERROR);
         }
-        updateTotalMoney();
-        cartTable.refresh();
     }
 
 
@@ -148,9 +155,18 @@ public class InvoiceDashController extends DashController implements Initializab
                             .note(noteInvoice.getText())
                             .build();
                     if (invoiceService.saveInvoice(newInvoice)) {
+
+                        //decrease stock product
+                        for (InvoiceItem item :items) {
+                            productService.decreaseStockProduct(item.getProduct() , item.getQuantity());
+                        }
+
+                        // reset value in scene
                         setDefaultValue();
                         items.clear();
                         cartTable.refresh();
+
+
                         showAlert("Thông báo", "Lưu hoá đơn thành công", Alert.AlertType.INFORMATION);
                     }
                 }
@@ -254,6 +270,21 @@ public class InvoiceDashController extends DashController implements Initializab
         cartTable.setEditable(true);
         cartTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         cartTable.setItems(items);
+
+        cartTable.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 1) {
+
+                InvoiceItem selectedItem = cartTable.getSelectionModel().getSelectedItem();
+
+                if (selectedItem != null) {
+
+                    Product selectedProduct = selectedItem.getProduct();
+
+                    setInfoProduct(selectedProduct);
+                }
+            }
+        });
+
     }
 
     private void fillTable() {

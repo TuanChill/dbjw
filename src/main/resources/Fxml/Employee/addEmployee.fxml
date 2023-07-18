@@ -12,51 +12,34 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="835.0" prefWidth="1287.0" stylesheets="@../../Assets/Styles/popup.css"
-            xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.ba.dbjw.Controllers.Employee.AddEmployeeController">
+<AnchorPane prefHeight="835.0" prefWidth="1287.0" stylesheets="@../../Assets/Styles/popup.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ba.dbjw.Controllers.Employee.AddEmployeeController">
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-        <BorderPane layoutX="14.0" layoutY="6.0" prefHeight="293.0" prefWidth="364.0" AnchorPane.bottomAnchor="0.0"
-                    AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <BorderPane layoutX="14.0" layoutY="6.0" prefHeight="293.0" prefWidth="364.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <left>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="742.0" prefWidth="1273.0"
-                            styleClass="product-create-container" BorderPane.alignment="CENTER">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="742.0" prefWidth="1273.0" styleClass="product-create-container" BorderPane.alignment="CENTER">
                     <BorderPane.margin>
-                        <Insets/>
+                        <Insets />
                     </BorderPane.margin>
                     <children>
-                        <Text layoutX="62.0" layoutY="111.12890625" strokeType="OUTSIDE" strokeWidth="0.0"
-                              styleClass="text-title" text="Tên nhân viên"/>
-                        <Text layoutX="63.0" layoutY="190.12890625" strokeType="OUTSIDE" strokeWidth="0.0"
-                              styleClass="text-title" text="Giới tính"/>
-                        <Text layoutX="67.0" layoutY="551.423828125" strokeType="OUTSIDE" strokeWidth="0.0"
-                              styleClass="text-title" text="CCCD"/>
-                        <Text layoutX="697.0546875" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                              styleClass="text-title" text="Ảnh chân dung"/>
-                        <TextField fx:id="nameEmployee" layoutX="210.0" layoutY="89.0" prefHeight="37.0"
-                                   prefWidth="417.0"/>
-                        <ImageView fx:id="imgPreview" fitHeight="545.0" fitWidth="532.0" layoutX="697.0" layoutY="197.0"
-                                   pickOnBounds="true" preserveRatio="true" styleClass="img-preview">
+                        <Text layoutX="62.0" layoutY="111.12890625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Tên nhân viên" />
+                        <Text layoutX="63.0" layoutY="190.12890625" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Giới tính" />
+                        <Text layoutX="67.0" layoutY="551.423828125" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="CCCD" />
+                        <Text layoutX="697.0546875" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Ảnh chân dung" />
+                        <TextField fx:id="nameEmployee" layoutX="210.0" layoutY="89.0" prefHeight="37.0" prefWidth="417.0" />
+                        <ImageView fx:id="imgPreview" fitHeight="545.0" fitWidth="532.0" layoutX="697.0" layoutY="197.0" pickOnBounds="true" preserveRatio="true" styleClass="img-preview">
                             <image>
-                                <Image url="@../../Assets/Images/upload.jpg"/>
+                                <Image url="@../../Assets/Images/upload.jpg" />
                             </image>
                         </ImageView>
-                        <Button layoutX="211.0" layoutY="758.0" mnemonicParsing="false" onAction="#submitHandler"
-                                prefHeight="34.0" prefWidth="201.0" styleClass="btn-submit" text="Tạo mới"/>
-                        <ChoiceBox fx:id="gender" layoutX="210.0" layoutY="167.0" prefHeight="35.0" prefWidth="150.0"/>
-                        <Button layoutX="853.0" layoutY="113.0" mnemonicParsing="false" onAction="#imgChooser"
-                                styleClass="btn-submit" text="Chọn ảnh"/>
-                        <Text layoutX="2.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0"
-                              styleClass="text-header-tab" text="Tạo Nhân viên mới" textAlignment="CENTER"
-                              wrappingWidth="1279.251953125"/>
-                        <Text layoutX="63.0" layoutY="253.423828125" strokeType="OUTSIDE" strokeWidth="0.0"
-                              styleClass="text-title" text="Chức vụ"/>
-                        <ChoiceBox fx:id="position" layoutX="210.0" layoutY="236.0" prefHeight="35.0"
-                                   prefWidth="150.0"/>
-                        <Text fx:id="errText" fill="#fc0000" layoutX="697.0" layoutY="696.0" strokeType="OUTSIDE"
-                              strokeWidth="0.0" wrappingWidth="535.0">
+                        <Button fx:id="submitBtn" layoutX="211.0" layoutY="758.0" mnemonicParsing="false" onAction="#submitHandler" prefHeight="34.0" prefWidth="201.0" styleClass="btn-submit" text="Tạo mới" />
+                        <ChoiceBox fx:id="gender" layoutX="210.0" layoutY="167.0" prefHeight="35.0" prefWidth="150.0" />
+                        <Button layoutX="853.0" layoutY="113.0" mnemonicParsing="false" onAction="#imgChooser" styleClass="btn-submit" text="Chọn ảnh" />
+                        <Text layoutX="2.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-header-tab" text="Tạo Nhân viên mới" textAlignment="CENTER" wrappingWidth="1279.251953125" />
+                        <Text layoutX="63.0" layoutY="253.423828125" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Chức vụ" />
+                        <ChoiceBox fx:id="position" layoutX="210.0" layoutY="236.0" prefHeight="35.0" prefWidth="150.0" />
+                        <Text fx:id="errText" fill="#fc0000" layoutX="697.0" layoutY="696.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="535.0">
                             <font>
-                                <Font name="System Italic" size="14.0"/>
+                                <Font name="System Italic" size="14.0" />
                             </font>
                         </Text>
                     </children>
@@ -64,23 +47,18 @@
             </left>
         </BorderPane>
     </AnchorPane>
-    <Text layoutX="64.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title"
-          text="Số điện thoại"/>
-    <TextField fx:id="phoneNumber" layoutX="208.0" layoutY="382.0" prefHeight="35.0" prefWidth="193.0"/>
-    <Text layoutX="65.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Email"/>
-    <TextField fx:id="email" layoutX="209.0" layoutY="455.0" prefHeight="36.0" prefWidth="194.0"
-               promptText="example@gmail.com"/>
-    <Text layoutX="65.0" layoutY="641.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Địa chỉ"/>
-    <TextField fx:id="address" layoutX="210.0" layoutY="622.0" prefHeight="36.0" prefWidth="419.0"/>
-    <Button layoutX="1085.0" layoutY="763.0" mnemonicParsing="false" onAction="#cancelWindow" prefHeight="35.0"
-            prefWidth="127.0" styleClass="cancel-btn" text="Huỷ">
+    <Text layoutX="64.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Số điện thoại" />
+    <TextField fx:id="phoneNumber" layoutX="208.0" layoutY="382.0" prefHeight="35.0" prefWidth="193.0" />
+    <Text layoutX="65.0" layoutY="478.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Email" />
+    <TextField fx:id="email" layoutX="209.0" layoutY="455.0" prefHeight="36.0" prefWidth="194.0" promptText="example@gmail.com" />
+    <Text layoutX="65.0" layoutY="641.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Địa chỉ" />
+    <TextField fx:id="address" layoutX="210.0" layoutY="622.0" prefHeight="36.0" prefWidth="419.0" />
+    <Button layoutX="1085.0" layoutY="763.0" mnemonicParsing="false" onAction="#cancelWindow" prefHeight="35.0" prefWidth="127.0" styleClass="cancel-btn" text="Huỷ">
         <font>
-            <Font name="System Bold" size="12.0"/>
+            <Font name="System Bold" size="12.0" />
         </font>
     </Button>
-    <TextField fx:id="cccd" layoutX="209.0" layoutY="530.0" prefHeight="35.0" prefWidth="193.0"/>
-    <Text layoutX="63.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title"
-          text="Ngày sinh"/>
-    <DatePicker fx:id="birthdate" layoutX="210.0" layoutY="303.0" prefHeight="36.0" prefWidth="174.0"
-                promptText="dd/mm/yyyy"/>
+    <TextField fx:id="cccd" layoutX="209.0" layoutY="530.0" prefHeight="35.0" prefWidth="193.0" />
+    <Text layoutX="63.0" layoutY="328.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-title" text="Ngày sinh" />
+    <DatePicker fx:id="birthdate" layoutX="210.0" layoutY="303.0" prefHeight="36.0" prefWidth="174.0" promptText="dd/mm/yyyy" />
 </AnchorPane>

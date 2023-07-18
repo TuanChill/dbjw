@@ -13,20 +13,20 @@ public class ProductServiceImpl implements ProductService<Product> {
 
     @Override
     public Product getProductByCode(String code) {
-        if(code != null || !code.isEmpty()) {
+        if (code != null && !code.isEmpty()) {
             return productRepo.getProductByCode(code);
         }
-            return null;
+        return null;
     }
 
     @Override
     public boolean createProduct(Product product) {
         String imgPath = product.getImgUrl();
-        if(imgPath != null) {
+        if (imgPath != null) {
             String url = CloudinaryUtil.uploadImgToCloudinary(imgPath);
             product.setImgUrl(url);
         }
-          return productRepo.saveProduct(product);
+        return productRepo.saveProduct(product);
     }
 
     @Override
@@ -35,17 +35,35 @@ public class ProductServiceImpl implements ProductService<Product> {
     }
 
     @Override
-    public void deleteProduct(Product product) {
-        productRepo.delProduct(product);
+    public boolean deleteProduct(Product product) {
+        try {
+            return productRepo.delProduct(product);
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     @Override
     public boolean updateProduct(Product product) {
+        String imgPath = product.getImgUrl();
+        if (imgPath != null && !imgPath.contains("res.cloudinary.com")) {
+            String url = CloudinaryUtil.uploadImgToCloudinary(imgPath);
+            product.setImgUrl(url);
+        }
         return productRepo.updateProduct(product);
     }
 
     @Override
     public Long getNumberOfProduct() {
         return productRepo.getNumberOfProducts();
+    }
+
+    @Override
+    public void decreaseStockProduct(Product product, int value) {
+        int currStock = product.getStock();
+        if (currStock > 0) {
+            product.setStock(currStock - value);
+            productRepo.updateProduct(product);
+        }
     }
 }

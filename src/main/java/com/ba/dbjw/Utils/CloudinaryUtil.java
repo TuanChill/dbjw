@@ -1,5 +1,6 @@
 package com.ba.dbjw.Utils;
 
+import com.ba.dbjw.Helpers.UUIDGenerator;
 import com.cloudinary.Cloudinary;
 import com.cloudinary.Transformation;
 import com.cloudinary.utils.ObjectUtils;
@@ -32,11 +33,9 @@ public class CloudinaryUtil {
 
     public static String uploadImgToCloudinary(String file) {
 
-
-
         // Upload
         try {
-            Map<String,String> uploadResult = getCloudinary().uploader().upload(file, ObjectUtils.asMap("public_id", "olympic_flag"));
+            Map<String,String> uploadResult = getCloudinary().uploader().upload(file, ObjectUtils.asMap("public_id", UUIDGenerator.shortUUID()));
             return uploadResult.get("url");
         } catch (IOException exception) {
             System.out.println(exception.getMessage());

@@ -10,6 +10,7 @@ public class AddCustomerController extends ChangeCustomerController {
     @FXML
     public void submitHandler(ActionEvent event) {
         if (validateInput()) {
+            submitBtn.setDisable(true);
             if (!customerIsExist(phoneNumber.getText())) {
                 Customer customer = new Customer();
                 // set value for obj
@@ -20,7 +21,7 @@ public class AddCustomerController extends ChangeCustomerController {
                 customer.setAddress(address.getText().trim());
                 customer.setEmail(email.getText().trim());
                 errText.setText("Đang lưu Khách hàng....");
-                if(customerService.createCustomer(customer)) {
+                if (customerService.createCustomer(customer)) {
                     UpdateStatusCustomer.setIsCustomerAdded(true);
                     errText.setText("Lưu khách hàng thành công");
                     delayWindowClose(event);
@@ -29,6 +30,7 @@ public class AddCustomerController extends ChangeCustomerController {
                 }
             } else {
                 errText.setText("Khách hàng đã tồn tại");
+                submitBtn.setDisable(false);
             }
         }
     }

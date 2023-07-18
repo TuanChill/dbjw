@@ -7,10 +7,7 @@ import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
@@ -25,6 +22,8 @@ import java.util.ResourceBundle;
 public class ChangeProductController implements Initializable {
     @FXML
     protected Text errText;
+    @FXML
+    protected Button submitBtn;
     @FXML
     protected TextField nameProduct;
     @FXML
@@ -44,9 +43,9 @@ public class ChangeProductController implements Initializable {
 
     protected File fileImg;
 
-    protected final String[] typeProductList = {"Nhẫn", "Bông tai ", "Dây chuyền"};
+    protected final String[] typeProductList = {"Nhẫn", "Bông tai ", "Dây chuyền", "Lắc", "Kiềng", "Charm"};
 
-    protected final String[] materialList = {"Bạc", "Vàng", "Kim Cương"};
+    protected final String[] materialList = {"Bạc", "Vàng", "Kim Cương", "Platinum"};
 
     protected final ProductServiceImpl productService = new ProductServiceImpl();
 
@@ -104,6 +103,9 @@ public class ChangeProductController implements Initializable {
 
     @FXML
     protected void cancelWindow(ActionEvent event) {
+        // clear cache img
+        imgPreview.setImage(null);
+
         unbindFormatter();
         SceneController.close(event);
     }

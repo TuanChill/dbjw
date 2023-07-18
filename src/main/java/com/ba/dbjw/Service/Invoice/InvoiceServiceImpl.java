@@ -9,6 +9,7 @@ import java.util.List;
 public class InvoiceServiceImpl implements InvoiceService<Invoice> {
 
     private final InvoiceRepo<Invoice> invoiceRepo = new InvoiceRepoImpl();
+
     @Override
     public Invoice getInvoiceByCode(String code) {
         if(code != null) {

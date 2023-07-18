@@ -1,5 +1,9 @@
 package com.ba.dbjw.Views;
 
+import com.ba.dbjw.Helpers.CurrentCustomer;
+import com.ba.dbjw.Helpers.CurrentEntity.CurrentEmployee;
+import com.ba.dbjw.Helpers.CurrentEntity.CurrentInvoice;
+import com.ba.dbjw.Helpers.CurrentProduct;
 import com.ba.dbjw.Helpers.ScenePath;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -92,6 +96,12 @@ public class SceneController {
         Node source = (Node) actionEvent.getSource();
         Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
+
+        //reset curr entity
+        CurrentProduct.setCurrentProduct(null);
+        CurrentCustomer.setCurrentCustomer(null);
+        CurrentEmployee.setCurrentEmployee(null);
+        CurrentInvoice.setCurrentInvoice(null);
     }
 
 }

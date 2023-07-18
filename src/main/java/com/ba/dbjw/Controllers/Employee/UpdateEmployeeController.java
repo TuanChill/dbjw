@@ -6,8 +6,8 @@ import com.ba.dbjw.Helpers.UpdateStatus.UpdateStatusEmployee;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import lombok.AllArgsConstructor;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -23,6 +23,7 @@ public class UpdateEmployeeController extends ChangeEmployeeController {
     @FXML
     protected void submitHandler(ActionEvent event) {
         if (validateInput()) {
+            submitBtn.setDisable(true);
             errText.setText("Đang cập nhật nhân viên....");
             Employee employee = new Employee();
             // set value for obj
@@ -37,12 +38,17 @@ public class UpdateEmployeeController extends ChangeEmployeeController {
             employee.setAddress(address.getText());
             employee.setAvatar(fileImg.toString());
 
+            if(fileImg != null) {
+                employee.setAvatar(fileImg.getPath());
+            }
+
             if (employeeService.updateEmployee(employee)) {
                 UpdateStatusEmployee.setIsEmployeeAdded(true);
                 errText.setText("Cập nhật nhân viên thành công");
                 delayWindowClose(event);
             } else {
                 errText.setText("Đã có lỗi xảy ra");
+                submitBtn.setDisable(false);
             }
         }
     }
@@ -63,9 +69,6 @@ public class UpdateEmployeeController extends ChangeEmployeeController {
             return false;
         } else if (position.getValue() == null) {
             errText.setText("Vui lòng chọn chức vụ");
-            return false;
-        } else if (fileImg == null) {
-            errText.setText("Vui lòng chọn ảnh cho nhân viên");
             return false;
         } else if (cccd.getText().trim().isEmpty()) {
             errText.setText("Căn cước công dân không được bỏ trống");
@@ -101,7 +104,8 @@ public class UpdateEmployeeController extends ChangeEmployeeController {
         email.setText(currEmployee.getEmail());
         cccd.setText(currEmployee.getCccd());
         address.setText(currEmployee.getAddress());
-        loadAndDisplayImage(imgPreview,currEmployee.getAvatar());
+        fileImg = new File(currEmployee.getAvatar());
+        loadAndDisplayImage(imgPreview, currEmployee.getAvatar());
     }
 
     @Override
@@ -111,5 +115,6 @@ public class UpdateEmployeeController extends ChangeEmployeeController {
         position.getItems().addAll(positionList);
 
         setCurrEmployee();
+//
     }
 }
